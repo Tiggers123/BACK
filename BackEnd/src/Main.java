@@ -7,11 +7,10 @@ public class Main {
         FileManager reader = new FileManager();
         ArrayList<String> file =  reader.FileReader("BackEnd/src/constructionplan.txt");
         for (String inputString : file) {
-            ArrayList<String> tokens = Tokenizer.tokenize(inputString);
+            ArrayList<String> tokens = ExprTokenizer.tokenize(inputString);
             // Print the tokens for the current input string
-            for (String token : tokens) {
-                System.out.println(token);
-            }
+            ConstructionPlanParser parser = new ConstructionPlanParser(tokens);
+            parser.parse();
         }
 
     }

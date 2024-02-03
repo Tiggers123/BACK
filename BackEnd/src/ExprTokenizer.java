@@ -1,18 +1,22 @@
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-public class Tokenizer {
+public class ExprTokenizer {
+    ArrayList<String> line ;
+    public ExprTokenizer(String line){
+        this.line = tokenize(line);
+    }
     private static final Pattern pattern = Pattern.compile(
-            "#[^\\n]*" + // Match comments
-                    "|\\b(?:if|then|else|while|end|collect|invest|move|shoot|random|budget|deposit|opponent|nearby)\\b" + // Keywords
+                    "\\b(?:if|then|else|while|end|collect|invest|move|shoot|random|budget|deposit|opponent|nearby)\\b" + // Keywords
+                    "|[-+*/%]" + // Arithmetic operators
                     "|[-+]?\\d*\\.\\d+|\\d+" + // Numbers
                     "|[\\(\\)\\{\\}\\[\\];,]" + // Punctuation
                     "|=" + // Assignment operator
                     "|\\b(?:upleft|downleft|downright|upright|up|down|left|right|done)\\b" + // Directions
                     "|\\b(?:t|m|deposit|budget|opponentLoc|cost|dir)\\b" + // Variables
-                    "|\\b(?:nearby)\\b" + // Nearby keyword
-                    "|\\/\\/.*\\n" + // C++-style comments
-                    "|\\/\\/.*$" // C++-style comments
+                    "|\\b(?:nearby)\\b"  // Nearby keyword
+//                    "|\\/\\/.*\\n" + // C++-style comments
+//                    "|\\/\\/.*$" // C++-style comments
     );
 
     // Tokenize method
@@ -24,4 +28,6 @@ public class Tokenizer {
         }
         return tokens;
     }
+
+
 }
