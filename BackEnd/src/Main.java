@@ -3,14 +3,15 @@ import java.util.ArrayList;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         FileManager reader = new FileManager();
         ArrayList<String> file =  reader.FileReader("BackEnd/src/constructionplan.txt");
         for (String inputString : file) {
-            ArrayList<String> tokens = ExprTokenizer.tokenize(inputString);
-            // Print the tokens for the current input string
-            ConstructionPlanParser parser = new ConstructionPlanParser(tokens);
-            parser.parse();
+            ExprTokenizer_FromCHIN tokens = new ExprTokenizer_FromCHIN(inputString);
+            ExprTokenizer tokens1 = new ExprTokenizer(inputString);
+            for (int i = 0; i < tokens1.line.size(); i++){
+                System.out.println(tokens1.consume());
+            }
         }
 
     }

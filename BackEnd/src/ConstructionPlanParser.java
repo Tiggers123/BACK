@@ -187,13 +187,6 @@ public class ConstructionPlanParser {
         }
 
     }
-//    public boolean matchEx(String token) {
-//        if (currentTokenIndex < tokens.size() && tokens.get(currentTokenIndex+1).equals(token)) {
-//            currentTokenIndex++;
-//            return true;
-//        }
-//        return false;
-//    }
     public String peek() {
         if (currentTokenIndex < tokens.size()) {
             return tokens.get(currentTokenIndex);
