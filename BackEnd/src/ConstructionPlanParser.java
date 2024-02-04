@@ -1,173 +1,202 @@
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 public class ConstructionPlanParser {
-    private ArrayList<String> tokens ;
-    private int currentTokenIndex;
-    public ConstructionPlanParser(ArrayList<String> tokens){
-        this.tokens = tokens ;
-        this.currentTokenIndex = 0 ;
+    private final ExprTokenizer line ;
+    public ConstructionPlanParser(ExprTokenizer Lineinput){
+        this.line = Lineinput ;
     }
-    public void parse(){
-        while (currentTokenIndex < tokens.size()){
-            Statement();
-        }
+    public void parse() throws SyntaxErrorException {
+        Statement();
     }
-    public void Statement(){
-        if (match("if")) {
+    public void Statement() throws SyntaxErrorException {
+        if (line.peek("if")) {
+            line.consume("if");
             IfStatement();
-        } else if (match("while")) {
+        } else if (line.peek("while")) {
+            line.consume("while");
             WhileStatement();
-        } else if (match("{")) {
+        } else if (line.peek("{")) {
+            line.consume("{");
             BlockStatement();
         } else {
             Command();
         }
     }
-    public void Command(){
+    public void Command() throws SyntaxErrorException {
         if (matchIdentifier()) {
+            line.consume();
             AssignmentStatement();
         } else {
             ActionCommand();
         }
     }
-    public void AssignmentStatement(){
+    public void AssignmentStatement() throws SyntaxErrorException {
+        line.consume("=");
         Expression();
     }
-    public void ActionCommand(){
-        String token = tokens.get(currentTokenIndex);
-        switch (token) {
+    public void ActionCommand() throws SyntaxErrorException {
+        switch (line.peek()) {
             case "done":
-                /// have to give more
+                line.consume("done");
+                break;
             case "relocate":
-//                match(token);
+                line.consume("relocate");
                 break;
             case "move":
+                line.consume("move");
                 MoveCommand();
                 break;
             case "invest":
+                line.consume("invest");
+                RegionCommand();
+                break;
             case "collect":
+                line.consume("collect");
                 RegionCommand();
                 break;
             case "shoot":
+                line.consume("shoot");
                 AttackCommand();
                 break;
             default:
-                throw new RuntimeException("Invalid action command: " + token);
+                throw new RuntimeException("Invalid action command: " + line.peek());
         }
 
     }
-    public void MoveCommand(){
-        expect("move");
+    public void MoveCommand() throws SyntaxErrorException {
         Direction();
     }
-    public void RegionCommand(){
-        if (match("invest") || match("collect")) {
+    public void RegionCommand() throws SyntaxErrorException {
+        if (line.peek("invest") || line.peek("collect")) {
             Expression();
         } else {
             throw new RuntimeException("Invalid region command");
         }
     }
-    public void AttackCommand(){
-        expect("shoot");
-        Direction();
-        Expression();
+    public void AttackCommand() throws SyntaxErrorException {
+        if(line.peek("shoot")){
+            Direction();
+            Expression();
+        }else {
+            throw new SyntaxErrorException("Invalid command");
+        }
     }
-    public void Direction(){
+    public void Direction() throws SyntaxErrorException {
         String[] validDirections = {"up", "down", "upleft", "upright", "downleft", "downright"};
-        String token = tokens.get(currentTokenIndex);
+        String token = line.peek();
         if (Arrays.asList(validDirections).contains(token)) {
-            match(token);
+            // need to fix
+            System.out.println(line.peek());
         } else {
             throw new RuntimeException("Invalid direction: " + token);
         }
     }
-    public void BlockStatement(){
-        while (!peek().equals("}")) {
+    public void BlockStatement() throws SyntaxErrorException {
+        while (!line.peek().equals("}")) {
             Statement();
         }
-        expect("}");
+        if (line.peek("}")){
+            line.consume("}");
+        }
     }
-    public void IfStatement(){
-        expect("(");
+    public void IfStatement() throws SyntaxErrorException {
+        line.consume("(");
         Expression();
-        expect(")");
-        expect("then");
+        line.consume(")");
+        line.consume("then");
         Statement();
-        expect("else");
+        line.consume("else");
         Statement();
     }
-    public void WhileStatement(){
-        expect("(");
+    public void WhileStatement() throws SyntaxErrorException {
+        line.consume("(");
         Expression();
-        expect(")");
+        line.consume(")");
         Statement();
     }
-    public void Expression(){
-        expect("=");
+    public void Expression() throws SyntaxErrorException {
         Term();
-        while (match("+") || match("-")) {
-            Term();
-        }
-    }
-    public void Term (){
-        Factor();
-        while (match("*") || match("/") || match("%")) {
-            Factor();
-        }
-    }
-    public void Factor (){
-        Power();
-        while (match("^")) {
-            Factor();
-        }
-    }
-    public void Power(){
-        if (matchNumber() || matchIdentifier()) {
-            // Do nothing for simplicity
-        } else if (match("(")) {
+        if(line.peek("+")) {
+            line.consume("+");
             Expression();
-            expect(")");
-        } else if (match("opponent") || match("nearby")) {
-            InfoExpression();
+        }
+        if(line.peek("-")){
+            line.consume("+");
+            Expression();
         }
     }
-    public void InfoExpression(){
-        if (match("opponent") || match("nearby")) {
+    public void Term () throws SyntaxErrorException {
+        Factor();
+        while (line.peek("*") || line.peek("/") || line.peek("%")) {
+            line.consume();
+            Term ();
+        }
+        if(line.peek("*")){
+            line.consume("*");
+            Term ();
+        }
+        if(line.peek("/")){
+            line.consume("/");
+            Term ();
+        }
+        if(line.peek("%")){
+            line.consume("%");
+            Term ();
+        }
+
+    }
+    public void Factor () throws SyntaxErrorException {
+        Power();
+        while (line.peek("^")) {
+            line.consume("^");
+            Factor();
+        }
+    }
+    public void Power() throws SyntaxErrorException {
+        if (matchIdentifier()){
+            line.consume();
+            System.out.println("dosomething form Power");
+            return;
+        }else if (matchNumber()) {
+            line.consume();
+            System.out.println("dosomething form Power");
+            return;
+        }
+        if (line.peek("(")) {
+            line.consume("(");
+            Expression();
+            line.consume(")");
+        }
+        InfoExpression();
+
+    }
+    public void InfoExpression() throws SyntaxErrorException {
+        if (line.peek("nearby")) {
+            line.consume();
             Direction();
-        } else {
+        } else if(line.peek("opponent")){
+            System.out.println("Call opponent funtion");
+        }else {
             throw new RuntimeException("Invalid InfoExpression");
         }
     }
-    public boolean match(String token) {
-        if (currentTokenIndex < tokens.size() && tokens.get(currentTokenIndex).equals(token)) {
-            currentTokenIndex++;
-            return true;
-        }
-        return false;
-    }
 
-    private boolean matchIdentifier() {
-        String token = tokens.get(currentTokenIndex);
-        if (Pattern.matches("[a-zA-Z][a-zA-Z0-9]*", token) && !isReservedWord(token)){
-            currentTokenIndex++;
-            return true;
-        }else {return false ;}
+
+    private boolean matchIdentifier() throws SyntaxErrorException {
+        return Pattern.matches("[a-zA-Z][a-zA-Z0-9]*", line.peek());
     }
 
     private boolean matchNumber() {
-        String token = tokens.get(currentTokenIndex);
         try {
-            long number = Long.parseLong(token);
-            currentTokenIndex++;
+            long number = Long.parseLong(line.peek());
             return number >= 0;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | SyntaxErrorException e) {
             return false;
         }
 
     }
-
     private boolean isReservedWord(String token) {
         List<String> reservedWords = Arrays.asList(
                 "collect", "done", "down", "downleft", "downright", "else", "if", "invest",
@@ -176,21 +205,7 @@ public class ConstructionPlanParser {
         );
         return reservedWords.contains(token);
     }
-    public String expect(String token) {
-        if (match(token)) {
-            if (currentTokenIndex <= 0) {return tokens.get(currentTokenIndex) ;
-            }else {
-                return tokens.get(currentTokenIndex - 1);
-            }
-        } else {
-            throw new RuntimeException("Expected token: " + token);
-        }
 
-    }
-    public String peek() {
-        if (currentTokenIndex < tokens.size()) {
-            return tokens.get(currentTokenIndex);
-        }
-        return "";
-    }
+
+
 }

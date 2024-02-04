@@ -4,13 +4,14 @@ import java.util.ArrayList;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws Exception {
+        int i = 0;
         FileManager reader = new FileManager();
         ArrayList<String> file =  reader.FileReader("BackEnd/src/constructionplanWithcomment.txt");
         for (String inputString : file) {
+            i++ ;
             ExprTokenizer tokens1 = new ExprTokenizer(inputString);
-            for (int i = 0; i < tokens1.line.size(); i++){
-                System.out.println(tokens1.consume());
-            }
+            ConstructionPlanParser h = new ConstructionPlanParser(tokens1);
+            h.parse();
         }
 
     }

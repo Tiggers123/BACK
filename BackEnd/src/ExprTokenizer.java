@@ -7,6 +7,7 @@ public class ExprTokenizer {
     List<String> line  ;
     private int pos;
     public ExprTokenizer(String line){
+        pos = 0 ;
         this.line = tokenize(line);
     }
     private static final Pattern pattern = Pattern.compile(
@@ -25,7 +26,6 @@ public class ExprTokenizer {
     public static List<String> tokenize(String inputString) {
         List<String> tokens = new ArrayList<>();
         Matcher matcher = pattern.matcher(inputString);
-        boolean check = true ;
         while (matcher.find()) {
             if (Pattern.matches("#[^\\n]*", matcher.group().trim())){return tokens;}
             else {
@@ -34,7 +34,8 @@ public class ExprTokenizer {
         }
         return tokens;
     }
-    public boolean hasNextToken() { return line.get(pos) != null; }
+    public boolean hasNextToken() {
+        return line.get(pos) != null; }
     public String peek() throws SyntaxErrorException {
         checkNextToken();
         return line.get(pos);
@@ -45,7 +46,9 @@ public class ExprTokenizer {
     public String consume() throws SyntaxErrorException {
         checkNextToken();
         String result = line.get(pos);
-        pos++;
+        if (pos+1 != line.size()){
+            pos++;
+        }
         return result;
     }
     public boolean peek(String s) throws SyntaxErrorException {
