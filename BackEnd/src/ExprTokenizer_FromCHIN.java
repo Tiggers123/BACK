@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isWhitespace;
 
-public class ExprTokenizer_FromCHIN implements  Tokenizer{
+public class ExprTokenizer_FromCHIN {
     public String src, next;
     private int pos;
     private static final Pattern pattern = Pattern.compile(

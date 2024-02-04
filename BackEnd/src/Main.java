@@ -5,9 +5,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws Exception {
         FileManager reader = new FileManager();
-        ArrayList<String> file =  reader.FileReader("BackEnd/src/constructionplan.txt");
+        ArrayList<String> file =  reader.FileReader("BackEnd/src/constructionplanWithcomment.txt");
         for (String inputString : file) {
-            ExprTokenizer_FromCHIN tokens = new ExprTokenizer_FromCHIN(inputString);
             ExprTokenizer tokens1 = new ExprTokenizer(inputString);
             for (int i = 0; i < tokens1.line.size(); i++){
                 System.out.println(tokens1.consume());

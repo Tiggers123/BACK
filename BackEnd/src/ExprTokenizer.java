@@ -10,7 +10,8 @@ public class ExprTokenizer {
         this.line = tokenize(line);
     }
     private static final Pattern pattern = Pattern.compile(
-                    "\\b(?:if|then|else|while|end|collect|invest|move|shoot|random|budget|deposit|opponent|nearby)\\b" + // Keywords
+            "#[^\\n]*"+
+                    "|\\b(?:if|then|else|while|end|collect|invest|move|shoot|random|budget|deposit|opponent|nearby)\\b" + // Keywords
                     "|[-+*/]" + // Arithmetic operators
                     "|[-+]?\\d*\\.\\d+|\\d+" + // Numbers
                     "|[\\(\\)\\{\\}\\[\\];,]" + // Punctuation
@@ -24,8 +25,12 @@ public class ExprTokenizer {
     public static List<String> tokenize(String inputString) {
         List<String> tokens = new ArrayList<>();
         Matcher matcher = pattern.matcher(inputString);
-        while (matcher.find() ) {
-            tokens.add(matcher.group().trim());
+        boolean check = true ;
+        while (matcher.find()) {
+            if (Pattern.matches("#[^\\n]*", matcher.group().trim())){return tokens;}
+            else {
+                tokens.add(matcher.group().trim());
+            }
         }
         return tokens;
     }
