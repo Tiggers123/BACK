@@ -5,15 +5,20 @@ import java.util.regex.Pattern;
 public class ExprTokenizer {
     //Chat GPT
     List<String> line  ;
-    private int pos;
+
+
+    public int pos;
     public ExprTokenizer(String line){
         pos = 0 ;
         this.line = tokenize(line);
     }
+    public ExprTokenizer(){
+        pos = 0 ;
+    }
     private static final Pattern pattern = Pattern.compile(
             "#[^\\n]*"+
                     "|\\b(?:if|then|else|while|end|collect|invest|move|shoot|random|budget|deposit|opponent|nearby)\\b" + // Keywords
-                    "|[-+*/]" + // Arithmetic operators
+                    "|[-+*/%^]" + // Arithmetic operators
                     "|[-+]?\\d*\\.\\d+|\\d+" + // Numbers
                     "|[\\(\\)\\{\\}\\[\\];,]" + // Punctuation
                     "|=" + // Assignment operator
@@ -46,7 +51,7 @@ public class ExprTokenizer {
     public String consume() throws SyntaxErrorException {
         checkNextToken();
         String result = line.get(pos);
-        if (pos+1 != line.size()){
+        if (pos+1 <= line.size()){
             pos++;
         }
         return result;

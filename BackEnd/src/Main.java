@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -7,12 +9,16 @@ public class Main {
         int i = 0;
         FileManager reader = new FileManager();
         ArrayList<String> file =  reader.FileReader("BackEnd/src/constructionplanWithcomment.txt");
+        List<String> u = new ArrayList<>();
         for (String inputString : file) {
-            i++ ;
             ExprTokenizer tokens1 = new ExprTokenizer(inputString);
-            ConstructionPlanParser h = new ConstructionPlanParser(tokens1);
-            h.parse();
+            u.addAll(tokens1.line);
         }
+        ExprTokenizer y = new ExprTokenizer();
+        y.line= u;
+//        System.out.println(u);
+        ConstructionPlanParser x= new ConstructionPlanParser(y);
+        x.parse();
 
     }
 }

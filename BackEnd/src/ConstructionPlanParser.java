@@ -8,7 +8,9 @@ public class ConstructionPlanParser {
         this.line = Lineinput ;
     }
     public void parse() throws SyntaxErrorException {
-        Statement();
+        while (this.line.line.size() != line.pos){
+            Statement();
+        }
     }
     public void Statement() throws SyntaxErrorException {
         if (line.peek("if")) {
@@ -25,43 +27,37 @@ public class ConstructionPlanParser {
         }
     }
     public void Command() throws SyntaxErrorException {
-        if (matchIdentifier()) {
+        if (line.peek().matches("\\b(?:done|relocate|move|invest|collect|shoot)\\b")){
+            ActionCommand();
+        }else if (matchIdentifier()) {
             line.consume();
             AssignmentStatement();
-        } else {
-            ActionCommand();
         }
+
     }
     public void AssignmentStatement() throws SyntaxErrorException {
         line.consume("=");
         Expression();
     }
     public void ActionCommand() throws SyntaxErrorException {
-        switch (line.peek()) {
-            case "done":
-                line.consume("done");
-                break;
-            case "relocate":
-                line.consume("relocate");
-                break;
-            case "move":
-                line.consume("move");
-                MoveCommand();
-                break;
-            case "invest":
-                line.consume("invest");
-                RegionCommand();
-                break;
-            case "collect":
-                line.consume("collect");
-                RegionCommand();
-                break;
-            case "shoot":
-                line.consume("shoot");
-                AttackCommand();
-                break;
-            default:
-                throw new RuntimeException("Invalid action command: " + line.peek());
+        if(line.peek("done")) {
+            line.consume("done");
+            System.out.println("Turn is end");
+        }
+        if(line.peek("relocate")){
+            line.consume("relocate");
+            System.out.println("Turn is end");
+        }
+        if (line.peek("move")){
+            line.consume("move");
+            MoveCommand();
+        }
+        if(line.peek("invest")){
+            RegionCommand();}
+        if(line.peek("collect")){
+            RegionCommand();}
+        if(line.peek("shoot")){
+            AttackCommand();
         }
 
     }
@@ -69,14 +65,20 @@ public class ConstructionPlanParser {
         Direction();
     }
     public void RegionCommand() throws SyntaxErrorException {
-        if (line.peek("invest") || line.peek("collect")) {
+        if(line.peek("invest")){
+            line.consume("invest");
             Expression();
-        } else {
-            throw new RuntimeException("Invalid region command");
+        }
+        if(line.peek("collect")){
+            line.consume("collect");
+            line.consume("(");
+            Expression();
+            line.consume(")");
         }
     }
     public void AttackCommand() throws SyntaxErrorException {
         if(line.peek("shoot")){
+            line.consume("shoot");
             Direction();
             Expression();
         }else {
@@ -84,10 +86,11 @@ public class ConstructionPlanParser {
         }
     }
     public void Direction() throws SyntaxErrorException {
-        String[] validDirections = {"up", "down", "upleft", "upright", "downleft", "downright"};
+        String[] validDirections = {"up", "down", "upleft", "upright", "downleft", "downright" };
         String token = line.peek();
         if (Arrays.asList(validDirections).contains(token)) {
             // need to fix
+            line.consume();
             System.out.println(line.peek());
         } else {
             throw new RuntimeException("Invalid direction: " + token);
@@ -123,16 +126,12 @@ public class ConstructionPlanParser {
             Expression();
         }
         if(line.peek("-")){
-            line.consume("+");
+            line.consume("-");
             Expression();
         }
     }
     public void Term () throws SyntaxErrorException {
         Factor();
-        while (line.peek("*") || line.peek("/") || line.peek("%")) {
-            line.consume();
-            Term ();
-        }
         if(line.peek("*")){
             line.consume("*");
             Term ();
@@ -155,6 +154,20 @@ public class ConstructionPlanParser {
         }
     }
     public void Power() throws SyntaxErrorException {
+
+        if (isSpecialVariables(line.peek())){
+            line.consume();
+            System.out.println("It SpecialVariables it will do something here");
+            return;
+        }
+        if (line.peek("nearby") || line.peek("opponent")){
+            InfoExpression();
+        }
+        if (line.peek("(")) {
+            line.consume("(");
+            Expression();
+            line.consume(")");
+        }
         if (matchIdentifier()){
             line.consume();
             System.out.println("dosomething form Power");
@@ -164,19 +177,14 @@ public class ConstructionPlanParser {
             System.out.println("dosomething form Power");
             return;
         }
-        if (line.peek("(")) {
-            line.consume("(");
-            Expression();
-            line.consume(")");
-        }
-        InfoExpression();
 
     }
     public void InfoExpression() throws SyntaxErrorException {
         if (line.peek("nearby")) {
-            line.consume();
+            line.consume("nearby");
             Direction();
         } else if(line.peek("opponent")){
+            line.consume("opponent");
             System.out.println("Call opponent funtion");
         }else {
             throw new RuntimeException("Invalid InfoExpression");
@@ -185,7 +193,12 @@ public class ConstructionPlanParser {
 
 
     private boolean matchIdentifier() throws SyntaxErrorException {
-        return Pattern.matches("[a-zA-Z][a-zA-Z0-9]*", line.peek());
+        if (!isReservedWord(line.peek())){
+            return Pattern.matches("[a-zA-Z][a-zA-Z0-9]*", line.peek());
+        }else {
+            return false ;
+        }
+
     }
 
     private boolean matchNumber() {
@@ -197,14 +210,28 @@ public class ConstructionPlanParser {
         }
 
     }
-    private boolean isReservedWord(String token) {
+    private boolean isReservedWord(String word) {
         List<String> reservedWords = Arrays.asList(
                 "collect", "done", "down", "downleft", "downright", "else", "if", "invest",
                 "move", "nearby", "opponent", "relocate", "shoot", "then", "up", "upleft",
                 "upright", "while"
         );
-        return reservedWords.contains(token);
+        return  reservedWords.contains(word);
     }
+    private boolean isSpecialVariables(String word){
+        List<String> reservedWords = Arrays.asList(
+                "rows", "cols","currow", "curcol",
+                "budget", "deposit", "int" , "maxdeposit" ,"random"
+        );
+        return reservedWords.contains(word);
+    }
+    private boolean isInformationWord(String word){
+        List<String> reservedWords = Arrays.asList(
+                "opponent","nearby"
+        );
+        return reservedWords.contains(word);
+    }
+
 
 
 

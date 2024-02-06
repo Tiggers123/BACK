@@ -26,7 +26,7 @@ else if (opponentLoc % 10 - 4) then move down
 
 else if (opponentLoc % 10 - 3) then move downright
 
-else if (opponentLoc % 10 - 2) then move right
+else if (opponentLoc % 10 - 2) then move upleft
 
 else if (opponentLoc % 10 - 1) then move upright
 
