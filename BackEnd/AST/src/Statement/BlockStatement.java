@@ -1,4 +1,4 @@
-package AST.Statement;
+package Statement;
 
 import java.util.Map;
 

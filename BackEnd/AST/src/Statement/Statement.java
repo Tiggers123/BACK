@@ -1,6 +1,6 @@
 package Statement;
 
-import Node.java;
+import Expr.Node;
 import java.util.*;
 
 public interface Statement extends Node {

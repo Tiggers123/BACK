@@ -1,6 +1,17 @@
-package AST.Statement.Command;
+package Statement.Command;
 
-import AST.Statement.Statement;
+import Statement.Statement;
+
+import java.util.Map;
 
 public class AttackCommand implements Statement {
+    @Override
+    public void execute(Map<String, Long> bindings) {
+
+    }
+
+    @Override
+    public void prettyPrint(StringBuilder s) {
+
+    }
 }

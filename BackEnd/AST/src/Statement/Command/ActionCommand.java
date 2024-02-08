@@ -1,6 +1,6 @@
-package AST.Statement.Command;
+package Statement.Command;
 
-import AST.Statement.Statement;
+import Statement.Statement;
 
 import java.util.Map;
 
