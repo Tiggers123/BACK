@@ -8,11 +8,17 @@ public class ExprTokenizer {
 
 
     public int pos;
-    public ExprTokenizer(String line){
+    public ExprTokenizer(List<String> text){
         pos = 0 ;
-        this.line = tokenize(line);
+        List<String> temp = new ArrayList<>();
+        for (String inputString : text) {
+            List<String> tokens1 =tokenize(inputString);
+            temp.addAll(tokens1);
+        }
+        this.line = temp;
     }
     public ExprTokenizer(){
+
         pos = 0 ;
     }
     private static final Pattern pattern = Pattern.compile(
