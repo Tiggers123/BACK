@@ -1,9 +1,14 @@
+package Parser;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
+import Expr.*;
 public class ConstructionPlanParser {
     private final Tokenizer line ;
+    Map<String ,Expression> table = new HashMap<>();
     public ConstructionPlanParser(Tokenizer Lineinput){
         this.line = Lineinput ;
     }
@@ -153,30 +158,32 @@ public class ConstructionPlanParser {
             Factor();
         }
     }
-    public void Power() throws SyntaxErrorException {
+    public Expression Power() throws SyntaxErrorException {
 
         if (isSpecialVariables(line.peek())){
             line.consume();
             System.out.println("It SpecialVariables it will do something here");
-            return;
-        }
-        if (line.peek("nearby") || line.peek("opponent")){
+            return ;
+        }else if (line.peek("nearby") || line.peek("opponent")){
             InfoExpression();
-        }
-        if (line.peek("(")) {
+        }else if (line.peek("(")) {
             line.consume("(");
             Expression();
             line.consume(")");
-        }
-        if (matchIdentifier()){
+        }else if (matchIdentifier()){
+            if (table.containsKey(line.peek())){
+                line.consume();
+                return table.get(line.peek());
+            }
+            Expression e = new identifier(line.peek());
             line.consume();
-            System.out.println("dosomething form Power");
-            return;
+            return e;
         }else if (matchNumber()) {
+            Expression e = new DoubleLit(Double.parseDouble(line.peek()));
             line.consume();
-            System.out.println("dosomething form Power");
-            return;
+            return e;
         }
+        throw  new SyntaxErrorException("SyntexError");
 
     }
     public void InfoExpression() throws SyntaxErrorException {

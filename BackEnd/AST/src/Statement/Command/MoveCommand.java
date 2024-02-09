@@ -12,7 +12,8 @@ public class MoveCommand implements Statement {
     }
 
     @Override
-    public void prettyPrint(StringBuilder s) {
+    public StringBuilder prettyPrint(StringBuilder s) {
 
+        return s;
     }
 }

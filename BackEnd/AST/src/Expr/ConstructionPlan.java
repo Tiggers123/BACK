@@ -11,8 +11,8 @@ public class ConstructionPlan implements Statement {
         this.statementList = statementList;
     }
 
-    public void prettyPrint(StringBuilder s) {
-
+    public StringBuilder prettyPrint(StringBuilder s) {
+        return s;
     }
 
     public void execute(Map<String, Long> bindings) {

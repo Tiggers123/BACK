@@ -11,7 +11,8 @@ public class AttackCommand implements Statement {
     }
 
     @Override
-    public void prettyPrint(StringBuilder s) {
+    public StringBuilder prettyPrint(StringBuilder s) {
 
+        return s;
     }
 }

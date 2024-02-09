@@ -2,9 +2,9 @@ package Expr;
 
 import java.util.Map;
 
-public class Variable implements   Expression{
+public class identifier implements   Expression{
     String name ;
-    public Variable(String name){
+    public identifier(String name){
         this.name = name;
     }
     @Override

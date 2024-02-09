@@ -15,14 +15,17 @@ public class BinaryArithExpr implements Expression{
     public double evaluate(Map<String, Double> bindings) throws SyntaxErrorException {
         double lv = left.evaluate(bindings);
         double rv = right.evaluate(bindings);
-        if (op.equals("+"))return lv + rv ;
-        if (op.equals("-"))return lv - rv ;
-        if (op.equals("*"))return lv * rv ;
-        if (op.equals("/"))return lv / rv ;
-        if (op.equals("%"))return lv % rv ;
-        if (op.equals("^"))return Math.pow(lv , rv) ;
-
-        throw new SyntaxErrorException("Don't found operater");
+        double result = 0;
+        if (op.equals("+")){result = lv + rv ;}else
+        if (op.equals("-")){result =lv - rv ;}else
+        if (op.equals("*")) {result = lv * rv;}else
+        if (op.equals("/")) {result = lv / rv;}else
+        if (op.equals("%")) {result = lv % rv;}else
+        if (op.equals("^")) {result = Math.pow(lv, rv);}else {throw new SyntaxErrorException("Don't found operater");}
+        if (result == 0){
+            result = Math.abs(result);
+        }
+        return result ;
     }
 
     @Override

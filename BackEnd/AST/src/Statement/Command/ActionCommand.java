@@ -7,8 +7,9 @@ import java.util.Map;
 public class ActionCommand implements Statement {
     private Command action;
 
-    public void prettyPrint(StringBuilder s) {
+    public StringBuilder prettyPrint(StringBuilder s) {
         s.append(this.action);
+        return s;
     }
 
     public void execute(Map<String, Long> bindings) {

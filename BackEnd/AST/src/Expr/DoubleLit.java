@@ -2,9 +2,9 @@ package Expr;
 
 import java.util.Map;
 
-public class IntLit implements Expression {
+public class DoubleLit implements Expression {
     double val ;
-    public IntLit(double val){
+    public DoubleLit(double val){
         this.val = val ;
     }
 

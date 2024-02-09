@@ -1,18 +1,20 @@
+package Parser;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-public class ExprTokenizer {
+public class Tokenizer {
     //Chat GPT
     List<String> line  ;
 
 
     public int pos;
-    public ExprTokenizer(String line){
+    public Tokenizer(String line){
         pos = 0 ;
         this.line = tokenize(line);
     }
-    public ExprTokenizer(){
+    public Tokenizer(){
         pos = 0 ;
     }
     private static final Pattern pattern = Pattern.compile(

@@ -4,8 +4,9 @@ import java.util.Map;
 
 public class BlockStatement implements Statement{
 
-    public void prettyPrint(StringBuilder s) {
+    public StringBuilder prettyPrint(StringBuilder s) {
 
+        return s;
     }
 
     @Override

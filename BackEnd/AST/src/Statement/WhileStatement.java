@@ -1,11 +1,19 @@
 package Statement;
 
+import Expr.Expression;
+
 import java.util.Map;
 
 public class WhileStatement implements Statement{
+    private Expression condition ;
+    private Statement statement ;
     @Override
-    public void prettyPrint(StringBuilder s) {
-
+    public StringBuilder prettyPrint(StringBuilder s) {
+        s.append("while ( ");
+        condition.prettyPrint(s);
+        s.append(" ) ");
+        statement.prettyPrint(s);
+        return s ;
     }
 
     @Override
