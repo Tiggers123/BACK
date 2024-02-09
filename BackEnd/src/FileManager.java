@@ -7,9 +7,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileManager {
-    public ArrayList<String> FileReader(String path){
+    public List<String> FileReader(String path){
         Path file = Paths.get(path);  // path string
         ArrayList<String> arrayList = new ArrayList<>();
         Charset charset = Charset.forName("UTF-8");
