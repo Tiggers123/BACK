@@ -1,8 +1,10 @@
 package Statement;
 
 import Expr.Node;
+import GameState.Player;
+
 import java.util.*;
 
 public interface Statement extends Node {
-    void execute(Map<String, Long> bindings);
+    void execute(Player user);
 }

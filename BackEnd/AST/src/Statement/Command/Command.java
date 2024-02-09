@@ -1,4 +1,6 @@
 package Statement.Command;
 
-public class Command {
+import Statement.Statement;
+
+public interface Command  extends Statement {
 }

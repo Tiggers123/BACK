@@ -1,12 +1,17 @@
 package Statement;
 
 import Expr.Expression;
+import GameState.Player;
 
 import java.util.Map;
 
 public class WhileStatement implements Statement{
-    private Expression condition ;
-    private Statement statement ;
+    private final Expression condition ;
+    private final Statement statement ;
+    WhileStatement(Expression condition , Statement statement){
+        this.condition = condition ;
+        this.statement = statement ;
+    }
     @Override
     public StringBuilder prettyPrint(StringBuilder s) {
         s.append("while ( ");
@@ -17,7 +22,7 @@ public class WhileStatement implements Statement{
     }
 
     @Override
-    public void execute(Map<String, Long> bindings) {
+    public void execute(Player user) {
 
     }
 }

@@ -1,8 +1,15 @@
 package Statement;
 
+import GameState.Player;
+
+import java.util.List;
 import java.util.Map;
 
 public class BlockStatement implements Statement{
+    private List<Statement> statement ;
+    BlockStatement(List<Statement> statement){
+        this.statement = statement;
+    }
 
     public StringBuilder prettyPrint(StringBuilder s) {
 
@@ -10,7 +17,7 @@ public class BlockStatement implements Statement{
     }
 
     @Override
-    public void execute(Map<String, Long> bindings) {
+    public void execute(Player user) {
 
     }
 }

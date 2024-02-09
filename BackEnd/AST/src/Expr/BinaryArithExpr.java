@@ -1,5 +1,7 @@
 package Expr;
 
+import GameState.Player;
+
 import java.util.Map;
 
 public class BinaryArithExpr implements Expression{
@@ -12,9 +14,9 @@ public class BinaryArithExpr implements Expression{
         this.right = right ;
     }
     @Override
-    public double evaluate(Map<String, Double> bindings) throws SyntaxErrorException {
-        double lv = left.evaluate(bindings);
-        double rv = right.evaluate(bindings);
+    public double evaluate(Player user) throws SyntaxErrorException {
+        double lv = left.evaluate(user);
+        double rv = right.evaluate(user);
         double result = 0;
         if (op.equals("+")){result = lv + rv ;}else
         if (op.equals("-")){result =lv - rv ;}else

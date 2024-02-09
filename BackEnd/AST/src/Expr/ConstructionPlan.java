@@ -1,5 +1,6 @@
 package Expr;
 
+import GameState.Player;
 import Statement.Statement;
 
 import java.util.*;
@@ -15,7 +16,9 @@ public class ConstructionPlan implements Statement {
         return s;
     }
 
-    public void execute(Map<String, Long> bindings) {
+
+    @Override
+    public void execute(Player user) {
 
     }
 }

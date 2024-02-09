@@ -1,18 +1,29 @@
 package Statement.Command;
 
+import GameState.Player;
 import Statement.Statement;
 
+import java.lang.management.ThreadInfo;
 import java.util.Map;
 
 public class ActionCommand implements Statement {
-    private Command action;
+    private final String action;
+
+    ActionCommand(String command){
+        if (command.equals("done") || command.equals("relocate")){
+            this.action =  command ;
+        }
+    }
+
 
     public StringBuilder prettyPrint(StringBuilder s) {
         s.append(this.action);
         return s;
     }
 
-    public void execute(Map<String, Long> bindings) {
+
+    @Override
+    public void execute(Player user) {
 
     }
 }

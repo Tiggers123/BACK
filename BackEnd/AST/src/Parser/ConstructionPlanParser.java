@@ -1,37 +1,35 @@
 package Parser;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 import Expr.*;
+import Statement.*;
+
 public class ConstructionPlanParser {
     private final Tokenizer line ;
-    Map<String ,Expression> table = new HashMap<>();
     public ConstructionPlanParser(Tokenizer Lineinput){
         this.line = Lineinput ;
     }
-    public void parse() throws SyntaxErrorException {
+    public Node parse() throws SyntaxErrorException {
+        List<Statement> plan = new ArrayList<>();
         while (this.line.line.size() != line.pos){
-            Statement();
+            plan.add(Statement());
         }
     }
-    public void Statement() throws SyntaxErrorException {
+    public Statement Statement() throws SyntaxErrorException {
         if (line.peek("if")) {
             line.consume("if");
-            IfStatement();
+            return  IfStatement();
         } else if (line.peek("while")) {
             line.consume("while");
-            WhileStatement();
+             return  WhileStatement();
         } else if (line.peek("{")) {
-            line.consume("{");
-            BlockStatement();
+            return BlockStatement();
         } else {
-            Command();
+            return Command();
         }
     }
-    public void Command() throws SyntaxErrorException {
+    public Statement Command() throws SyntaxErrorException {
         if (line.peek().matches("\\b(?:done|relocate|move|invest|collect|shoot)\\b")){
             ActionCommand();
         }else if (matchIdentifier()) {
@@ -40,11 +38,11 @@ public class ConstructionPlanParser {
         }
 
     }
-    public void AssignmentStatement() throws SyntaxErrorException {
+    public Statement AssignmentStatement() throws SyntaxErrorException {
         line.consume("=");
         Expression();
     }
-    public void ActionCommand() throws SyntaxErrorException {
+    public Statement ActionCommand() throws SyntaxErrorException {
         if(line.peek("done")) {
             line.consume("done");
             System.out.println("Turn is end");
@@ -66,10 +64,10 @@ public class ConstructionPlanParser {
         }
 
     }
-    public void MoveCommand() throws SyntaxErrorException {
+    public Statement MoveCommand() throws SyntaxErrorException {
         Direction();
     }
-    public void RegionCommand() throws SyntaxErrorException {
+    public Statement RegionCommand() throws SyntaxErrorException {
         if(line.peek("invest")){
             line.consume("invest");
             Expression();
@@ -81,7 +79,7 @@ public class ConstructionPlanParser {
             line.consume(")");
         }
     }
-    public void AttackCommand() throws SyntaxErrorException {
+    public Statement AttackCommand() throws SyntaxErrorException {
         if(line.peek("shoot")){
             line.consume("shoot");
             Direction();
@@ -90,18 +88,19 @@ public class ConstructionPlanParser {
             throw new SyntaxErrorException("Invalid command");
         }
     }
-    public void Direction() throws SyntaxErrorException {
+    public String Direction() throws SyntaxErrorException {
         String[] validDirections = {"up", "down", "upleft", "upright", "downleft", "downright" };
         String token = line.peek();
         if (Arrays.asList(validDirections).contains(token)) {
             // need to fix
             line.consume();
-            System.out.println(line.peek());
+            return token;
         } else {
             throw new RuntimeException("Invalid direction: " + token);
         }
     }
-    public void BlockStatement() throws SyntaxErrorException {
+    public BlockStatement BlockStatement() throws SyntaxErrorException {
+        line.consume("{");
         while (!line.peek().equals("}")) {
             Statement();
         }
@@ -109,7 +108,7 @@ public class ConstructionPlanParser {
             line.consume("}");
         }
     }
-    public void IfStatement() throws SyntaxErrorException {
+    public IfStatement IfStatement() throws SyntaxErrorException {
         line.consume("(");
         Expression();
         line.consume(")");
@@ -118,13 +117,13 @@ public class ConstructionPlanParser {
         line.consume("else");
         Statement();
     }
-    public void WhileStatement() throws SyntaxErrorException {
+    public WhileStatement WhileStatement() throws SyntaxErrorException {
         line.consume("(");
         Expression();
         line.consume(")");
         Statement();
     }
-    public void Expression() throws SyntaxErrorException {
+    public Expression Expression() throws SyntaxErrorException {
         Term();
         if(line.peek("+")) {
             line.consume("+");
@@ -135,7 +134,7 @@ public class ConstructionPlanParser {
             Expression();
         }
     }
-    public void Term () throws SyntaxErrorException {
+    public Expression Term () throws SyntaxErrorException {
         Factor();
         if(line.peek("*")){
             line.consume("*");
@@ -151,7 +150,7 @@ public class ConstructionPlanParser {
         }
 
     }
-    public void Factor () throws SyntaxErrorException {
+    public Expression Factor () throws SyntaxErrorException {
         Power();
         while (line.peek("^")) {
             line.consume("^");
@@ -171,11 +170,7 @@ public class ConstructionPlanParser {
             Expression();
             line.consume(")");
         }else if (matchIdentifier()){
-            if (table.containsKey(line.peek())){
-                line.consume();
-                return table.get(line.peek());
-            }
-            Expression e = new identifier(line.peek());
+            Expression e = new Identifier(line.peek());
             line.consume();
             return e;
         }else if (matchNumber()) {
@@ -186,7 +181,7 @@ public class ConstructionPlanParser {
         throw  new SyntaxErrorException("SyntexError");
 
     }
-    public void InfoExpression() throws SyntaxErrorException {
+    public Expression InfoExpression() throws SyntaxErrorException {
         if (line.peek("nearby")) {
             line.consume("nearby");
             Direction();

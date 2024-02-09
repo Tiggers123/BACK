@@ -1,5 +1,7 @@
 package Expr;
 
+import GameState.Player;
+
 import java.util.Map;
 
 public class DoubleLit implements Expression {
@@ -14,7 +16,7 @@ public class DoubleLit implements Expression {
         return s ;
     }
     @Override
-    public double evaluate(Map<String, Double> bindings) throws SyntaxErrorException {
+    public double evaluate(Player user) throws SyntaxErrorException {
         return val ;
     }
 }

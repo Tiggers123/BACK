@@ -4,17 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 public class Tokenizer {
     //Chat GPT
     List<String> line  ;
 
 
     public int pos;
-    public Tokenizer(String line){
+    public Tokenizer(List<String> text){
         pos = 0 ;
-        this.line = tokenize(line);
+        List<String> temp = new ArrayList<>();
+        for (String inputString : text) {
+            List<String> tokens1 =tokenize(inputString);
+            temp.addAll(tokens1);
+        }
+        this.line = temp;
     }
     public Tokenizer(){
+
         pos = 0 ;
     }
     private static final Pattern pattern = Pattern.compile(

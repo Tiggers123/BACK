@@ -9,8 +9,7 @@ public class Main {
         table.put("x",100.0);
         DoubleLit one = new DoubleLit(100) ;
         DoubleLit two = new DoubleLit(100);
-        identifier x = new identifier("x");
+        Identifier x = new Identifier("x");
         BinaryArithExpr o = new BinaryArithExpr(one ,"^", two );
-        System.out.println(o.evaluate(table));
     }
 }
