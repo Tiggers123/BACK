@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -9,7 +7,7 @@ public class Main {
         int i = 0;
         FileManager reader = new FileManager();
         List<String> file =  reader.FileReader("BackEnd/src/constructionplanWithcomment.txt");
-        ExprTokenizer test = new ExprTokenizer(file);
+        Tokenizer test = new Tokenizer(file);
         ConstructionPlanParser x = new ConstructionPlanParser(test);
         x.parse();
 

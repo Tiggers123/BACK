@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-public class ExprTokenizer {
+public class Tokenizer {
     //Chat GPT
     List<String> line  ;
 
 
     public int pos;
-    public ExprTokenizer(List<String> text){
+    public Tokenizer(List<String> text){
         pos = 0 ;
         List<String> temp = new ArrayList<>();
         for (String inputString : text) {
@@ -17,7 +17,7 @@ public class ExprTokenizer {
         }
         this.line = temp;
     }
-    public ExprTokenizer(){
+    public Tokenizer(){
 
         pos = 0 ;
     }
