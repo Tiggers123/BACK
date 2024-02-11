@@ -5,16 +5,19 @@ import java.util.regex.Pattern;
 import Expr.*;
 import Statement.*;
 
+import javax.swing.plaf.nimbus.State;
+
 public class ConstructionPlanParser {
     private final Tokenizer line ;
     public ConstructionPlanParser(Tokenizer Lineinput){
         this.line = Lineinput ;
     }
-    public Node parse() throws SyntaxErrorException {
+    public List<Statement> parse() throws SyntaxErrorException {
         List<Statement> plan = new ArrayList<>();
         while (this.line.line.size() != line.pos){
             plan.add(Statement());
         }
+        return  plan ;
     }
     public Statement Statement() throws SyntaxErrorException {
         if (line.peek("if")) {
@@ -31,16 +34,17 @@ public class ConstructionPlanParser {
     }
     public Statement Command() throws SyntaxErrorException {
         if (line.peek().matches("\\b(?:done|relocate|move|invest|collect|shoot)\\b")){
-            ActionCommand();
+            return ActionCommand();
         }else if (matchIdentifier()) {
             line.consume();
-            AssignmentStatement();
+            return AssignmentStatement();
         }
-
+        return null ;
     }
     public Statement AssignmentStatement() throws SyntaxErrorException {
         line.consume("=");
         Expression();
+        return null ;
     }
     public Statement ActionCommand() throws SyntaxErrorException {
         if(line.peek("done")) {
@@ -62,10 +66,12 @@ public class ConstructionPlanParser {
         if(line.peek("shoot")){
             AttackCommand();
         }
+        return null ;
 
     }
     public Statement MoveCommand() throws SyntaxErrorException {
         Direction();
+        return null ;
     }
     public Statement RegionCommand() throws SyntaxErrorException {
         if(line.peek("invest")){
@@ -78,6 +84,7 @@ public class ConstructionPlanParser {
             Expression();
             line.consume(")");
         }
+        return null ;
     }
     public Statement AttackCommand() throws SyntaxErrorException {
         if(line.peek("shoot")){
@@ -87,6 +94,7 @@ public class ConstructionPlanParser {
         }else {
             throw new SyntaxErrorException("Invalid command");
         }
+        return null ;
     }
     public String Direction() throws SyntaxErrorException {
         String[] validDirections = {"up", "down", "upleft", "upright", "downleft", "downright" };
@@ -107,6 +115,7 @@ public class ConstructionPlanParser {
         if (line.peek("}")){
             line.consume("}");
         }
+        return null ;
     }
     public IfStatement IfStatement() throws SyntaxErrorException {
         line.consume("(");
@@ -116,78 +125,82 @@ public class ConstructionPlanParser {
         Statement();
         line.consume("else");
         Statement();
+        return null ;
     }
     public WhileStatement WhileStatement() throws SyntaxErrorException {
         line.consume("(");
         Expression();
         line.consume(")");
         Statement();
+        return null ;
     }
     public Expression Expression() throws SyntaxErrorException {
-        Term();
+        Expression x = Term();
         if(line.peek("+")) {
             line.consume("+");
-            Expression();
+            return new BinaryArithExpr(x,"+",Expression());
         }
         if(line.peek("-")){
             line.consume("-");
-            Expression();
+            return new BinaryArithExpr(x,"-",Expression());
         }
+        return  x ;
     }
     public Expression Term () throws SyntaxErrorException {
-        Factor();
+        Expression x = Factor();
         if(line.peek("*")){
             line.consume("*");
-            Term ();
+            x = new BinaryArithExpr(x, "*" , Term());
         }
         if(line.peek("/")){
             line.consume("/");
-            Term ();
+            x = new BinaryArithExpr(x, "/" , Term());
         }
         if(line.peek("%")){
             line.consume("%");
-            Term ();
+            x = new BinaryArithExpr(x, "%" , Term());
         }
-
+        return  x  ;
     }
     public Expression Factor () throws SyntaxErrorException {
-        Power();
-        while (line.peek("^")) {
+        Expression x = Power();
+        if (line.peek("^")) {
             line.consume("^");
-            Factor();
+            return new BinaryArithExpr(x,"^",Factor());
         }
+        return x ;
     }
     public Expression Power() throws SyntaxErrorException {
-
+        Expression expr = null;
         if (isSpecialVariables(line.peek())){
+            expr = new SpecialVaribles(line.peek());
             line.consume();
-            System.out.println("It SpecialVariables it will do something here");
-            return ;
+            return expr ;
         }else if (line.peek("nearby") || line.peek("opponent")){
-            InfoExpression();
+            return InfoExpression();
         }else if (line.peek("(")) {
             line.consume("(");
-            Expression();
+            expr = Expression();
             line.consume(")");
         }else if (matchIdentifier()){
-            Expression e = new Identifier(line.peek());
+            expr = new Identifier(line.peek());
             line.consume();
-            return e;
+            return expr;
         }else if (matchNumber()) {
-            Expression e = new DoubleLit(Double.parseDouble(line.peek()));
+            expr = new DoubleLit(Double.parseDouble(line.peek()));
             line.consume();
-            return e;
+            return expr;
         }
-        throw  new SyntaxErrorException("SyntexError");
+        return expr ;
 
     }
     public Expression InfoExpression() throws SyntaxErrorException {
         if (line.peek("nearby")) {
             line.consume("nearby");
-            Direction();
+            return new Infonearby(line.peek());
         } else if(line.peek("opponent")){
             line.consume("opponent");
-            System.out.println("Call opponent funtion");
+            return  new InfoOpponent();
         }else {
             throw new RuntimeException("Invalid InfoExpression");
         }

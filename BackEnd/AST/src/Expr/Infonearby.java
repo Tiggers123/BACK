@@ -2,10 +2,10 @@ package Expr;
 
 import GameState.Player;
 
-public class SpecialVaribles implements Expression {
-    String variables;
-    public SpecialVaribles(String varibles){
-        this.variables = varibles ;
+public class Infonearby implements  Expression{
+    String Direction ;
+    public  Infonearby(String Direction)   {
+        this.Direction = Direction ;
     }
     @Override
     public double evaluate(Player user) throws SyntaxErrorException {
@@ -14,6 +14,6 @@ public class SpecialVaribles implements Expression {
 
     @Override
     public StringBuilder prettyPrint(StringBuilder s) {
-        return  new StringBuilder() ;
+        return null;
     }
 }

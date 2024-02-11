@@ -2,11 +2,8 @@ package Expr;
 
 import GameState.Player;
 
-public class SpecialVaribles implements Expression {
-    String variables;
-    public SpecialVaribles(String varibles){
-        this.variables = varibles ;
-    }
+public class InfoOpponent implements  Expression{
+    public  InfoOpponent(){};
     @Override
     public double evaluate(Player user) throws SyntaxErrorException {
         return 0;
@@ -14,6 +11,6 @@ public class SpecialVaribles implements Expression {
 
     @Override
     public StringBuilder prettyPrint(StringBuilder s) {
-        return  new StringBuilder() ;
+        return null;
     }
 }

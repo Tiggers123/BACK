@@ -33,6 +33,7 @@ class BinaryArithExprTest {
         ton.variable.put("x" , 100.0);
         return  ton ;
     }
+
     @Test
     public void Plush() throws SyntaxErrorException {
         Player user = doplayer();

@@ -13,6 +13,7 @@ public class ActionCommand implements Statement {
         if (command.equals("done") || command.equals("relocate")){
             this.action =  command ;
         }
+        else this.action = "";
     }
 
 
