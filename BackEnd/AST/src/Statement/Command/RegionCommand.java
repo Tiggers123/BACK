@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class RegionCommand implements Statement {
     private Expression expression ;
-    private  Command action;
-    RegionCommand(Command action , Expression expression){
+    private  String action;
+    public RegionCommand(String action, Expression expression){
         this.action = action ;
         this.expression = expression ;
     }

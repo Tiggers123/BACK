@@ -9,7 +9,7 @@ import java.util.Map;
 public class AttackCommand implements Statement {
     String Direction ;
     Expression expression ;
-    AttackCommand(String Direction , Expression expression){
+    public AttackCommand(String Direction, Expression expression){
         this.Direction = Direction;
         this.expression = expression ;
 

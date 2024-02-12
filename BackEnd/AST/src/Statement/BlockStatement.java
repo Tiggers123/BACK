@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class BlockStatement implements Statement{
     private List<Statement> statement ;
-    BlockStatement(List<Statement> statement){
+    public BlockStatement(List<Statement> statement){
         this.statement = statement;
     }
 

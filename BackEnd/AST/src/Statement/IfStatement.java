@@ -7,12 +7,12 @@ import java.util.Map;
 
 public class IfStatement implements Statement{
     private Expression condition ;
-    private Statement then ;
-    private Statement ElsE;
-    IfStatement(Expression condition , Statement then , Statement ElsE){
+    private Statement statementAfterThen ;
+    private Statement statementAfterElsE;
+    public  IfStatement(Expression condition , Statement statementAfterThen , Statement statementAfterElsE){
         this.condition= condition;
-        this.then = then ;
-        this.ElsE = ElsE ;
+        this.statementAfterThen = statementAfterThen ;
+        this.statementAfterElsE = statementAfterElsE ;
     }
     @Override
     public void execute(Player user) {

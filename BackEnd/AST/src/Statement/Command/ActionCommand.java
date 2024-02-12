@@ -9,7 +9,7 @@ import java.util.Map;
 public class ActionCommand implements Statement {
     private final String action;
 
-    ActionCommand(String command){
+    public ActionCommand(String command){
         if (command.equals("done") || command.equals("relocate")){
             this.action =  command ;
         }

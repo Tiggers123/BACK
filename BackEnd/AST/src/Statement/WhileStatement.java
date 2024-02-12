@@ -8,7 +8,7 @@ import java.util.Map;
 public class WhileStatement implements Statement{
     private final Expression condition ;
     private final Statement statement ;
-    WhileStatement(Expression condition , Statement statement){
+    public  WhileStatement(Expression condition , Statement statement){
         this.condition = condition ;
         this.statement = statement ;
     }

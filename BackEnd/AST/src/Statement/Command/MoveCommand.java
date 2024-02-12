@@ -6,9 +6,9 @@ import Statement.Statement;
 import java.util.Map;
 
 public class MoveCommand implements Statement {
-    Command command ;
+    String command ;
     String Direction ;
-    MoveCommand(Command command , String Direction){
+    public  MoveCommand(String command , String Direction){
         this.command = command ;
         this.Direction = Direction;
     }

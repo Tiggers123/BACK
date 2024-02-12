@@ -4,6 +4,10 @@ import java.util.*;
 import java.util.regex.Pattern;
 import Expr.*;
 import Statement.*;
+import Statement.Command.ActionCommand;
+import Statement.Command.AttackCommand;
+import Statement.Command.MoveCommand;
+import Statement.Command.RegionCommand;
 
 import javax.swing.plaf.nimbus.State;
 
@@ -36,65 +40,72 @@ public class ConstructionPlanParser {
         if (line.peek().matches("\\b(?:done|relocate|move|invest|collect|shoot)\\b")){
             return ActionCommand();
         }else if (matchIdentifier()) {
-            line.consume();
             return AssignmentStatement();
         }
-        return null ;
+        throw new SyntaxErrorException("Next token should be Command word ex done , relocate , invest , collect , or Idenrifier");
     }
     public Statement AssignmentStatement() throws SyntaxErrorException {
+        Identifier v = new Identifier(line.peek());
+        line.consume();
         line.consume("=");
-        Expression();
-        return null ;
+        return new AssignmentStatement( v ,Expression() ) ;
     }
     public Statement ActionCommand() throws SyntaxErrorException {
+        Statement action  = null ;
         if(line.peek("done")) {
+            action =  new ActionCommand(line.peek());
             line.consume("done");
-            System.out.println("Turn is end");
+            return action ;
         }
         if(line.peek("relocate")){
+            action =  new ActionCommand(line.peek());
             line.consume("relocate");
-            System.out.println("Turn is end");
+            return action ;
         }
         if (line.peek("move")){
-            line.consume("move");
-            MoveCommand();
+            action = MoveCommand();
         }
         if(line.peek("invest")){
-            RegionCommand();}
+            action = RegionCommand();}
         if(line.peek("collect")){
-            RegionCommand();}
+            action = RegionCommand();}
         if(line.peek("shoot")){
-            AttackCommand();
+            action = AttackCommand();
         }
-        return null ;
+        throw new SyntaxErrorException("Invalid command");
 
     }
     public Statement MoveCommand() throws SyntaxErrorException {
-        Direction();
-        return null ;
+        MoveCommand move =  new MoveCommand(line.peek(),Direction());
+        line.consume("move");
+        return  move ;
     }
     public Statement RegionCommand() throws SyntaxErrorException {
         if(line.peek("invest")){
+            RegionCommand region =  new RegionCommand(line.peek(), Expression() );
             line.consume("invest");
-            Expression();
-        }
-        if(line.peek("collect")){
+            return region ;
+        }else
+//            if(line.peek("collect"))
+        {
+            RegionCommand region =  new RegionCommand(line.peek(), Expression());
             line.consume("collect");
-            line.consume("(");
-            Expression();
-            line.consume(")");
+            return region ;
+//            line.consume("collect");
+//            line.consume("(");
+//            Expression();
+//            line.consume(")");
         }
-        return null ;
     }
     public Statement AttackCommand() throws SyntaxErrorException {
         if(line.peek("shoot")){
             line.consume("shoot");
-            Direction();
-            Expression();
+            String direction = Direction();
+            Expression expresstion = Expression();
+            return new AttackCommand(direction , expresstion);
         }else {
             throw new SyntaxErrorException("Invalid command");
         }
-        return null ;
     }
     public String Direction() throws SyntaxErrorException {
         String[] validDirections = {"up", "down", "upleft", "upright", "downleft", "downright" };
@@ -108,31 +119,32 @@ public class ConstructionPlanParser {
         }
     }
     public BlockStatement BlockStatement() throws SyntaxErrorException {
+        List<Statement> state = null ;
         line.consume("{");
         while (!line.peek().equals("}")) {
-            Statement();
+            state.add(Statement()) ;
         }
         if (line.peek("}")){
             line.consume("}");
         }
-        return null ;
+        return new BlockStatement(state) ;
     }
     public IfStatement IfStatement() throws SyntaxErrorException {
         line.consume("(");
-        Expression();
+        Expression condition = Expression();
         line.consume(")");
         line.consume("then");
-        Statement();
+        Statement stateAfterThen = Statement();
         line.consume("else");
-        Statement();
-        return null ;
+        Statement stateAfterElse = Statement();
+        return new IfStatement(condition,stateAfterThen , stateAfterElse) ;
     }
     public WhileStatement WhileStatement() throws SyntaxErrorException {
         line.consume("(");
-        Expression();
+        Expression condition = Expression();
         line.consume(")");
-        Statement();
-        return null ;
+        Statement state = Statement();
+        return new WhileStatement(condition , state) ;
     }
     public Expression Expression() throws SyntaxErrorException {
         Expression x = Term();
