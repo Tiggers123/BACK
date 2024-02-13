@@ -24,7 +24,7 @@ public class ActionCommand implements Statement {
 
 
     @Override
-    public void execute(Player user) {
+    public boolean execute(Player user) {
 
     }
 }

@@ -1,26 +1,29 @@
 package Statement;
+
 import Expr.*;
 import GameState.Player;
 
 public class AssignmentStatement implements Statement{
-    private Identifier vaiable ;
-    private Expression expression ;
-    public AssignmentStatement(Identifier variable , Expression expression){
-        this.vaiable = variable ;
+    private final Identifier identifier ;
+    private final Expression expression ;
+
+    public AssignmentStatement(Identifier identifier , Expression expression){
+        this.identifier = identifier ;
         this.expression = expression ;
     }
 
-
     @Override
-    public void execute(Player user) {
-//        user.variable.put(vaiable.name , this.expression.evaluate());
+    public boolean execute(Player user) throws SyntaxErrorException {
+        String v = this.identifier.getName();
+        user.variable.put(v,this.expression.evaluate(user));
+        return true;
     }
 
     @Override
     public StringBuilder prettyPrint(StringBuilder s) {
-
+        this.identifier.prettyPrint(s);
+        s.append(" = ");
+        this.expression.prettyPrint(s);
         return s;
     }
-
-
 }

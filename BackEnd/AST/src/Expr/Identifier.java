@@ -6,9 +6,11 @@ import java.util.Map;
 
 public class Identifier implements   Expression{
     public String name ;
+
     public Identifier(String name){
         this.name = name;
     }
+
     @Override
     public double evaluate(Player user) throws SyntaxErrorException {
         if (user.variable.containsKey(name)){
@@ -18,12 +20,13 @@ public class Identifier implements   Expression{
             return user.variable.get(name);
         }
     }
+    public String getName(){
+        return name;
+    }
 
     @Override
     public StringBuilder prettyPrint(StringBuilder s) {
         s.append(name);
         return  s ;
     }
-
-
 }
