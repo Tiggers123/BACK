@@ -30,4 +30,14 @@ public class Region extends Territory {
     public double getInterestRate(){
         return super.baseInterestRate * Math.log10(deposit)*Math.log(super.turn);
     }
+    public Region moveDirection(String direction){
+        if (direction.equals("up"))return this.up;
+        else if (direction.equals("upright")) return this.upright;
+        else if (direction.equals("downright"))return this.downright;
+        else if (direction.equals("down"))return this.down;
+        else if (direction.equals("downleft"))return this.downleft;
+        else return this.upleft ;
+
+
+    }
 }

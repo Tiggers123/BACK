@@ -23,5 +23,6 @@ public class AttackCommand implements Statement {
     @Override
     public boolean execute(Player user) {
 
+        return false;
     }
 }

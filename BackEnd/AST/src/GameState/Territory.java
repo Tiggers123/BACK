@@ -3,7 +3,7 @@ package GameState;
 import java.util.List;
 
 public class Territory {
-    private  double fee = 1 ;
+    private final double fee = 1 ;
     private int territory_row = 0;
     private  int territory_col = 0;
     private  double revision_cost = 0;
@@ -45,5 +45,9 @@ public class Territory {
 
     public int getTerritory_row() {
         return territory_row;
+    }
+
+    public double getFee() {
+        return fee;
     }
 }

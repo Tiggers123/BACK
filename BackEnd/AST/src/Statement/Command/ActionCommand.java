@@ -3,9 +3,6 @@ package Statement.Command;
 import GameState.Player;
 import Statement.Statement;
 
-import java.lang.management.ThreadInfo;
-import java.util.Map;
-
 public class ActionCommand implements Statement {
     private final String action;
 
@@ -21,13 +18,15 @@ public class ActionCommand implements Statement {
 
 
     @Override
-    public void execute(Player user) {
+    public boolean execute(Player user) {
         if(action.equals("relocate")){
             int RowCenter = user.cityCenter.getRow();
             int ColCenter = user.cityCenter.getCol();
             int userRow = user.cityCrew.getRow();
             int userCol = user.cityCrew.getCol();
+            //Do something more than
         }
 
+        return true;
     }
 }
