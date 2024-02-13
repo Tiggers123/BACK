@@ -1,10 +1,11 @@
 package Statement;
 
 import Expr.Node;
+import Expr.SyntaxErrorException;
 import GameState.Player;
 
 import java.util.*;
 
 public interface Statement extends Node {
-    void execute(Player user);
+    boolean execute(Player user) throws SyntaxErrorException;
 }

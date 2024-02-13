@@ -21,7 +21,7 @@ public class RegionCommand implements Statement {
     }
 
     @Override
-    public void execute(Player user) {
+    public boolean execute(Player user) {
 
     }
 }
