@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+} */
+
+/* menu-button {
+  @layer components {
+    .menu-button {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.25rem;
+      background-color: #4a5568;
+      color: #ffffff;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-button:hover {
+      background-color: #718096;
+    }
+  }
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  background-color: #4c51bf;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: #4338ca;
+}
+
+.menu-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.5);
+} */
+
+/* textarea:focus {
+  border: none;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-apperarance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  outline: none;
+  padding: 0px;
+  resize: none;
+  width: 50%;
+  overflow: hidden;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+
+header {
+  background-image: url("/public/images/gg.jpg");
+} */
+
