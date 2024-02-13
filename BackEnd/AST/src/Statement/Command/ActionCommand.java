@@ -25,6 +25,12 @@ public class ActionCommand implements Statement {
 
     @Override
     public void execute(Player user) {
+        if(action.equals("relocate")){
+            int RowCenter = user.cityCenter.getRow();
+            int ColCenter = user.cityCenter.getCol();
+            int userRow = user.cityCrew.getRow();
+            int userCol = user.cityCrew.getCol();
+        }
 
     }
 }

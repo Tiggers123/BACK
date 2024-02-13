@@ -1,6 +1,6 @@
 package GameState;
 
-public class Region {
+public class Region extends Territory {
     private int row;
     private int col;
     private double deposit;
@@ -14,7 +14,7 @@ public class Region {
         return deposit;
     }
     public void addDeposit(double n){
-        deposit = Math.min(Territory.DEPOSIT_Max,deposit+n);
+        deposit = Math.min(super.DEPOSITMax,deposit+n);
     }
     public void subDeposit(double n){
         deposit = Math.max(0,deposit-n);
@@ -28,6 +28,6 @@ public class Region {
         return col;
     }
     public double getInterestRate(){
-        return Territory.baseInterestRate * Math.log10(deposit)*Math.log(Territory.turn);
+        return super.baseInterestRate * Math.log10(deposit)*Math.log(super.turn);
     }
 }
