@@ -5,21 +5,26 @@ import Statement.Statement;
 
 import java.util.*;
 
-public class ConstructionPlan implements Statement {
-    private final List<Statement> statementList;
+public class ConstructionPlan implements Node {
+    private List<Statement> statementList;
 
     public ConstructionPlan(List<Statement> statementList) {
         this.statementList = statementList;
     }
 
     public StringBuilder prettyPrint(StringBuilder s) {
-        return s;
+        for (Statement statement : this.statementList){
+            statement.prettyPrint(s);
+            s.append("/n");
+        }
+        return s ;
     }
 
 
-    @Override
-    public boolean execute(Player user) {
-        return true ;
+    public void execute(Player user) throws SyntaxErrorException {
+        for (Statement statement : this.statementList){
+            if (!(statement.execute(user))) return ;
+        }
     }
 }
 

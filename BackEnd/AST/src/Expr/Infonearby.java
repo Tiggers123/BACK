@@ -1,6 +1,7 @@
 package Expr;
 
 import GameState.Player;
+import GameState.Region;
 
 public class Infonearby implements  Expression{
     String Direction ;
@@ -9,11 +10,22 @@ public class Infonearby implements  Expression{
     }
     @Override
     public double evaluate(Player user) throws SyntaxErrorException {
-        return 0;
+        Region currrent = user.cityCrew;
+        double distance = 0 ;
+        while(currrent.moveDirection(this.Direction) != null ){
+            currrent = currrent.moveDirection(this.Direction);
+            distance++ ;
+            if (currrent.owner != user && currrent.owner != null){
+                return 100 * distance + currrent.getDeposit();
+            }
+        }
+        return  0 ;
     }
 
     @Override
     public StringBuilder prettyPrint(StringBuilder s) {
-        return null;
+        s.append("nearby");
+        s.append(this.Direction);
+        return  s ;
     }
 }

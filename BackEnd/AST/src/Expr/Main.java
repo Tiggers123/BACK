@@ -1,7 +1,5 @@
 package Expr;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws SyntaxErrorException {
@@ -10,6 +8,6 @@ public class Main {
         int userRow = 7;
         int userCol = 9;
         double distance = (Math.sqrt(Math.pow(userCol - CenterCol,2)+Math.pow(userRow - CenterRow,2)));
-        System.out.println(distance);
+        System.out.println(Integer.MAX_VALUE);
     }
 }
