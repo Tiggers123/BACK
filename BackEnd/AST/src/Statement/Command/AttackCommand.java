@@ -28,8 +28,8 @@ public class AttackCommand implements Statement {
     public boolean execute(Player user) throws SyntaxErrorException {
         double cost = this.expression.evaluate(user);
 
-        if(user.getBudget() < user.territory().fee()) return true;
-        user.subBudget(user.territory().fee());
+        if(user.getBudget() < user.territory().getFee()) return true;
+        user.subBudget(user.territory().getFee());
 
         if(user.getBudget() < cost) return true;
         user.subBudget(cost);
