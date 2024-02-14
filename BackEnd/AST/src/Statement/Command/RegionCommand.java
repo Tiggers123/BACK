@@ -1,6 +1,7 @@
 package Statement.Command;
 
 import Expr.Expression;
+import Expr.SyntaxErrorException;
 import GameState.Player;
 import GameState.Region;
 import Statement.Statement;
@@ -21,7 +22,7 @@ public class RegionCommand implements Statement {
     }
 
     @Override
-    public boolean execute(Player user) {
+    public boolean execute(Player user) throws SyntaxErrorException {
 
     }
 }

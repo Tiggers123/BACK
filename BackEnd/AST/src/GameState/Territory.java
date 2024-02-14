@@ -3,7 +3,7 @@ package GameState;
 import java.util.List;
 
 public class Territory {
-    static  private  double fee = 1 ;
+    static private double fee = 1 ;
     private int territory_row = 0;
     private int territory_col = 0;
     private double revision_cost = 0;
@@ -37,5 +37,9 @@ public class Territory {
     public void calculateInterest(Player user){
         for(Region region : user.regionSet){
         }
+    }
+
+    public double fee() {
+        return fee;
     }
 }

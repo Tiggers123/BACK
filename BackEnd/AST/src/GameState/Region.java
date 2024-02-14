@@ -30,4 +30,5 @@ public class Region {
     public double getInterestRate(){
         return Territory.baseInterestRate * Math.log10(deposit)*Math.log(Territory.turn);
     }
+
 }
