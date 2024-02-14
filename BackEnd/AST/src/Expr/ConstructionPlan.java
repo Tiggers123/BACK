@@ -19,7 +19,7 @@ public class ConstructionPlan implements Statement {
 
     @Override
     public boolean execute(Player user) {
-
+        return true ;
     }
 }
 

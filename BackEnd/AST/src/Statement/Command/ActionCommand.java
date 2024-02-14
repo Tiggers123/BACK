@@ -20,13 +20,17 @@ public class ActionCommand implements Statement {
     @Override
     public boolean execute(Player user) {
         if(action.equals("relocate")){
-            int RowCenter = user.cityCenter.getRow();
-            int ColCenter = user.cityCenter.getCol();
+            int CenterRow = user.cityCenter.getRow();
+            int CenterCol = user.cityCenter.getCol();
             int userRow = user.cityCrew.getRow();
             int userCol = user.cityCrew.getCol();
-            //Do something more than
+            double distance = Math.ceil(Math.sqrt(Math.pow(userCol - CenterCol,2)+Math.pow(userRow - CenterRow,2)));
+            double cost = 5 * distance + 10 ;
+            if (user.getBudget() >= cost && (user.cityCrew.owner == user)){
+                user.subBudget(cost);
+                user.cityCenter = user.cityCrew;
+            }
         }
-
-        return true;
+        return false;
     }
 }
