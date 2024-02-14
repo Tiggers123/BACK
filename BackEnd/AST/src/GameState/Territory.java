@@ -35,7 +35,7 @@ public class Territory {
 
     }
     public void calculateInterest(Player user){
-        for(Region region : user.regionSet){
+        for(Region region : user.regionList){
         }
     }
 

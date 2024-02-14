@@ -10,6 +10,13 @@ public class Region extends Territory {
         this.row = x ;
         this.col = y ;
     }
+    public boolean adjacentCheck(Region region){
+        if (region == up || region == upright || region == upleft || region == down || region == downright || region == downleft){
+            return true ;
+        }
+        return false;
+    }
+
     public double getDeposit(){
         return deposit;
     }
@@ -39,5 +46,11 @@ public class Region extends Territory {
         else return this.upleft ;
 
 
+    }
+    public void DeleteRegion(Player player){
+        if(!player.regionList.contains(this)) return;
+        this.owner = null;
+        player.regionList.remove(this);
+        if(player.cityCenter.equals(this)) player.LoseGame();
     }
 }

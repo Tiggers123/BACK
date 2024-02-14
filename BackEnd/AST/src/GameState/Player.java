@@ -13,19 +13,19 @@ public class Player {
     private Territory territory;
     private ConstructionPlan plan;
     public final Map<String, Double> variable;
-    public final List<Region> regionSet;
+    public final List<Region> regionList;
     public Region cityCenter;
     public Region cityCrew;
 
     private double budget = 0;
 
-    public Player(String name, Territory territory, ConstructionPlan plan, Map<String, Double> variable, List<Region> regionSet, Region cityCenter) {
+    public Player(String name, Territory territory, ConstructionPlan plan, Map<String, Double> variable, List<Region> regionList, Region cityCenter) {
         this.name = name;
         this.territory = territory;
         this.plan = plan;
         this.variable = variable;
-        this.regionSet = new ArrayList<>();
-        regionSet.add(cityCenter);
+        this.regionList = new ArrayList<>();
+        regionList.add(cityCenter);
         this.cityCenter = this.cityCrew = cityCenter ;
         this.cityCenter.owner = this ;
 
@@ -37,6 +37,14 @@ public class Player {
     }
     public Territory territory(){
         return territory;
+    }
+    public boolean regionListAdjacent(Region regionTocheck){
+        for (Region region : this.regionList) {
+            if (region.adjacentCheck(regionTocheck)){
+                return true ;
+            }
+        }
+        return false ;
     }
 
     public Region getCityCenter(){
@@ -53,5 +61,10 @@ public class Player {
 
     public void subBudget(double n){
         budget = Math.max(0,budget-n);
+    }
+    public void LoseGame(){
+        for(Region region : regionList)
+            region.owner = null;
+        regionList.clear();
     }
 }
