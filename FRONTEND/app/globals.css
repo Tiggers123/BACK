@@ -61,13 +61,6 @@ h1 {
   margin-top: 5vh; /* Adjust spacing as needed */
 }
 
-.desc {
-  font-size: 9vw;
-  color: aliceblue;
-  font-family: Loved;
-  margin-left: 100px;
-}
-
 @font-face {
   font-family: Loved;
   src: url(./fonts/MADE\ Soulmaze\ Outline\ Italic\ PERSONAL\ USE.otf);
@@ -78,15 +71,9 @@ h1 {
   src: url(./fonts/LovedbytheKing.ttf);
 }
 
-.name-input {
-  width: 70%; /* Adjust width as needed */
-  margin-top: 0px; /* Space between text and input */
-  padding: 10px; /* Interior padding for the input box */
-  border: 1px solid #ccc; /* Example light border */
-  border-radius: 5px; /* Optionally rounded corners */
-  font-size: 16px; /* Set a default font size */
-  margin-left: 90px;
-
+@font-face {
+  font-family: Lovededdd;
+  src: url(./fonts/MADE\ Soulmaze\ PERSONAL\ USE.otf);
 }
 
 .button {

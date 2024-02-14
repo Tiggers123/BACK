@@ -1,22 +1,23 @@
 import Link from "next/link";
-import styles from "./home.module.css";
 import React from "react";
-import { url } from "inspector";
+import styles from "./home.module.css";
 
 const Home = () => {
   return (
     <div className="outer-container">
       <div className="inner-container"></div>
       <div className="content-wrapper">
-        <h1 className="desc">UPBEAT</h1>
+        <h1 className={styles.desc}>UPBEAT</h1>
         <input
           type="text"
           placeholder="Please input your name..."
-          className="name-input"
+          className={styles.nameinput}
         />
-        <button class="button">
-          <span class="button-text">Join game</span>
-          <div class="fill-container"></div>
+        <button className="button">
+          <Link href="/pages/menu">
+            <span className="button-text">Join Game</span>
+            <div className="fill-container"></div>
+          </Link>
         </button>
       </div>
     </div>
