@@ -24,5 +24,6 @@ public class RegionCommand implements Statement {
     @Override
     public boolean execute(Player user) throws SyntaxErrorException {
 
+        return false;
     }
 }
