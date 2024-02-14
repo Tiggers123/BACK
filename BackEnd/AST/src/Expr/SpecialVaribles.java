@@ -21,8 +21,7 @@ public class SpecialVaribles implements Expression {
         if (variables.equals("maxdeposit")){return user.territory().getDEPOSITMax() ;}else
         if (variables.equals("random")){
             Random rand = new Random();
-            int random = rand.nextInt(1000);
-            return random ;
+            return rand.nextInt(1000);
         }
         return 0;
     }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import Expr.ConstructionPlan;
+import Expr.SyntaxErrorException;
 import Parser.ConstructionPlanParser;
 import Parser.Tokenizer;
 
@@ -16,7 +17,7 @@ public class Player {
     public final List<Region> regionList;
     public Region cityCenter;
     public Region cityCrew;
-
+    
     private double budget = 0;
 
     public Player(String name, Territory territory, ConstructionPlan plan, Map<String, Double> variable, List<Region> regionList, Region cityCenter) {
@@ -30,9 +31,11 @@ public class Player {
         this.cityCenter.owner = this ;
 
     }
-    public void setPlan(List<String> text){
+    public void setPlan(List<String> text) throws Parser.SyntaxErrorException {
         Tokenizer tkz = new Tokenizer(text);
         ConstructionPlanParser plan = new ConstructionPlanParser(tkz);
+        this.plan = new ConstructionPlan(plan.parse());
+
 
     }
     public Territory territory(){
@@ -66,5 +69,11 @@ public class Player {
         for(Region region : regionList)
             region.owner = null;
         regionList.clear();
+        life = false ;
     }
+    public void evaluatePlan() throws SyntaxErrorException {
+        this.plan.execute(this);
+        this.cityCrew = this.cityCenter;
+    }
+
 }

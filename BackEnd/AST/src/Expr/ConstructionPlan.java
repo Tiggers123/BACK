@@ -23,7 +23,7 @@ public class ConstructionPlan implements Node {
 
     public void execute(Player user) throws SyntaxErrorException {
         for (Statement statement : this.statementList){
-            if (!(statement.execute(user))) return ;
+            if (!(statement.execute(user))) return ; // if false return
         }
     }
 }
