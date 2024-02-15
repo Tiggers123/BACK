@@ -6,7 +6,6 @@ import GameState.Player;
 import GameState.Region;
 import Statement.Statement;
 
-import java.util.Map;
 
 public class RegionCommand implements Statement {
     private Expression expression ;
