@@ -26,14 +26,14 @@ public class RegionCommand implements Statement {
         Region region = user.getCityCrew();
         double fee = user.territory().getFee();
         if (this.action.equals("invest")){
-            double cost = expression.evaluate(user);
+            double amount = expression.evaluate(user);
             user.subBudget(fee);
-            if(user.getBudget() < cost) {
+            if(user.getBudget() < amount) {
                 return true;
             } else {
                 region.owner = user ;
-                region.addDeposit(cost);
-                user.subBudget(cost);
+                region.addDeposit(amount);
+                user.subBudget(amount);
                 return true;
             }
             // collect

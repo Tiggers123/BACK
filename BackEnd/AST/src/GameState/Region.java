@@ -62,8 +62,7 @@ public class Region extends Territory {
         double t = super.turn ;
         double r = b * Math.log10(d) * Math.log(t);
         if (owner != null) {
-            d += d*r/100 ;
-            this.deposit = Math.min(d,getMax_dep());
+            this.addDeposit(d*r/100);
         }
 
     }

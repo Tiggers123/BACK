@@ -24,6 +24,7 @@ public class MoveCommand implements Statement {
     @Override
     public boolean execute(Player user) {
         if(user.getBudget()< user.territory().getFee()){return false;}
+        user.subBudget(user.territory().getFee());
         Region MoveTo = user.getCityCrew().moveDirection(this.Direction);
         if (MoveTo == null) return  true ;
         if (MoveTo.owner == user || MoveTo.owner == null){
