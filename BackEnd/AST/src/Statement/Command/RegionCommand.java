@@ -23,16 +23,16 @@ public class RegionCommand implements Statement {
 
     @Override
     public boolean execute(Player user) throws SyntaxErrorException {
-        Region region =  user.cityCrew;
+        Region region = user.getCityCrew();
         double fee = user.territory().getFee();
         if (this.action.equals("invest")){
-            double cost = expression.evaluate(user)+fee;
+            double cost = expression.evaluate(user);
+            user.subBudget(fee);
             if(user.getBudget() < cost) {
-                user.subBudget(fee);
-                return false ;
+                return true;
             } else {
                 region.owner = user ;
-                region.addDeposit(cost-fee);
+                region.addDeposit(cost);
                 user.subBudget(cost);
                 return true;
             }
@@ -47,8 +47,8 @@ public class RegionCommand implements Statement {
                 return true;
             } else {
                 region.subDeposit(collect);
-                if (region.getDeposit() == 0 ) region.DeleteRegion(user) ;
                 user.addBudget(collect);
+                if (region.getDeposit() == 0 ) region.DeleteRegion(user) ;
             }
 
         }

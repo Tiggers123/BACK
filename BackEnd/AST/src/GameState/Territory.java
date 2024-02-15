@@ -36,6 +36,7 @@ public class Territory {
     }
     public void calculateInterest(Player user){
         for(Region region : user.regionList){
+            region.InterestRate();
         }
     }
 
@@ -50,4 +51,5 @@ public class Territory {
     public double getFee() {
         return fee;
     }
+    public void updateTurn(){}
 }

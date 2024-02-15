@@ -10,12 +10,12 @@ public class Region extends Territory {
         this.row = x ;
         this.col = y ;
     }
-    public boolean adjacentCheck(Region region){
-        if (region == up || region == upright || region == upleft || region == down || region == downright || region == downleft){
-            return true ;
-        }
-        return false;
-    }
+//    public boolean adjacentCheck(Region region){
+//        if (region == up || region == upright || region == upleft || region == down || region == downright || region == downleft){
+//            return true ;
+//        }
+//        return false;
+//    }
 
     public double getDeposit(){
         return deposit;
@@ -39,18 +39,30 @@ public class Region extends Territory {
     }
     public Region moveDirection(String direction){
         if (direction.equals("up"))return this.up;
-        else if (direction.equals("upright")) return this.upright;
-        else if (direction.equals("downright"))return this.downright;
-        else if (direction.equals("down"))return this.down;
-        else if (direction.equals("downleft"))return this.downleft;
-        else return this.upleft ;
+        if (direction.equals("down")) return this.down;
+        if (direction.equals("upleft"))return this.upleft;
+        if (direction.equals(" upright"))return this.upright;
+        if (direction.equals("downleft"))return this.downleft;
+        return this.downright;
 
 
     }
     public void DeleteRegion(Player player){
-        if(!player.regionList.contains(this)) return;
-        this.owner = null;
-        player.regionList.remove(this);
-        if(player.cityCenter.equals(this)) player.LoseGame();
+        if(player.getCityCenter().equals(this)){
+            player.LoseGame();
+        } else {
+            if(!player.regionList.contains(this)) return;
+            player.regionList.remove(this);
+            this.owner = null;
+        }
     }
+    public void InterestRate(){
+        double b = super.baseInterestRate;
+        double d = this.deposit ;
+        double t = super.turn ;
+        double r = b * Math.log10(d) * Math.log(t);
+        this.deposit = d*r/100 ;
+
+    }
+
 }

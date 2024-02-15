@@ -10,7 +10,7 @@ public class Infonearby implements  Expression{
     }
     @Override
     public double evaluate(Player user) throws SyntaxErrorException {
-        Region currrent = user.cityCrew;
+        Region currrent = user.getCityCrew();
         double distance = 0 ;
         while(currrent.moveDirection(this.Direction) != null ){
             currrent = currrent.moveDirection(this.Direction);

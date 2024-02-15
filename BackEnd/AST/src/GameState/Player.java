@@ -15,8 +15,8 @@ public class Player {
     private ConstructionPlan plan;
     public final Map<String, Double> variable;
     public final List<Region> regionList;
-    public Region cityCenter;
-    public Region cityCrew;
+    private Region cityCenter;
+    private Region cityCrew;
     
     private double budget = 0;
 
@@ -41,18 +41,26 @@ public class Player {
     public Territory territory(){
         return territory;
     }
-    public boolean regionListAdjacent(Region regionTocheck){
-        for (Region region : this.regionList) {
-            if (region.adjacentCheck(regionTocheck)){
-                return true ;
-            }
-        }
-        return false ;
-    }
+
+    // look like this method it not good to use but not sure i will comment it first by Ton
+//    public boolean regionListAdjacent(Region regionTocheck){
+//        for (Region region : this.regionList) {
+//            if (region.adjacentCheck(regionTocheck)){
+//                return true ;
+//            }
+//        }
+//        return false ;
+//    }
 
     public Region getCityCenter(){
         return cityCenter;
     }
+
+    public Region getCityCrew() {return cityCrew;}
+
+    public void setCityCrew(Region cityCrew) {this.cityCrew = cityCrew;}
+
+    public void setCityCenter(Region cityCenter) {this.cityCenter = cityCenter;}
 
     public double getBudget(){
         return budget;

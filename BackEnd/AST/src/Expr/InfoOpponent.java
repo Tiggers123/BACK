@@ -8,7 +8,7 @@ public class InfoOpponent implements  Expression{
     @Override
     public double evaluate(Player user) throws SyntaxErrorException {
         String[] Direction = {"up","upright","downright" , "down" , "downleft","upleft"};
-        Region current = user.cityCrew;
+        Region current = user.getCityCrew();
         int minDistance = Integer.MAX_VALUE ;
         int Maxbound = user.territory().getTerritory_col() * user.territory().getTerritory_row();
         for (int i = 0; i < 6; i++) {
@@ -22,7 +22,7 @@ public class InfoOpponent implements  Expression{
                     }
                 }
             }
-            current = user.cityCrew;
+            current = user.getCityCrew();
         }
         if (minDistance == Integer.MAX_VALUE){
             return 0 ;
