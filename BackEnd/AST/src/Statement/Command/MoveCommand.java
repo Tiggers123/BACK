@@ -1,5 +1,6 @@
 package Statement.Command;
 
+import Expr.SyntaxErrorException;
 import GameState.Player;
 import GameState.Region;
 import Statement.Statement;
@@ -22,7 +23,7 @@ public class MoveCommand implements Statement {
     }
 
     @Override
-    public boolean execute(Player user) {
+    public boolean execute(Player user) throws SyntaxErrorException {
         if(user.getBudget()< user.territory().getFee()){return false;}
         user.subBudget(user.territory().getFee());
         Region MoveTo = user.getCityCrew().moveDirection(this.Direction);

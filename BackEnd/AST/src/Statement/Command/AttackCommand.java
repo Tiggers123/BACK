@@ -35,6 +35,10 @@ public class AttackCommand implements Statement {
         if(user.getBudget() < cost) return true;
         user.subBudget(cost);
 
-        //missing direction
+        Region target = user.getCityCrew().moveDirection(this.Direction);
+        if(target.owner == null) return true;
+        target.subDeposit(cost);
+        if(target.getDeposit() < 1) target.lose(user);
+        return true;
     }
 }
