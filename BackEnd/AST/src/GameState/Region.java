@@ -21,7 +21,7 @@ public class Region extends Territory {
         return deposit;
     }
     public void addDeposit(double n){
-        deposit = Math.min(super.DEPOSITMax,deposit+n);
+        deposit = Math.min(super.max_dep,deposit+n);
     }
     public void subDeposit(double n){
         deposit = Math.max(0,deposit-n);
@@ -35,7 +35,7 @@ public class Region extends Territory {
         return col;
     }
     public double getInterestRate(){
-        return super.baseInterestRate * Math.log10(deposit)*Math.log(super.turn);
+        return super.interest_pct * Math.log10(deposit)*Math.log(super.turn);
     }
     public Region moveDirection(String direction){
         if (direction.equals("up"))return this.up;
@@ -57,11 +57,14 @@ public class Region extends Territory {
         }
     }
     public void InterestRate(){
-        double b = super.baseInterestRate;
+        double b = super.interest_pct;
         double d = this.deposit ;
         double t = super.turn ;
         double r = b * Math.log10(d) * Math.log(t);
-        this.deposit = d*r/100 ;
+        if (owner != null) {
+            d += d*r/100 ;
+            this.deposit = Math.min(d,getMax_dep());
+        }
 
     }
 

@@ -18,7 +18,7 @@ public class SpecialVaribles implements Expression {
         if (variables.equals("budget")){return  user.getBudget();}
         if (variables.equals("deposit")){return user.getCityCrew().getDeposit() ;}
         if (variables.equals("int")){return  user.getCityCrew().getInterestRate() ;}
-        if (variables.equals("maxdeposit")){return user.territory().getDEPOSITMax() ;}
+        if (variables.equals("maxdeposit")){return user.territory().getMax_dep() ;}
         if (variables.equals("random")){
             Random rand = new Random();
             return rand.nextInt(1000);

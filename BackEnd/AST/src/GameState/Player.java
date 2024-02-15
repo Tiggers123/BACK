@@ -83,5 +83,10 @@ public class Player {
         this.plan.execute(this);
         this.cityCrew = this.cityCenter;
     }
+    public void CalculateInterestRate(){
+        for (Region region : regionList){
+            region.InterestRate();
+        }
+    }
 
 }
