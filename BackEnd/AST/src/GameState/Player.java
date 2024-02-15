@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import Expr.ConstructionPlan;
+import Expr.SyntaxErrorException;
 import Parser.ConstructionPlanParser;
 import Parser.Tokenizer;
 
@@ -13,35 +14,53 @@ public class Player {
     private Territory territory;
     private ConstructionPlan plan;
     public final Map<String, Double> variable;
-    public final List<Region> regionSet;
-    public Region cityCenter;
-    public Region cityCrew;
-
+    public final List<Region> regionList;
+    private Region cityCenter;
+    private Region cityCrew;
+    
     private double budget = 0;
 
-    public Player(String name, Territory territory, ConstructionPlan plan, Map<String, Double> variable, List<Region> regionSet, Region cityCenter) {
+    public Player(String name, Territory territory, ConstructionPlan plan, Map<String, Double> variable, List<Region> regionList, Region cityCenter) {
         this.name = name;
         this.territory = territory;
         this.plan = plan;
         this.variable = variable;
-        this.regionSet = new ArrayList<>();
-        regionSet.add(cityCenter);
+        this.regionList = new ArrayList<>();
+        regionList.add(cityCenter);
         this.cityCenter = this.cityCrew = cityCenter ;
         this.cityCenter.owner = this ;
 
     }
-    public void setPlan(List<String> text){
+    public void setPlan(List<String> text) throws Parser.SyntaxErrorException {
         Tokenizer tkz = new Tokenizer(text);
         ConstructionPlanParser plan = new ConstructionPlanParser(tkz);
+        this.plan = new ConstructionPlan(plan.parse());
+
 
     }
     public Territory territory(){
         return territory;
     }
 
+    // look like this method it not good to use but not sure i will comment it first by Ton
+//    public boolean regionListAdjacent(Region regionTocheck){
+//        for (Region region : this.regionList) {
+//            if (region.adjacentCheck(regionTocheck)){
+//                return true ;
+//            }
+//        }
+//        return false ;
+//    }
+
     public Region getCityCenter(){
         return cityCenter;
     }
+
+    public Region getCityCrew() {return cityCrew;}
+
+    public void setCityCrew(Region cityCrew) {this.cityCrew = cityCrew;}
+
+    public void setCityCenter(Region cityCenter) {this.cityCenter = cityCenter;}
 
     public double getBudget(){
         return budget;
@@ -54,4 +73,20 @@ public class Player {
     public void subBudget(double n){
         budget = Math.max(0,budget-n);
     }
+    public void LoseGame(){
+        for(Region region : regionList)
+            region.owner = null;
+        regionList.clear();
+        life = false ;
+    }
+    public void evaluatePlan() throws SyntaxErrorException {
+        this.plan.execute(this);
+        this.cityCrew = this.cityCenter;
+    }
+    public void CalculateInterestRate(){
+        for (Region region : regionList){
+            region.InterestRate();
+        }
+    }
+
 }

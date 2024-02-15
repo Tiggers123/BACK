@@ -11,18 +11,17 @@ public class SpecialVaribles implements Expression {
     }
     @Override
     public double evaluate(Player user) throws SyntaxErrorException {
-        if (variables.equals("rows")){return user.territory().getTerritory_row() ;}else
-        if (variables.equals("cols")){return user.territory().getTerritory_col() ;}else
-        if (variables.equals("currow")){return user.cityCrew.getRow();}else
-        if (variables.equals("curcol")){return  user.cityCrew.getCol();}else
-        if (variables.equals("budget")){return  user.getBudget();}else
-        if (variables.equals("deposit")){return user.cityCrew.getDeposit() ;}else
-        if (variables.equals("int")){return  user.cityCrew.getInterestRate() ;}else
-        if (variables.equals("maxdeposit")){return user.territory().getDEPOSITMax() ;}else
+        if (variables.equals("rows")){return user.territory().getTerritory_row() ;}
+        if (variables.equals("cols")){return user.territory().getTerritory_col() ;}
+        if (variables.equals("currow")){return user.getCityCrew().getRow();}
+        if (variables.equals("curcol")){return  user.getCityCrew().getCol();}
+        if (variables.equals("budget")){return  user.getBudget();}
+        if (variables.equals("deposit")){return user.getCityCrew().getDeposit() ;}
+        if (variables.equals("int")){return  user.getCityCrew().getInterestRate() ;}
+        if (variables.equals("maxdeposit")){return user.territory().getMax_dep() ;}
         if (variables.equals("random")){
             Random rand = new Random();
-            int random = rand.nextInt(1000);
-            return random ;
+            return rand.nextInt(1000);
         }
         return 0;
     }

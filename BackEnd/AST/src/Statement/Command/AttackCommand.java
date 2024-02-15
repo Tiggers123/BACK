@@ -13,6 +13,7 @@ public class AttackCommand implements Statement {
     public AttackCommand(String Direction, Expression expression){
         this.Direction = Direction;
         this.expression = expression ;
+
     }
 
     @Override

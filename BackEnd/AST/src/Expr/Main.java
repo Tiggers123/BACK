@@ -1,15 +1,13 @@
 package Expr;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws SyntaxErrorException {
-        Map<String,  Double> table = new HashMap<>();
-        table.put("x",100.0);
-        DoubleLit one = new DoubleLit(100) ;
-        DoubleLit two = new DoubleLit(100);
-        Identifier x = new Identifier("x");
-        BinaryArithExpr o = new BinaryArithExpr(one ,"^", two );
+        int CenterRow = 2 ;
+        int CenterCol =3;
+        int userRow = 7;
+        int userCol = 9;
+        double distance = (Math.sqrt(Math.pow(userCol - CenterCol,2)+Math.pow(userRow - CenterRow,2)));
+        System.out.println(Integer.MAX_VALUE);
     }
 }
