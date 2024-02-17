@@ -6,20 +6,24 @@ const Menu = () => {
     <div className={styles.menuContainer}>
       <h1 className={styles.title}>UPBEAT</h1>
       <div className={styles.buttonGroup}>
-        <Link href="/pages/start/page">
+        <Link href="">
           <button class={styles.button}>
             <span class={styles.buttontext}>Start</span>
             <div class={styles.fillcontainer}></div>
           </button>
         </Link>
-
-        <Link href="/pages/howto/page">
+        <Link href="/pages/howto">
           <button class={styles.button}>
             <span class={styles.buttontext}>How to play</span>
             <div class={styles.fillcontainer}></div>
           </button>
         </Link>
-
+        <Link href="/pages/Configuration">
+          <button class={styles.button}>
+            <span class={styles.buttontext}>Setting Config</span>
+            <div class={styles.fillcontainer}></div>
+          </button>
+        </Link>
         <Link href="/">
           <button class={styles.button}>
             <span class={styles.buttontext}>Back to Menu :)</span>

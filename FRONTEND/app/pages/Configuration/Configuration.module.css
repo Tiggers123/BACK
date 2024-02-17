@@ -1,0 +1,177 @@
+.configurationPage {
+  background-color: #fbfbfb;
+  display: flex; /* Allow content to align within the page */
+  flex-direction: column; /* Arrange content from top to bottom */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+
+.settings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Change: Align items  centrally  */
+  width: 45vw;
+  margin: 0 auto; /* Centers the container within its parent */
+  border-radius: 50px;
+  margin-top: -9px;
+  background-color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 0.5vmin solid #05060f;
+  box-shadow: 0.4rem 0.4rem #05060f;
+  overflow: hidden;
+  color: black;
+}
+
+.imagContainer {
+  background-image: url("44.png");
+  background-size: contain;
+  background-repeat: no-repeat; /* Add this to prevent image repetition */
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 44px; /* Spacing from the top */
+  left: 40px; /* Spacing from the left */
+}
+
+.imagessContainer {
+  background-image: url("22.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  align-items: center;
+  background-position: 0%; /* Updated for bottom left positioning */
+  position: absolute;
+  bottom: 0;
+  left: 0; /* Position from the left */
+  width: 400px; /* Increase size */
+  height: 400px; /* Increase size */
+}
+
+.imagesssContainer {
+  background-image: url("222.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  align-items: center;
+  background-position: 0%; /* Updated for bottom left positioning */
+  position: absolute;
+  bottom: 0;
+  right: 0; /* Position from the left */
+  width: 400px; /* Increase size */
+  height: 400px; /* Increase size */
+}
+
+.setting {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 30%;
+  /* background-color: #0d00ff; */
+  border-radius: 8px;
+  padding: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* margin-right: 5px;
+  margin-left: 5px; */
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.setting label {
+  font-family: Loveded; /* Or the desired font */
+  font-size: 19px;
+  font-weight: 500;
+  color: #000000; /* Example color change  */
+  letter-spacing: 1px;
+}
+
+.setting input[type="range"] {
+  width: 80%;
+  margin: 10px 0;
+}
+
+.setting span {
+  font-size: 19px;
+  margin-top: 0px;
+  font-family: Loveded;
+  color: #000000;
+}
+
+.timePicker {
+  display: flex;
+  align-items: center;
+}
+
+.timePicker input[type="number"] {
+  width: 50px;
+  margin: 0 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 19px;
+  font-family: Loveded;
+}
+
+.button {
+  position: relative;
+  width: 150px;
+  padding: 15px 30px;
+  border-radius: 50px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: Loveded;
+  font-weight: 400;
+  letter-spacing: 2px;
+  background-color: #2200ff;
+  border: solid 1px #2200ff;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  margin: 20px auto; /* Centers the button horizontally */
+  display: block;
+  box-shadow: 0.4rem 0.4rem #05060f; /* Add box shadow */
+  outline: 2px solid rgb(0, 0, 0);
+  margin-top: 30px;
+}
+
+.button .buttontext {
+  position: relative;
+  z-index: 2;
+}
+
+.button .fillcontainer {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  padding-bottom: 100%;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.button .fillcontainer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ff6600;
+  border-radius: 50px;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateY(-100%);
+}
+
+.button:hover {
+  border-color: #ff6600;
+  transform: translateY(-4px);
+}
+
+.button:hover .fillcontainer {
+  transform: translateY(-50%) rotate(0);
+}
+
+.button:hover .fillcontainer::after {
+  transform: translateY(0);
+}
