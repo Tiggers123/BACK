@@ -1,5 +1,7 @@
 package GameState;
 
+import Expr.SyntaxErrorException;
+
 import java.util.List;
 
 public class Territory {
@@ -12,22 +14,18 @@ public class Territory {
     private double plan_rev_min = 0 ;
     private  double plan_rev_sec = 0 ;
     private  double rev_cost = 0;
-    private  int player_turn = 0;
 
     private final double fee = 1 ;
 
     protected double max_dep;
     protected double interest_pct;
     protected int turn = 1;
+    private  int round = 0;
 
     private List<Player> player_num;
     private Region[][] territory;
 
 
-
-    public double getMax_dep() {
-        return max_dep;
-    }
     Territory(){}
 
     public Territory(List<Player> player_num, int m, int n, long init_budget, long init_center_dep, long rev_cost, long interest_pct, long max_dep){
@@ -43,7 +41,12 @@ public class Territory {
     public void calculateInterest(Player user){
         user.CalculateInterestRate();
     }
-    public void updateTurn(){}
+    public void updateTurn() throws SyntaxErrorException {
+        player_num.get(round).evaluatePlan();
+        calculateInterest(player_num.get(round));
+        round = (round + 1) % player_num.size();
+        if (round == 0) turn++;
+    }
 
     public int getTerritory_col() {
         return territory_col;
@@ -55,5 +58,8 @@ public class Territory {
 
     public double getFee() {
         return fee;
+    }
+    public double getMax_dep() {
+        return max_dep;
     }
 }

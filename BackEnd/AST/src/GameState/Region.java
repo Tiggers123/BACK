@@ -47,12 +47,12 @@ public class Region extends Territory {
 
 
     }
-    public void DeleteRegion(Player player){
-        if(player.getCityCenter().equals(this)){
-            player.LoseGame();
+    public void ClearRegion(Player player){
+        if(owner.getCityCenter().equals(this)){
+            owner.LoseGame();
         } else {
-            if(!player.regionList.contains(this)) return;
-            player.regionList.remove(this);
+            if(!owner.regionList.contains(this)) return;
+            owner.regionList.remove(this);
             this.owner = null;
         }
     }
@@ -67,10 +67,4 @@ public class Region extends Territory {
 
     }
 
-    public void lose(Player player){
-        if(!player.regionList.contains(this)) return;
-        this.owner = null;
-        player.regionList.remove(this);
-        if(player.getCityCenter().equals(this)) player.LoseGame();
-    }
 }

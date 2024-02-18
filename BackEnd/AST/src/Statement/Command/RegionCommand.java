@@ -47,7 +47,7 @@ public class RegionCommand implements Statement {
             } else {
                 region.subDeposit(collect);
                 user.addBudget(collect);
-                if (region.getDeposit() == 0 ) region.DeleteRegion(user) ;
+                if (region.getDeposit() == 0 ) region.ClearRegion(user) ;
             }
 
         }
