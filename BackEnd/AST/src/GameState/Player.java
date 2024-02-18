@@ -1,12 +1,13 @@
 package GameState;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import Expr.ConstructionPlan;
 import Expr.SyntaxErrorException;
 import Parser.ConstructionPlanParser;
 import Parser.Tokenizer;
+import Statement.Command.ActionCommand;
+import Statement.Statement;
 
 public class Player {
     public String name;
@@ -20,11 +21,14 @@ public class Player {
     
     private double budget = 0;
 
-    public Player(String name, Territory territory, ConstructionPlan plan, Map<String, Double> variable, List<Region> regionList, Region cityCenter) {
+    public Player(String name, Territory territory, Region cityCenter) {
         this.name = name;
         this.territory = territory;
-        this.plan = plan;
-        this.variable = variable;
+        LinkedList<Statement> initial = new LinkedList<>();
+        Statement done = new ActionCommand("done");
+        initial.add(done);
+        this.plan = new ConstructionPlan(initial);
+        this.variable = new HashMap<>();
         this.regionList = new ArrayList<>();
         regionList.add(cityCenter);
         this.cityCenter = this.cityCrew = cityCenter ;
