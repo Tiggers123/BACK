@@ -38,8 +38,7 @@ public class Player {
     public void setPlan(List<String> text) throws Parser.SyntaxErrorException {
         ConstructionPlanParser plan = new ConstructionPlanParser(text);
         this.plan = new ConstructionPlan(plan.parse());
-
-
+        this.subBudget(territory.getRev_cost());
     }
     public Territory territory(){
         return territory;
@@ -84,8 +83,11 @@ public class Player {
         life = false ;
     }
     public void evaluatePlan() throws SyntaxErrorException {
-        this.plan.execute(this);
-        this.cityCrew = this.cityCenter;
+        try{
+            this.plan.execute(this);
+        } catch (SyntaxErrorException e) {
+            System.out.println(e.getMessage());
+        }
     }
     public void CalculateInterestRate(){
         for (Region region : regionList){
