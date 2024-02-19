@@ -101,7 +101,7 @@ public class ConstructionPlanParser {
             line.consume("(");
             Expression term = Expression();
             line.consume(")");
-            return new RegionCommand(line.peek(), Expression());
+            return new RegionCommand(command, term);
         }
         throw new SyntaxErrorException("Invalid command");
     }
@@ -216,11 +216,14 @@ public class ConstructionPlanParser {
     }
     public Expression InfoExpression() throws SyntaxErrorException {
         if (line.peek("nearby")) {
+            String command = line.peek();
             line.consume("nearby");
-            return new Infonearby(line.peek());
+            String direction = Direction();
+            return new Infonearby(command , direction);
         } else if(line.peek("opponent")){
+            String command = line.peek();
             line.consume("opponent");
-            return  new InfoOpponent();
+            return  new InfoOpponent(command);
         }else {
             throw new RuntimeException("Invalid InfoExpression");
         }

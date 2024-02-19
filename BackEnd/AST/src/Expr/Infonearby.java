@@ -5,7 +5,9 @@ import GameState.Region;
 
 public class Infonearby implements  Expression{
     String Direction ;
-    public  Infonearby(String Direction)   {
+    String command ;
+    public  Infonearby(String command , String Direction)   {
+        this.command = command ;
         this.Direction = Direction ;
     }
     @Override

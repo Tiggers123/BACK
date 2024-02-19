@@ -22,7 +22,7 @@ public class Main {
         List<String> file =  reader.FileReader("BackEnd/src/constructionplanWithcomment.txt");
         ConstructionPlanParser plan = new ConstructionPlanParser(file);
         List<Statement> state = plan.parse();
-
+        System.out.println("test");
 
 
     }
