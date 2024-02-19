@@ -27,9 +27,9 @@ class BinaryArithExprTest {
 
     public Player doplayer() {
         List<Player> player =new ArrayList<>();
-        Territory map = new Territory(player , 5 , 5 , 100 ,100 ,100 ,100 ,100);
+        Territory map = new Territory(9 , 9 , 100 ,100 ,100 ,100 ,100 , new String[]{"Ton"});
         ConstructionPlan x = new ConstructionPlan(new ArrayList<>());
-        Player ton = new Player("Ton" , map , x , new HashMap<>() , new ArrayList<>() , new Region(1 , 1));
+        Player ton = new Player("Ton" , map , new Region(1 , 1));
         ton.variable.put("x" , 100.0);
         return  ton ;
     }

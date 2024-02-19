@@ -28,7 +28,7 @@ public class MoveCommand implements Statement {
         user.subBudget(user.territory().getFee());
         Region MoveTo = user.getCityCrew().moveDirection(this.Direction);
         if (MoveTo == null) return  true ;
-        if (MoveTo.owner == user || MoveTo.owner == null){
+        if (MoveTo.getOwner() == user || MoveTo.getOwner() == null){
             user.setCityCrew(MoveTo);
         }
         return true ;

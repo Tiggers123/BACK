@@ -30,7 +30,7 @@ public class RegionCommand implements Statement {
             if(user.getBudget() < amount) {
                 return true;
             } else {
-                region.owner = user ;
+                region.setOwner(user);
                 region.addDeposit(amount);
                 user.subBudget(amount);
                 return true;

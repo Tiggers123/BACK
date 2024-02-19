@@ -21,7 +21,6 @@ public class Tokenizer {
         this.line = temp;
     }
     public Tokenizer(){
-
         pos = 0 ;
     }
     private static final Pattern pattern = Pattern.compile(

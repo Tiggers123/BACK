@@ -36,7 +36,7 @@ public class AttackCommand implements Statement {
         user.subBudget(cost);
 
         Region target = user.getCityCrew().moveDirection(this.Direction);
-        if(target.owner == null) return true;
+        if(target.getOwner() == null) return true;
         target.subDeposit(cost);
         if(target.getDeposit() == 0 ) target.ClearRegion(user);
         return true;

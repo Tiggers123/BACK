@@ -5,7 +5,7 @@ public class Region extends Territory {
     private int col;
     private double deposit;
     public Region up = null, upright = null, upleft = null, down = null, downright = null, downleft = null;
-    public Player owner = null;
+    private Player owner = null;
     public Region(int x , int y){
         this.row = x ;
         this.col = y ;
@@ -16,6 +16,15 @@ public class Region extends Territory {
 //        }
 //        return false;
 //    }
+
+
+    public GameState.Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(GameState.Player owner) {
+        this.owner = owner;
+    }
 
     public double getDeposit(){
         return deposit;

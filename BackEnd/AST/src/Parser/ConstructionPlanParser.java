@@ -13,8 +13,8 @@ import javax.swing.plaf.nimbus.State;
 
 public class ConstructionPlanParser {
     private final Tokenizer line ;
-    public ConstructionPlanParser(Tokenizer Lineinput){
-        this.line = Lineinput ;
+    public ConstructionPlanParser(List<String> file){
+        line = new Tokenizer(file);
     }
     public List<Statement> parse() throws SyntaxErrorException {
         List<Statement> plan = new ArrayList<>();
@@ -51,7 +51,7 @@ public class ConstructionPlanParser {
         return new AssignmentStatement( v ,Expression() ) ;
     }
     public Statement ActionCommand() throws SyntaxErrorException {
-        Statement action  = null ;
+        Statement action ;
         if(line.peek("done")) {
             action =  new ActionCommand(line.peek());
             line.consume("done");
@@ -64,38 +64,46 @@ public class ConstructionPlanParser {
         }
         if (line.peek("move")){
             action = MoveCommand();
+            return action ;
         }
         if(line.peek("invest")){
-            action = RegionCommand();}
+            action = RegionCommand();
+            return action ;
+        }
         if(line.peek("collect")){
-            action = RegionCommand();}
+            action = RegionCommand();
+            return action ;
+        }
         if(line.peek("shoot")){
             action = AttackCommand();
+            return action ;
+        }else {
+            throw new SyntaxErrorException("Invalid command");
         }
-        throw new SyntaxErrorException("Invalid command");
 
     }
     public Statement MoveCommand() throws SyntaxErrorException {
-        MoveCommand move =  new MoveCommand(line.peek(),Direction());
+        String command = line.peek();
         line.consume("move");
-        return  move ;
+        String Direction = Direction();
+        return  new MoveCommand(command,Direction);
     }
     public Statement RegionCommand() throws SyntaxErrorException {
         if(line.peek("invest")){
-            RegionCommand region =  new RegionCommand(line.peek(), Expression() );
+            String command = line.peek();
             line.consume("invest");
-            return region ;
-        }else
-//            if(line.peek("collect"))
+            Expression term = Expression();
+            return new RegionCommand(command , term);
+        }else if(line.peek("collect"))
         {
-            RegionCommand region =  new RegionCommand(line.peek(), Expression());
+            String command = line.peek();
             line.consume("collect");
-            return region ;
-//            line.consume("collect");
-//            line.consume("(");
-//            Expression();
-//            line.consume(")");
+            line.consume("(");
+            Expression term = Expression();
+            line.consume(")");
+            return new RegionCommand(line.peek(), Expression());
         }
+        throw new SyntaxErrorException("Invalid command");
     }
     public Statement AttackCommand() throws SyntaxErrorException {
         if(line.peek("shoot")){
@@ -119,7 +127,7 @@ public class ConstructionPlanParser {
         }
     }
     public BlockStatement BlockStatement() throws SyntaxErrorException {
-        List<Statement> state = null ;
+        List<Statement> state = new ArrayList<>();
         line.consume("{");
         while (!line.peek().equals("}")) {
             state.add(Statement()) ;

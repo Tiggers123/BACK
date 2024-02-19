@@ -33,7 +33,7 @@ public class ActionCommand implements Statement {
             int userCol = user.getCityCrew().getCol();
             double distance = Math.ceil(Math.sqrt(Math.pow(userCol - CenterCol,2)+Math.pow(userRow - CenterRow,2)));
             double cost = 5 * distance + 10 ;
-            if (user.getBudget() >= cost && (user.getCityCrew().owner == user)){
+            if (user.getBudget() >= cost && (user.getCityCrew().getOwner() == user)){
                 user.subBudget(cost);
                 user.setCityCenter(user.getCityCrew());
             }

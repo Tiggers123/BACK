@@ -2,15 +2,17 @@ package GameState;
 
 import Expr.SyntaxErrorException;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Territory {
     private int territory_row ;
     private  int territory_col;
 //    private int init_plan_min = 0 ;
 //    private int init_plan_sec = 0 ;
-//    private double init_budget = 0 ;
-//    private double init_center_dep = 0 ;
+    private double init_budget = 0 ;
+    private double init_center_dep = 0 ;
 //    private double plan_rev_min = 0 ;
 //    private  double plan_rev_sec = 0 ;
     private  double rev_cost = 0;
@@ -22,15 +24,20 @@ public class Territory {
     protected int turn = 1;
     private  int round = 0;
 
-    private List<Player> player_num;
+    private List<Player> Player;
     private Region[][] territory;
 
 
+    String[] nameOfPlayer ;
     Territory(){}
 
-    public Territory(List<Player> player_num, int m, int n, long init_budget, long init_center_dep, long rev_cost, long interest_pct, long max_dep){
+    public Territory(int m, int n, long init_budget, long init_center_dep, long rev_cost, long interest_pct, long max_dep, String[] nameOfPlayer){
+        this.territory_row = m;
         this.territory_col = n;
-        this.player_num = player_num;
+        this.init_budget = init_budget;
+        this.init_center_dep = init_center_dep;
+        this.nameOfPlayer = nameOfPlayer;
+        this.Player = new ArrayList<>();
         this.rev_cost = rev_cost;
         this.max_dep = max_dep;
         this.interest_pct = interest_pct;
@@ -41,8 +48,7 @@ public class Territory {
             }
         }
         setAdjacentRegion();
-
-
+        setUpPlayer();
     }
     private void setAdjacentRegion(){
         for (int i = 0; i < territory_row; i++){
@@ -52,15 +58,31 @@ public class Territory {
                 if (i < territory_row - 1) pointer.down = territory[i + 1][j];
                 if (j%2== 0) {
                     if(j > 0) {pointer.upleft = territory[i][j-1];}
-                    if(j > 0 && i <= territory_row-1){pointer.downleft = territory[i+1][j-1];}
-                    if(j <= territory_col-1 ) {pointer.upright = territory[i][j+1];}
-                    if(j <= territory_col-1 && i <= territory_row-1 ) {pointer.downright = territory[i+1][j+1];}
+                    if(j > 0 && i < territory_row-1){pointer.downleft = territory[i+1][j-1];}
+                    if(j < territory_col-1 ) {pointer.upright = territory[i][j+1];}
+                    if(j < territory_col-1 && i < territory_row-1 ) {pointer.downright = territory[i+1][j+1];}
                 }else{
                     if(i > 0) {pointer.upleft = territory[i-1][j-1];}
-                    if(j <= territory_col-1){pointer.downleft = territory[i][j-1];}
-                    if(i > 0 && j<=territory_col-1) {pointer.upright = territory[i-1][j+1];}
-                    if(j<=territory_col-1) {pointer.downright = territory[i][j+1];}
+                    if(j < territory_col-1){pointer.downleft = territory[i][j-1];}
+                    if(i > 0 && j<territory_col-1) {pointer.upright = territory[i-1][j+1];}
+                    if(j<territory_col-1) {pointer.downright = territory[i][j+1];}
                 }
+            }
+
+        }
+    }
+    private void setUpPlayer(){
+        for(int i = 0 ; i < nameOfPlayer.length ; i++){
+            Region RandomRegion ;
+            int row = new Random().nextInt(territory_row);
+            int col = new Random().nextInt(territory_col);
+            if(territory[row][col].getOwner() == null){
+                RandomRegion = territory[row][col];
+                Player p  = new Player(nameOfPlayer[i], this, RandomRegion);
+                RandomRegion.addDeposit(init_center_dep);
+                RandomRegion.setOwner(p);
+                p.addBudget(init_budget);
+                this.Player.add(p);
             }
 
         }
@@ -69,9 +91,9 @@ public class Territory {
         user.CalculateInterestRate();
     }
     public void updateTurn() throws SyntaxErrorException {
-        player_num.get(round).evaluatePlan();
-        calculateInterest(player_num.get(round));
-        round = (round + 1) % player_num.size();
+        Player.get(round).evaluatePlan();
+        calculateInterest(Player.get(round));
+        round = (round + 1) % Player.size();
         if (round == 0) turn++;
     }
 
@@ -88,5 +110,9 @@ public class Territory {
     }
     public double getMax_dep() {
         return max_dep;
+    }
+
+    public List<GameState.Player> getPlayer() {
+        return Player;
     }
 }

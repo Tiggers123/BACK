@@ -15,7 +15,7 @@ public class Infonearby implements  Expression{
         while(currrent.moveDirection(this.Direction) != null ){
             currrent = currrent.moveDirection(this.Direction);
             distance++ ;
-            if (currrent.owner != user && currrent.owner != null){
+            if (currrent.getOwner() != user && currrent.getOwner() != null){
                 return 100 * distance + currrent.getDeposit();
             }
         }

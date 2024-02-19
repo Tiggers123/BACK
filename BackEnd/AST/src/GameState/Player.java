@@ -32,12 +32,11 @@ public class Player {
         this.regionList = new ArrayList<>();
         regionList.add(cityCenter);
         this.cityCenter = this.cityCrew = cityCenter ;
-        this.cityCenter.owner = this ;
+        cityCenter.setOwner(this);
 
     }
     public void setPlan(List<String> text) throws Parser.SyntaxErrorException {
-        Tokenizer tkz = new Tokenizer(text);
-        ConstructionPlanParser plan = new ConstructionPlanParser(tkz);
+        ConstructionPlanParser plan = new ConstructionPlanParser(text);
         this.plan = new ConstructionPlan(plan.parse());
 
 
@@ -77,9 +76,10 @@ public class Player {
     public void subBudget(double n){
         budget = Math.max(0,budget-n);
     }
-    public void LoseGame(){
-        for(Region region : regionList)
-            region.owner = null;
+    public void LoseGame() {
+        for (Region region : regionList){
+            region.setOwner(null);
+        }
         regionList.clear();
         life = false ;
     }
