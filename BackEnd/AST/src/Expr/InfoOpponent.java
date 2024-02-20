@@ -4,7 +4,8 @@ import GameState.Player;
 import GameState.Region;
 
 public class InfoOpponent implements  Expression{
-    public  InfoOpponent(){}
+    String command ;
+    public  InfoOpponent(String command){this.command = command ;}
     @Override
     public double evaluate(Player user) throws SyntaxErrorException {
         String[] Direction = {"up","upright","downright" , "down" , "downleft","upleft"};

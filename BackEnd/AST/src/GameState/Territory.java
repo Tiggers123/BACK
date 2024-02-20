@@ -112,6 +112,10 @@ public class Territory {
         return max_dep;
     }
 
+    public double getRev_cost() {
+        return rev_cost;
+    }
+
     public List<GameState.Player> getPlayer() {
         return Player;
     }
