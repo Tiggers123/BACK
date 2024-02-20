@@ -16,7 +16,7 @@ public class Main {
 //        Territory map = new Territory(5, 5, 100, 100, 100, 100, 100, p);
         FileManager reader = new FileManager();
 
-//        List<Player> p1 = map.getPlayer();
+//        List<Player> p1 = map.getPlayer(); 
 //        Player p2= p1.get(0);
 //        p2.setPlan(file);
         List<String> file =  reader.FileReader("BackEnd/src/constructionplanWithcomment.txt");
