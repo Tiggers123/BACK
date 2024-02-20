@@ -4,7 +4,6 @@ import Expr.SyntaxErrorException;
 import GameState.Player;
 import Statement.Statement;
 
-
 public class ActionCommand implements Statement {
     private final String action;
 
@@ -14,7 +13,6 @@ public class ActionCommand implements Statement {
         }
         else this.action = "";
     }
-
 
     public StringBuilder prettyPrint(StringBuilder s) {
         s.append(this.action);
