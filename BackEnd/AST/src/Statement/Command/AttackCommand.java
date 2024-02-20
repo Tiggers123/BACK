@@ -5,7 +5,6 @@ import Expr.SyntaxErrorException;
 import GameState.Player;
 import GameState.Region;
 import Statement.Statement;
-import GameState.Territory;
 
 public class AttackCommand implements Statement {
     String Direction ;
@@ -13,7 +12,6 @@ public class AttackCommand implements Statement {
     public AttackCommand(String Direction, Expression expression){
         this.Direction = Direction;
         this.expression = expression ;
-
     }
 
     @Override
