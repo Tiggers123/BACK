@@ -5,7 +5,6 @@ import GameState.Player;
 import GameState.Region;
 import Statement.Statement;
 
-
 public class MoveCommand implements Statement {
     String command ;
     String Direction ;

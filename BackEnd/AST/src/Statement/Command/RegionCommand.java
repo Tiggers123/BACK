@@ -6,7 +6,6 @@ import GameState.Player;
 import GameState.Region;
 import Statement.Statement;
 
-
 public class RegionCommand implements Statement {
     private Expression expression ;
     private  String action;
@@ -16,7 +15,6 @@ public class RegionCommand implements Statement {
     }
     @Override
     public StringBuilder prettyPrint(StringBuilder s) {
-
         return s;
     }
 
@@ -49,9 +47,7 @@ public class RegionCommand implements Statement {
                 user.addBudget(collect);
                 if (region.getDeposit() == 0 ) region.ClearRegion(user) ;
             }
-
         }
         return true;
-
     }
 }
