@@ -119,7 +119,6 @@ public class ConstructionPlanParser {
         String[] validDirections = {"up", "down", "upleft", "upright", "downleft", "downright" };
         String token = line.peek();
         if (Arrays.asList(validDirections).contains(token)) {
-            // need to fix
             line.consume();
             return token;
         } else {

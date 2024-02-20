@@ -11,11 +11,11 @@ public class Territory {
     private  int territory_col;
 //    private int init_plan_min = 0 ;
 //    private int init_plan_sec = 0 ;
-    private double init_budget = 0 ;
-    private double init_center_dep = 0 ;
+    private double init_budget ;
+    private double init_center_dep ;
 //    private double plan_rev_min = 0 ;
 //    private  double plan_rev_sec = 0 ;
-    private  double rev_cost = 0;
+    private  double rev_cost ;
 
     private final double fee = 1 ;
 
@@ -25,8 +25,7 @@ public class Territory {
     private  int round = 0;
 
     private List<Player> Player;
-    private Region[][] territory;
-
+    protected Region[][] territory; // need to cahnge to private
 
     String[] nameOfPlayer ;
     Territory(){}
@@ -42,6 +41,8 @@ public class Territory {
         this.max_dep = max_dep;
         this.interest_pct = interest_pct;
         this.territory = new Region[m][n];
+
+
         for (int i = 0; i < m; i++){
             for (int j = 0; j < n; j++){
                 territory[i][j] = new Region(i, j);
@@ -56,14 +57,14 @@ public class Territory {
                 Region pointer = territory[i][j];
                 if (i > 0) pointer.up = territory[i - 1][j];
                 if (i < territory_row - 1) pointer.down = territory[i + 1][j];
-                if (j%2== 0) {
+                if (j%2 == 0) {
                     if(j > 0) {pointer.upleft = territory[i][j-1];}
                     if(j > 0 && i < territory_row-1){pointer.downleft = territory[i+1][j-1];}
                     if(j < territory_col-1 ) {pointer.upright = territory[i][j+1];}
                     if(j < territory_col-1 && i < territory_row-1 ) {pointer.downright = territory[i+1][j+1];}
                 }else{
                     if(i > 0) {pointer.upleft = territory[i-1][j-1];}
-                    if(j < territory_col-1){pointer.downleft = territory[i][j-1];}
+                    if(j <= territory_col-1){pointer.downleft = territory[i][j-1];}
                     if(i > 0 && j<territory_col-1) {pointer.upright = territory[i-1][j+1];}
                     if(j<territory_col-1) {pointer.downright = territory[i][j+1];}
                 }
@@ -74,8 +75,10 @@ public class Territory {
     private void setUpPlayer(){
         for(int i = 0 ; i < nameOfPlayer.length ; i++){
             Region RandomRegion ;
-            int row = new Random().nextInt(territory_row);
-            int col = new Random().nextInt(territory_col);
+//            int row = new Random().nextInt(territory_row);
+//            int col = new Random().nextInt(territory_col); // Commant random to Test more ez
+            int row = 0;
+            int col = 0;
             if(territory[row][col].getOwner() == null){
                 RandomRegion = territory[row][col];
                 Player p  = new Player(nameOfPlayer[i], this, RandomRegion);
@@ -118,5 +121,10 @@ public class Territory {
 
     public List<GameState.Player> getPlayer() {
         return Player;
+    }
+
+    //ForTest
+    public Region getRegion(int row, int col){
+        return territory[row][col];
     }
 }

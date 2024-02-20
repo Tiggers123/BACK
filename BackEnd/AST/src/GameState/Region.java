@@ -30,7 +30,7 @@ public class Region extends Territory {
         return deposit;
     }
     public void addDeposit(double n){
-        deposit = Math.min(super.max_dep,deposit+n);
+        deposit = Math.max(super.max_dep,deposit+n);
     }
     public void subDeposit(double n){
         deposit = Math.max(0,deposit-n);
@@ -50,7 +50,7 @@ public class Region extends Territory {
         if (direction.equals("up"))return this.up;
         if (direction.equals("down")) return this.down;
         if (direction.equals("upleft"))return this.upleft;
-        if (direction.equals(" upright"))return this.upright;
+        if (direction.equals("upright"))return this.upright;
         if (direction.equals("downleft"))return this.downleft;
         return this.downright;
 

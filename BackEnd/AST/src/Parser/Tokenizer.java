@@ -48,6 +48,7 @@ public class Tokenizer {
         return tokens;
     }
     public boolean hasNextToken() {
+        if (pos == line.size()) return false;
         return line.get(pos) != null; }
     public String peek() throws SyntaxErrorException {
         checkNextToken();
@@ -59,9 +60,10 @@ public class Tokenizer {
     public String consume() throws SyntaxErrorException {
         checkNextToken();
         String result = line.get(pos);
-        if (pos+1 <= line.size()){
-            pos++;
-        }
+//        if (pos+1 <= line.size()){
+//            pos++;
+//        }
+        pos++;
         return result;
     }
     public boolean peek(String s) throws SyntaxErrorException {

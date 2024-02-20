@@ -24,6 +24,7 @@ public class Player {
     public Player(String name, Territory territory, Region cityCenter) {
         this.name = name;
         this.territory = territory;
+        this.life = true;
         LinkedList<Statement> initial = new LinkedList<>();
         Statement done = new ActionCommand("done");
         initial.add(done);
@@ -93,6 +94,15 @@ public class Player {
         for (Region region : regionList){
             region.InterestRate();
         }
+    }
+    // For Testing
+
+    public ConstructionPlan getPlan() {
+        return plan;
+    }
+    public void blink(Territory map , int x , int y) {
+        Region blinkTO = map.getRegion(x,y);
+        this.cityCrew = blinkTO;
     }
 
 }
