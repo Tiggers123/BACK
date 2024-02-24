@@ -31,6 +31,7 @@ public class RegionCommand implements Statement {
                 region.setOwner(user);
                 region.addDeposit(amount);
                 user.subBudget(amount);
+                user.addRegion(region);
                 return true;
             }
             // collect

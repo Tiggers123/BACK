@@ -17,7 +17,7 @@ class ConstructionPlanParserTest {
     }
     public Player setUpGame()  {
         String[] p = {"Ton"};
-        Territory map = new Territory(5, 5, 1100, 1000, 100, 100, 100, p);
+        Territory map = new Territory(5, 5, 110000, 500, 100, 100, 100, p);
         List<Player> p1 = map.getPlayer();
         return p1.get(0);
     }
@@ -475,6 +475,34 @@ class ConstructionPlanParserTest {
             }
             Player.evaluatePlan();
         }
+
+
+    }
+    @Test
+    public void RegionTest() throws SyntaxErrorException, Expr.SyntaxErrorException {
+        Player Player = setUpGame();
+        Territory territory = Player.territory();
+
+        // invest Test
+        List<String> p = Command("move down invest 100 ");
+        Player.setPlan(p);
+        Player.evaluatePlan();
+        assertEquals(territory.getRegion(1,0).getOwner(),Player);
+        Player.evaluatePlan();
+        assertEquals(territory.getRegion(2,0).getOwner(),Player);
+
+        //Attack test
+        p = Command("shoot up 1000");
+        Player.setPlan(p);
+        Player.evaluatePlan();
+        assertNull(territory.getRegion(1, 0).getOwner());
+
+        //Relocate test
+        p = Command("move down invest 100 relocate");
+        Player.setPlan(p);
+        Player.evaluatePlan();
+        assertEquals(territory.getRegion(3,0).getOwner(),Player);
+        assertEquals(territory.getRegion(3,0),Player.getCityCenter());
 
 
     }
