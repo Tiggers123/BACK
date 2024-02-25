@@ -5,7 +5,6 @@ import GameState.Territory;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -110,5 +109,16 @@ class BinaryArithExprTest {
         assertEquals(1,new BinaryArithExpr(Neone,"^" , LargeNeInt).evaluate(user));
         assertEquals(-1,new BinaryArithExpr(Neone,"^" , LargeInt2).evaluate(user));
         assertEquals(-1,new BinaryArithExpr(Neone,"^" , LargeNeInt2).evaluate(user));
+    }
+    private List<String> Command(String command){
+        List<String> file =  new ArrayList<>();
+        file.add(command);
+        return file;
+    }
+    public Player setUpGame()  {
+        String[] p = {"Ton"};
+        Territory map = new Territory(5, 5, 110000, 500, 100, 100, 100, p);
+        List<Player> p1 = map.getPlayer();
+        return p1.get(0);
     }
 }
