@@ -127,7 +127,7 @@ function Configuration() {
           <span>{initialBudget}</span>
         </div>
         <div className={styles.setting}>
-          <label>Specification time</label>
+          <label>time</label>
           <div className={styles.timePicker}>
             <input
               type="number"
@@ -190,7 +190,7 @@ function Configuration() {
           </div>
         </div>
         <div className={styles.setting}>
-          <label htmlFor="changingPlanCost">Changing Plan Cost</label>
+          <label htmlFor="changingPlanCost">Changing Cost</label>
           <input
             type="range"
             min={50}

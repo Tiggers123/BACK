@@ -6,13 +6,13 @@ const Menu = () => {
     <div className={styles.menuContainer}>
       <h1 className={styles.title}>UPBEAT</h1>
       <div className={styles.buttonGroup}>
-        <Link href="">
+        <Link href="/pages/Game">
           <button class={styles.button}>
             <span class={styles.buttontext}>Start</span>
             <div class={styles.fillcontainer}></div>
           </button>
         </Link>
-        <Link href="/pages/howto">
+        <Link href="/pages/Howto">
           <button class={styles.button}>
             <span class={styles.buttontext}>How to play</span>
             <div class={styles.fillcontainer}></div>

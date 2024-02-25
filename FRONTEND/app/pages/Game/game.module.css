@@ -1,0 +1,12 @@
+.appcontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timerContainer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+

@@ -14,7 +14,7 @@
   width: 45vw;
   margin: 0 auto; /* Centers the container within its parent */
   border-radius: 50px;
-  margin-top: -9px;
+  margin-top: -1px;
   background-color: #ffffff;
   padding: 0.5rem;
   border-radius: 1rem;
@@ -29,17 +29,16 @@
   background-size: contain;
   background-repeat: no-repeat; /* Add this to prevent image repetition */
   position: absolute;
-  width: 80px;
-  height: 80px;
-  top: 44px; /* Spacing from the top */
-  left: 40px; /* Spacing from the left */
+  width: 70px;
+  height: 70px;
+  top: 45px; /* Spacing from the top */
+  left: 45px; /* Spacing from the left */
 }
 
 .imagessContainer {
   background-image: url("22.gif");
   background-repeat: no-repeat;
   background-size: contain;
-  align-items: center;
   background-position: 0%; /* Updated for bottom left positioning */
   position: absolute;
   bottom: 0;
@@ -52,7 +51,6 @@
   background-image: url("222.gif");
   background-repeat: no-repeat;
   background-size: contain;
-  align-items: center;
   background-position: 0%; /* Updated for bottom left positioning */
   position: absolute;
   bottom: 0;
@@ -65,25 +63,20 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 30%;
-  /* background-color: #0d00ff; */
+  width: 33%;
   border-radius: 8px;
-  padding: 20px;
+  padding: 19px;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-around;
-  /* margin-right: 5px;
-  margin-left: 5px; */
   margin-top: 4px;
   margin-bottom: 4px;
 }
 
 .setting label {
-  font-family: Loveded; /* Or the desired font */
+  font-family: sun; /* Or the desired font */
   font-size: 19px;
-  font-weight: 500;
   color: #000000; /* Example color change  */
-  letter-spacing: 1px;
 }
 
 .setting input[type="range"] {
@@ -92,9 +85,9 @@
 }
 
 .setting span {
-  font-size: 19px;
+  font-size: 15px;
   margin-top: 0px;
-  font-family: Loveded;
+  font-family: sun;
   color: #000000;
 }
 
@@ -110,8 +103,8 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 5px;
-  font-size: 19px;
-  font-family: Loveded;
+  font-size: 15px;
+  font-family: sun;
 }
 
 .button {
@@ -133,7 +126,7 @@
   display: block;
   box-shadow: 0.4rem 0.4rem #05060f; /* Add box shadow */
   outline: 2px solid rgb(0, 0, 0);
-  margin-top: 30px;
+  margin-top: 35px;
 }
 
 .button .buttontext {

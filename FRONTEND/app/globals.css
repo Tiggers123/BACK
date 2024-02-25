@@ -43,7 +43,7 @@
 }
 
 h1 {
-  color: #0d00ff;
+  color: #000000;
   font-size: 8.5vw;
   font-family: Lover;
   text-align: center;
@@ -76,6 +76,26 @@ h2 {
 @font-face {
   font-family: Lover;
   src: url(./fonts/MADE\ Soulmaze\ Italic\ PERSONAL\ USE.otf);
+}
+
+@font-face {
+  font-family: mic;
+  src: url(./fonts/MickeyMouse_PERSONAL_USE_ONLY.otf);
+}
+
+@font-face {
+  font-family: hello;
+  src: url(./fonts/HelloBesty_Sans.ttf);
+}
+
+@font-face {
+  font-family: sun;
+  src: url(./fonts/Before_Saturday_S_DEMO.otf);
+}
+
+@font-face {
+  font-family: mickey;
+  src: url(./fonts/Birdgo.ttf);
 }
 
 .button {
