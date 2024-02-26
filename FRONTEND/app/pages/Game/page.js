@@ -28,12 +28,14 @@ const App = () => {
               <HexGrid column={8} row={8} />
             </div>
           </div>
-            <div className={styles.cstbudget}>
-              <span>BUDGET : 500 DEPOSIT : 400</span>
-            </div>
-            <div className={styles.cstbudget}>
-              <span>ROW : 8  COLUMN: 8</span>
-            </div>
+          <div className={styles.cstbudget}>
+            <span>BUDGET : 500</span>
+            <span style={{ marginLeft: "20px" }}>DEPOSIT : 400</span>
+          </div>
+          <div className={styles.cstbudget}>
+            <span>ROW : 9</span>
+            <span style={{ marginLeft: "20px" }}>COLUMN : 9</span>
+          </div>
         </div>
         <div className={styles.wrappercontainer}>
           {" "}
