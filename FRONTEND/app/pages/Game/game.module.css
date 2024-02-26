@@ -1,12 +1,122 @@
 .appcontainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  height: 100vh;
+  width: 100vh;
+  position: fixed;
+  background-size: cover;
+  background-color: rgb(255, 255, 255);
 }
 
-.timerContainer {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+.plan {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  gap: 50%;
+  margin-left: 650px;
+  margin-top: 40px;
+}
+
+.cstcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10%;
+}
+
+.regions {
+  height: 400px;
+  width: 550px;
+  border: 5px solid rgb(0, 0, 0);
+  border-radius: 40px ;
+  margin-top: 3%;
+  margin-bottom: 2%;
+}
+
+.wrappercontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 550px;
+  height: 620px;
+  min-height: fit-content;
+  background: white;
+  border: 5px solid black;
+  border-radius: 20px;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 20%;
+  padding-bottom: 20%;
+  margin-right: -150%;
+  margin-top: 2.5%;
+  font-family: "sun";
+}
+
+.wrappercontainer h2 {
+  color: #ffffff;
+  font-size: 28px;
+}
+
+.buttoncontainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.checksyntax {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: "sun";
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #ff1f4c;
+  cursor: pointer;
+  border-radius: 40px;
+  transition: background-color 0.3s, letter-spacing 0.3s;
+
+  letter-spacing: 0.8px;
+  margin-right: 25px;
+}
+
+.complete {
+  letter-spacing: 0.8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: "sun";
+  text-decoration: none;
+  color: #fff;
+  background-color: #149760;
+  cursor: pointer;
+  border-radius: 40px;
+  transition: background-color 0.3s, letter-spacing 0.3s;
+}
+
+
+
+.cstbudget {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 400px;
+  border: 3px solid #000000; /* Change border color to black */
+  background-color: #ffffff; /* Set background color to white */
+  border-radius: 10px;
+  margin-top: 10px; /* Adjust top margin as needed */
+  margin-bottom: 10px; /* Add bottom margin for spacing */
+}
+
+.cstlinedecor {
+  margin-left: 20px;
+  background-color: #fff;
+  height: 55px;
+  width: 3px;
 }
 

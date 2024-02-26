@@ -4,8 +4,10 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #fbfbfb;
   background-size: contain;
+  background-image: url("a5.gif");
+  background-repeat: no-repeat;
+  background-position: 280px;
 }
 
 .title {
@@ -23,30 +25,29 @@
   margin-top: -30px;
 }
 
-.imageContainer {
+/* .imageContainer {
   background-image: url("a2.gif");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: bottom left; /* Updated for bottom left positioning */
+  background-position: bottom left; 
   position: absolute;
   bottom: 0;
-  left: 0; /* Position from the left */
-  width: 700px; /* Increase size */
-  height: 450px; /* Increase size */
+  left: 0; 
+  width: 700px; 
+  height: 450px; 
 }
 
 .imagesContainer {
   background-image: url("a4.gif");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: bottom right; /* Updates for upper right positioning */
+  background-position: bottom right; 
   position: absolute;
-  bottom: 0; /* Position from the top */
-  right: 0; /* Position from the right */
+  bottom: 0;
+  right: 0; 
   width: 700px;
   height: 450px;
-}
-
+} */
 
 .button {
   position: relative;

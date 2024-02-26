@@ -5,9 +5,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: url("a3.gif");
+  /* background-image: url("a3.gif"); */
   background-repeat: no-repeat;
   background-size:cover;
+  background-color: rgb(0, 0, 0);
 }
 
 
