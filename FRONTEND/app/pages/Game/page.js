@@ -16,30 +16,32 @@ const App = () => {
     <div className={styles.appcontainer}>
       <div className={styles.plan}>
         <div className={styles.cstcontainer}>
-          <div className={styles.timerContainer}>
-            <CountTimer
-              countdownTimestampMs={Date.now() + 7 * 60 * 1000}
-              minutes={7}
-              seconds={0}
-            />
-          </div>
+          <CountTimer
+            countdownTimestampMs={Date.now() + 7 * 60 * 1000}
+            minutes={7}
+            seconds={0}
+          />
           <div className={styles.regions}>
-            <div className={styles.hexgridcontainer}>
-              <HexGrid column={8} row={8} />
-            </div>
+            <HexGrid column={8} row={8} />
           </div>
-          <div className={styles.cstbudget}>
+          <div className={styles.line}>
             <span>BUDGET : 500</span>
             <span style={{ marginLeft: "20px" }}>DEPOSIT : 400</span>
           </div>
-          <div className={styles.cstbudget}>
+          <div className={styles.line}>
             <span>ROW : 9</span>
             <span style={{ marginLeft: "20px" }}>COLUMN : 9</span>
           </div>
         </div>
         <div className={styles.wrappercontainer}>
           {" "}
-          <p style={{ fontFamily: "Lover", fontSize: "30px" }}>
+          <p
+            style={{
+              fontFamily: "Lover",
+              fontSize: "30px",
+              marginBottom: "10px",
+            }}
+          >
             CONSTRUCTION PLAN
           </p>
           <AceEditor
@@ -62,11 +64,13 @@ const App = () => {
             }}
           />
           <div className={styles.buttoncontainer}>
-            <button className={styles.checksyntax}>
-              <span>REVISE</span>
+            <button class={styles.button} >
+              <span class={styles.buttontext}>CONFIRM</span>
+              <div class={styles.fillcontainer}></div>
             </button>
-            <button className={styles.complete}>
-              <span>CONFIRM</span>
+            <button class={styles.checkbutton} style={{ marginLeft: "20px" }}>
+              <span class={styles.checkbuttontext}>RESET</span>
+              <div class={styles.checkfillcontainer}></div>
             </button>
           </div>
         </div>
