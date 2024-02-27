@@ -531,4 +531,30 @@ class ConstructionPlanParserTest {
         Player p1 = Player.get(0);
         Player p2 = Player.get(1);
     }
+
+    @Test
+    void infoTest() throws SyntaxErrorException, Expr.SyntaxErrorException{
+        List<Player> Player = setUpGame2();
+        Player p1 = Player.get(0);
+        Player p2 = Player.get(1);
+        Territory territory1 = p1.territory();
+        p1.blink(territory1 ,0,0);
+        p2.blink(territory1,row-1,0);
+
+        List<String> p = Command("invest 1000");
+        p2.setPlan(p);
+        p2.evaluatePlan();
+
+        p = Command("distance = nearby down");
+        p1.setPlan(p);
+        p1.evaluatePlan();
+        double x = p2.getCityCrew().getRow();
+        double y = p2.getCityCrew().getDeposit();
+        assertEquals(100*x+y,p1.variable.get("distance"));
+
+        p = Command("distance = nearby downright");
+        p1.setPlan(p);
+        p1.evaluatePlan();
+        assertEquals(0,p1.variable.get("distance"));
+    }
 }
