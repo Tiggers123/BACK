@@ -154,11 +154,22 @@ import static org.junit.jupiter.api.Assertions.*;
         player.evaluatePlan();
         assertEquals(deposit / 4, player.variable.get("d"));
 
-        double budget = player.getBudget();
-        p = Command("b = budget - 25");
+        p = Command("d2 = deposit - 100");
         player.setPlan(p);
         player.evaluatePlan();
-        assertEquals(budget - 25, player.variable.get("b"));
+        assertEquals(deposit - 100, player.variable.get("d2"));
+
+//        double budget = player.getBudget();
+//        p = Command("b = budget - 100");
+//        player.setPlan(p);
+//        player.evaluatePlan();
+//        assertEquals(budget - 100, player.variable.get("b"));
+
+        p = Command("d2 = deposit - 100");
+        player.setPlan(p);
+        player.evaluatePlan();
+        assertEquals(deposit - 100, player.variable.get("d2"));
+
     }
 
 
