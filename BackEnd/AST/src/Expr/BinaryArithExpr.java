@@ -4,7 +4,7 @@ import GameState.Player;
 
 import java.util.Map;
 
-public class BinaryArithExpr implements Expression{
+public class  BinaryArithExpr implements Expression{
     Expression left ;
     Expression right ;
     String op ;

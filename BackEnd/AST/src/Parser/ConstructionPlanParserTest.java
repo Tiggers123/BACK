@@ -506,4 +506,20 @@ class ConstructionPlanParserTest {
 
 
     }
+
+    @Test
+    void shootTest() throws SyntaxErrorException, Expr.SyntaxErrorException{
+        Player Player = setUpGame();
+        Territory territory = Player.territory();
+        int row = territory.getTerritory_row();
+        int col = territory.getTerritory_col();
+        int longest = Math.max(row , col);
+//        int shortest = Math.min(row , col);
+        double longestpow = Math.pow(longest,2);
+        double c = Math.sqrt(longestpow+longestpow);
+        c = Math.ceil(c);
+        int i;
+        int midRow = (row-1)/2;
+        int midCol = (col-1)/2;
+    }
 }
