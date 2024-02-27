@@ -18,7 +18,6 @@ public class Player {
     private final List<Region> regionList;
     private Region cityCenter;
     private Region cityCrew;
-    
     private double budget = 0;
 
     public Player(String name, Territory territory, Region cityCenter) {
@@ -56,7 +55,12 @@ public class Player {
         return regionList.contains(region);
     }
 
-
+    public double getVariable(String varName) {
+        return variable.getOrDefault(varName, 0.0); // Return 0.0 if variable doesn't exist
+    }
+    public void setVariable(String varName, double value) {
+        variable.put(varName, value);
+    }
 
 
     // look like this method it not good to use but not sure i will comment it first by Ton

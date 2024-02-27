@@ -1,7 +1,10 @@
 package Expr;
 
 import GameState.Player;
+import GameState.Territory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class  BinaryArithExpr implements Expression{
@@ -13,6 +16,8 @@ public class  BinaryArithExpr implements Expression{
         this.op = op;
         this.right = right ;
     }
+
+
     @Override
     public double evaluate(Player user) throws SyntaxErrorException {
         double lv = left.evaluate(user);
