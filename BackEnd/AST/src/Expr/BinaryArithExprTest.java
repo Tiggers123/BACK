@@ -142,7 +142,7 @@ import static org.junit.jupiter.api.Assertions.*;
     @Test
     public void testConstructionPlan() throws SyntaxErrorException, Parser.SyntaxErrorException {
         Player player = setUpGame();
-        List<String> p = Command("t");
+        List<String> p = Command("t=1");
         player.setPlan(p);
         player.evaluatePlan();
         assertEquals(1,1);
