@@ -17,14 +17,14 @@ class ConstructionPlanParserTest {
     }
     public Player setUpGame()  {
         String[] p = {"Ton"};
-        Territory map = new Territory(10, 6, 10000, 500, 100, 100, 100, p);
+        Territory map = new Territory(10, 6, 1000, 500, 100, 100, 100, p);
         List<Player> p1 = map.getPlayer();
         return p1.getFirst();
     }
 
     public List<Player> setUpGame2()  {
         String[] p = {"Ton","Tiger"};
-        Territory map = new Territory(10, 6, 10000, 500, 100, 100, 100, p);
+        Territory map = new Territory(10, 6, 1000, 500, 100, 100, 100, p);
         List<Player> p1 = map.getPlayer();
         return p1;
     }
@@ -525,9 +525,16 @@ class ConstructionPlanParserTest {
     public void IfTest() throws SyntaxErrorException, Expr.SyntaxErrorException {
         Player Player = setUpGame();
         Territory territory = Player.territory();
-        List<String> p = Command("if (budget) then {move down invest 100}  else  {move up invest 100 }");
+        Player.blink(territory,0,0);
+        double playerMoney = Player.getBudget();
+        List<String> p = Command("if (budget) then {move down move down}  else  {move up move up }");
         Player.setPlan(p);
         Player.evaluatePlan();
+        if(Player.getBudget() > 0){
+            assertEquals(territory.getRegion(2,0),Player.getCityCrew());
+        } else {
+            assertEquals(territory.getRegion(0,0),Player.getCityCrew());
+        }
     }
 
     @Test
