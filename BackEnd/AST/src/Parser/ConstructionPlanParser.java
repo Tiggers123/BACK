@@ -48,7 +48,8 @@ public class ConstructionPlanParser {
         Identifier v = new Identifier(line.peek());
         line.consume();
         line.consume("=");
-        return new AssignmentStatement( v ,Expression() ) ;
+        Expression expression = Expression();
+        return new AssignmentStatement( v ,expression ) ;
     }
     public Statement ActionCommand() throws SyntaxErrorException {
         Statement action ;
