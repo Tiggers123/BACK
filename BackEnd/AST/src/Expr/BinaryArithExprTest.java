@@ -148,6 +148,11 @@ import static org.junit.jupiter.api.Assertions.*;
         player.evaluatePlan();
         assertEquals(6,player.variable.get("t"));
 
+        p = Command("t = t + 5");
+        player.setPlan(p);
+        player.evaluatePlan();
+        assertEquals(11,player.variable.get("t"));
+
         double deposit = player.getCityCrew().getDeposit();
         p = Command("d = deposit / 4");
         player.setPlan(p);
@@ -159,16 +164,16 @@ import static org.junit.jupiter.api.Assertions.*;
         player.evaluatePlan();
         assertEquals(deposit - 100, player.variable.get("d2"));
 
-//        double budget = player.getBudget();
-//        p = Command("b = budget - 100");
-//        player.setPlan(p);
-//        player.evaluatePlan();
-//        assertEquals(budget - 100, player.variable.get("b"));
 
-        p = Command("d2 = deposit - 100");
+        p = Command("b = budget - 100");
         player.setPlan(p);
         player.evaluatePlan();
-        assertEquals(deposit - 100, player.variable.get("d2"));
+        assertEquals(player.getBudget() - 100, player.variable.get("b") );
+
+        p = Command("w = 10 q = w + 2 c = q + w");
+        player.setPlan(p);
+        player.evaluatePlan();
+        assertEquals(22, player.variable.get("c"));
 
     }
 
@@ -183,7 +188,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
     public Player setUpGame()  {
         String[] p = {"Ton"};
-        Territory map = new Territory(5, 5, 110000, 500, 100, 100, 100, p);
+        Territory map = new Territory(5, 5, 1000, 500, 100, 100, 100, p);
         List<Player> p1 = map.getPlayer();
         return p1.get(0);
     }

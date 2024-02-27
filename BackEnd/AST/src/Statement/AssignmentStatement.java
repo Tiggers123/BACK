@@ -15,9 +15,10 @@ public class AssignmentStatement implements Statement{
     @Override
     public boolean execute(Player user) throws SyntaxErrorException {
         String v = this.identifier.getName();
-        if (user.variable.containsKey(v)){
-            return true ;
-        }
+//        if (user.variable.containsKey(v)){
+//            user.variable.
+//            return true ;
+//        }
         user.variable.put(v,this.expression.evaluate(user));
         return true;
     }
