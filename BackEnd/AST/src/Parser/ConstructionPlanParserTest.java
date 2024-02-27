@@ -531,6 +531,4 @@ class ConstructionPlanParserTest {
         Player p1 = Player.get(0);
         Player p2 = Player.get(1);
     }
-
-
 }
