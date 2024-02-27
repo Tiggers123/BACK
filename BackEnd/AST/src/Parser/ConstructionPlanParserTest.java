@@ -17,7 +17,7 @@ class ConstructionPlanParserTest {
     }
     public Player setUpGame()  {
         String[] p = {"Ton"};
-        Territory map = new Territory(5, 5, 110000, 500, 100, 100, 100, p);
+        Territory map = new Territory(10, 6, 110000, 500, 100, 100, 100, p);
         List<Player> p1 = map.getPlayer();
         return p1.get(0);
     }
@@ -27,28 +27,28 @@ class ConstructionPlanParserTest {
         Territory territory = Player.territory();
         int row = territory.getTerritory_row();
         int col = territory.getTerritory_col();
-        int longest = Math.max(row , col);
-//        int shortest = Math.min(row , col);
-        double longestpow = Math.pow(longest,2);
-        double c = Math.sqrt(longestpow+longestpow);
-        c = Math.ceil(c);
+        int LongestSide = Math.max(row , col);
+        double LongestPath = Math.pow(LongestSide,2);
+        LongestPath = Math.ceil(LongestPath);
 
         //Move Up
         Player.blink(territory , 0 , 0);
         List<String> p = Command("move up");
         Player.setPlan(p);
-        for (int i = 0; i < row; i++) {
+        for (int i = 0; i <= row; i++) {
             assertEquals(territory.getRegion(0,0),Player.getCityCrew());
             Player.evaluatePlan();
 
         }
+
+
         //Move Upright
         Player.blink(territory , 0 , 0);
         p = Command("move upright");
         Player.setPlan(p);
         assertEquals(territory.getRegion(0,0),Player.getCityCrew());
         Player.evaluatePlan();
-        for (int i = 0; i < c ; i++) {
+        for (int i = 0; i < LongestPath ; i++) {
             assertEquals(territory.getRegion(0,1),Player.getCityCrew());
             Player.evaluatePlan();
         }
@@ -58,7 +58,7 @@ class ConstructionPlanParserTest {
         p = Command("move downright");
         Player.setPlan(p);
         int i = 0 ;
-        for (int j = 0; j < c ; j++) {
+        for (int j = 0; j < LongestPath ; j++) {
             if (i < row && j < col){
                 if (j%2 == 0 ){
                     assertEquals(territory.getRegion(i,j),Player.getCityCrew());
@@ -83,13 +83,16 @@ class ConstructionPlanParserTest {
             Player.evaluatePlan();
             i++;
         }
+        assertEquals(territory.getRegion(territory.getTerritory_row()-1,0),Player.getCityCrew());
+        Player.evaluatePlan();
 
         // Move downleft
         Player.blink(territory , 0 , 0);
         p = Command("move downleft");
         Player.setPlan(p);
-        for (int j = 0; j < c ; j++) {
+        for (int j = 0; j < LongestPath ; j++) {
             assertNotEquals(null,Player.getCityCrew());
+            assertEquals(territory.getRegion(0,0),Player.getCityCrew());
             Player.evaluatePlan();
         }
 
@@ -97,7 +100,7 @@ class ConstructionPlanParserTest {
         Player.blink(territory , 0 , 0);
         p = Command("move upleft");
         Player.setPlan(p);
-        for (int j = 0; j < c ; j++) {
+        for (int j = 0; j < LongestPath ; j++) {
             assertNotEquals(null,Player.getCityCrew());
             assertEquals(territory.getRegion(0,0),Player.getCityCrew());
             Player.evaluatePlan();
@@ -109,30 +112,32 @@ class ConstructionPlanParserTest {
         Player Player = setUpGame();
         Territory territory = Player.territory();
         int row = territory.getTerritory_row();
+        int lastRow = row-1;
         int col = territory.getTerritory_col();
+        int lastCol = col-1;
         int longest = Math.max(row , col);
-//        int shortest = Math.min(row , col);
-        double longestpow = Math.pow(longest,2);
-        double c = Math.sqrt(longestpow+longestpow);
-        c = Math.ceil(c);
+        double LongestPath = Math.pow(longest,2);;
+        LongestPath = Math.ceil(LongestPath);
+
 
         //Move Up
         Player.blink(territory , 0 , col-1);
         List<String> p = Command("move up");
         Player.setPlan(p);
         for (int i = 0; i < row; i++) {
-            assertEquals(territory.getRegion(0,col-1),Player.getCityCrew());
+            assertEquals(territory.getRegion(0,lastCol),Player.getCityCrew());
             Player.evaluatePlan();
 
         }
+
         //Move Upright
         Player.blink(territory , 0 , col-1);
         p = Command("move upright");
         Player.setPlan(p);
         assertEquals(territory.getRegion(0,col-1),Player.getCityCrew());
         Player.evaluatePlan();
-        for (int i = 0; i < c ; i++) {
-            assertEquals(territory.getRegion(0,col-1),Player.getCityCrew());
+        for (int i = 0; i < LongestPath ; i++) {
+            assertEquals(territory.getRegion(0,lastCol),Player.getCityCrew());
             Player.evaluatePlan();
         }
 
@@ -140,10 +145,11 @@ class ConstructionPlanParserTest {
         Player.blink(territory , 0 , col-1);
         p = Command("move downright");
         Player.setPlan(p);
-        for (int i = 0; i < c ; i++) {
-            assertEquals(territory.getRegion(0,col-1),Player.getCityCrew());
+        for (int i = 0; i < LongestPath ; i++) {
+            assertEquals(territory.getRegion(0,lastCol),Player.getCityCrew());
             Player.evaluatePlan();
         }
+
 
         // Move Down
         Player.blink(territory , 0, col-1);
@@ -151,17 +157,19 @@ class ConstructionPlanParserTest {
         p = Command("move down");
         Player.setPlan(p);
         for (int j = 0; j < row ; j++) {
-            assertEquals(territory.getRegion(j,col-1),Player.getCityCrew());
+            assertEquals(territory.getRegion(j,lastCol),Player.getCityCrew());
             Player.evaluatePlan();
             i++;
         }
+        Player.evaluatePlan();
+        assertEquals(territory.getRegion(lastRow,lastCol),Player.getCityCrew());
 
         // Move downleft
         Player.blink(territory , 0 , col-1);
         p = Command("move downleft");
         Player.setPlan(p);
         i = 0 ;
-        for (int j = col-1; j >= 0 ; j--) {
+        for (int j = lastCol; j >= 0 ; j--) {
             if (i < row ){
                 if (j%2 == 0 ){
                     assertEquals(territory.getRegion(i,j),Player.getCityCrew());
@@ -174,6 +182,12 @@ class ConstructionPlanParserTest {
                 assertNotEquals(null,Player.getCityCrew());
             }
             Player.evaluatePlan();
+        }
+        Player.evaluatePlan();
+        if (lastCol % 2 == 0){
+            assertEquals(territory.getRegion(lastCol/2,0),Player.getCityCrew());
+        }else {
+            assertEquals(territory.getRegion((lastCol-1)/2,0),Player.getCityCrew());
         }
 
         //Move upleft
@@ -196,7 +210,9 @@ class ConstructionPlanParserTest {
         Player Player = setUpGame();
         Territory territory = Player.territory();
         int row = territory.getTerritory_row();
+        int lastRow = row-1;
         int col = territory.getTerritory_col();
+        int lastCol = col-1;
         int longest = Math.max(row , col);
 //        int shortest = Math.min(row , col);
         double longestpow = Math.pow(longest,2);
@@ -288,7 +304,6 @@ class ConstructionPlanParserTest {
         int row = territory.getTerritory_row();
         int col = territory.getTerritory_col();
         int longest = Math.max(row , col);
-//        int shortest = Math.min(row , col);
         double longestpow = Math.pow(longest,2);
         double c = Math.sqrt(longestpow+longestpow);
         c = Math.ceil(c);
@@ -368,13 +383,12 @@ class ConstructionPlanParserTest {
         int row = territory.getTerritory_row();
         int col = territory.getTerritory_col();
         int longest = Math.max(row , col);
-//        int shortest = Math.min(row , col);
-        double longestpow = Math.pow(longest,2);
-        double c = Math.sqrt(longestpow+longestpow);
-        c = Math.ceil(c);
+        double LongestPath = Math.pow(longest,2);
+        LongestPath = Math.ceil(LongestPath);
         int i;
         int midRow = (row-1)/2;
         int midCol = (col-1)/2;
+
 
         //Move Up
         Player.blink(territory , midRow , midCol);
@@ -391,7 +405,7 @@ class ConstructionPlanParserTest {
         p = Command("move upright");
         Player.setPlan(p);
         i  = midRow ;
-        for (int j = midCol; j < c ; j++) {
+        for (int j = midCol; j < LongestPath ; j++) {
             if (j < col){
                 if (j%2 == 0 ) {
                     assertEquals(territory.getRegion(i, j), Player.getCityCrew());
@@ -411,7 +425,7 @@ class ConstructionPlanParserTest {
         p = Command("move downright");
         Player.setPlan(p);
         i = midRow ;
-        for (int j = midCol; j < c ; j++) {
+        for (int j = midCol; j < LongestPath ; j++) {
             if (j < col){
                 if (j%2 == 0 ) {
                     assertEquals(territory.getRegion(i, j), Player.getCityCrew());
@@ -504,7 +518,32 @@ class ConstructionPlanParserTest {
         assertEquals(territory.getRegion(3,0).getOwner(),Player);
         assertEquals(territory.getRegion(3,0),Player.getCityCenter());
 
-
+        // collect
+        p = Command("collect (deposit / 4)");
+        Player.setPlan(p);
+        double money = Player.getBudget();
+        Player.evaluatePlan();
+        assertEquals(money+ 24 ,Player.getBudget());
+    }
+    @Test
+    public void WhileTest() throws SyntaxErrorException, Expr.SyntaxErrorException {
+        Player Player = setUpGame();
+        int MapRow = Player.territory().getTerritory_row()-1;
+        int MapCol = 0;
+        Territory territory = Player.territory();
+        List<String> p = Command("while (budget) { move down invest 100 }");
+        Player.setPlan(p);
+        Player.evaluatePlan();
+        assertEquals(Player.getBudget() , 0);
+        assertEquals(territory.getRegion(MapRow , MapCol) , Player.getCityCrew());
+    }
+    @Test
+    public void IfTest() throws SyntaxErrorException, Expr.SyntaxErrorException {
+        Player Player = setUpGame();
+        Territory territory = Player.territory();
+        List<String> p = Command("if (budget) then {move down invest 100}  else  {move up invest 100 }");
+        Player.setPlan(p);
+        Player.evaluatePlan();
     }
 
     @Test
