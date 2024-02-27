@@ -6,16 +6,17 @@ import GameState.Territory;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import static java.lang.Double.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class BinaryArithExprTest {
+    class BinaryArithExprTest {
     DoubleLit zero = new DoubleLit(0);
     DoubleLit one = new DoubleLit(1);
-    DoubleLit Noone = new DoubleLit(-1);
+    DoubleLit Neone = new DoubleLit(-1);
     DoubleLit LargeInt = new DoubleLit(1000);
     DoubleLit LargeInt2 = new DoubleLit(1001);
     DoubleLit LargeNeInt = new DoubleLit(-1000);
@@ -23,6 +24,8 @@ class BinaryArithExprTest {
     public void Upmap(Map<String,  Double> table) {
         table.put("x",100.0);
     }
+
+
 
     public Player doplayer() {
         List<Player> player =new ArrayList<>();
@@ -38,7 +41,7 @@ class BinaryArithExprTest {
         Player user = doplayer();
         assertEquals(1, new BinaryArithExpr(zero, "+", one).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "+", zero).evaluate(user));
-        assertEquals(-1, new BinaryArithExpr(zero, "+", Noone).evaluate(user));
+        assertEquals(-1, new BinaryArithExpr(zero, "+", Neone).evaluate(user));
         assertEquals(1000, new BinaryArithExpr(zero, "+", LargeInt).evaluate(user));
         assertEquals(-1000, new BinaryArithExpr(zero, "+", LargeNeInt).evaluate(user));
     }
@@ -48,7 +51,7 @@ class BinaryArithExprTest {
         Player user = doplayer();
         assertEquals(-1 * one.evaluate(user), new BinaryArithExpr(zero, "-", one).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "-", zero).evaluate(user));
-        assertEquals(1, new BinaryArithExpr(zero, "-", Noone).evaluate(user));
+        assertEquals(1, new BinaryArithExpr(zero, "-", Neone).evaluate(user));
         assertEquals(-1 * LargeInt.evaluate(user), new BinaryArithExpr(zero, "-", LargeInt).evaluate(user));
         assertEquals(-1 * LargeNeInt.evaluate(user), new BinaryArithExpr(zero, "-", LargeNeInt).evaluate(user));
     }
@@ -58,7 +61,7 @@ class BinaryArithExprTest {
         Player user = doplayer();
         assertEquals(0, new BinaryArithExpr(zero, "*", one).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "*", zero).evaluate(user));
-        assertEquals(0, new BinaryArithExpr(zero, "*", Noone).evaluate(user));
+        assertEquals(0, new BinaryArithExpr(zero, "*", Neone).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "*", LargeInt).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "*", LargeNeInt).evaluate(user));
     }
@@ -70,7 +73,7 @@ class BinaryArithExprTest {
         assertThrows(ArithmeticException.class, () -> {
             new BinaryArithExpr(zero, "/", zero).evaluate(user);
         });
-        assertEquals(0, new BinaryArithExpr(zero, "/", Noone).evaluate(user));
+        assertEquals(0, new BinaryArithExpr(zero, "/", Neone).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "/", LargeInt).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "/", LargeNeInt).evaluate(user));
     }
@@ -81,7 +84,7 @@ class BinaryArithExprTest {
         Player user = doplayer();
         assertEquals(0, new BinaryArithExpr(zero, "%", one).evaluate(user));
         assertEquals(NaN, new BinaryArithExpr(zero, "%", zero).evaluate(user));
-        assertEquals(0, new BinaryArithExpr(zero, "%", Noone).evaluate(user));
+        assertEquals(0, new BinaryArithExpr(zero, "%", Neone).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "%", LargeInt).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "%", LargeNeInt).evaluate(user));
     }
@@ -91,32 +94,32 @@ class BinaryArithExprTest {
         Player user = doplayer();
         assertEquals(0, new BinaryArithExpr(zero, "^", one).evaluate(user));
 //        assertEquals(NaN,new BinaryArithExpr(zero,"^" , zero).evaluate(table));
-        assertEquals(POSITIVE_INFINITY, new BinaryArithExpr(zero, "^", Noone).evaluate(user));
+        assertEquals(POSITIVE_INFINITY, new BinaryArithExpr(zero, "^", Neone).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "^", LargeInt).evaluate(user));
         assertEquals(POSITIVE_INFINITY, new BinaryArithExpr(zero, "^", LargeNeInt).evaluate(user));
 
         assertEquals(1, new BinaryArithExpr(one, "^", one).evaluate(user));
         assertEquals(1, new BinaryArithExpr(one, "^", zero).evaluate(user));
-        assertEquals(1, new BinaryArithExpr(one, "^", Noone).evaluate(user));
+        assertEquals(1, new BinaryArithExpr(one, "^", Neone).evaluate(user));
         assertEquals(1, new BinaryArithExpr(one, "^", LargeInt).evaluate(user));
         assertEquals(1, new BinaryArithExpr(one, "^", LargeNeInt).evaluate(user));
 
-        assertEquals(-1, new BinaryArithExpr(Noone, "^", one).evaluate(user));
-        assertEquals(1, new BinaryArithExpr(Noone, "^", zero).evaluate(user));
-        assertEquals(-1, new BinaryArithExpr(Noone, "^", Noone).evaluate(user));
-        assertEquals(1, new BinaryArithExpr(Noone, "^", LargeInt).evaluate(user));
-        assertEquals(1, new BinaryArithExpr(Noone, "^", LargeNeInt).evaluate(user));
-        assertEquals(-1, new BinaryArithExpr(Noone, "^", LargeInt2).evaluate(user));
-        assertEquals(-1, new BinaryArithExpr(Noone, "^", LargeNeInt2).evaluate(user));
+        assertEquals(-1, new BinaryArithExpr(Neone, "^", one).evaluate(user));
+        assertEquals(1, new BinaryArithExpr(Neone, "^", zero).evaluate(user));
+        assertEquals(-1, new BinaryArithExpr(Neone, "^", Neone).evaluate(user));
+        assertEquals(1, new BinaryArithExpr(Neone, "^", LargeInt).evaluate(user));
+        assertEquals(1, new BinaryArithExpr(Neone, "^", LargeNeInt).evaluate(user));
+        assertEquals(-1, new BinaryArithExpr(Neone, "^", LargeInt2).evaluate(user));
+        assertEquals(-1, new BinaryArithExpr(Neone, "^", LargeNeInt2).evaluate(user));
 
 
-        assertEquals(-1, new BinaryArithExpr(Noone, "^", one).evaluate(user));
-        assertEquals(1, new BinaryArithExpr(Noone, "^", zero).evaluate(user));
-        assertEquals(-1, new BinaryArithExpr(Noone, "^", Noone).evaluate(user));
-        assertEquals(1, new BinaryArithExpr(Noone, "^", LargeInt).evaluate(user));
-        assertEquals(1, new BinaryArithExpr(Noone, "^", LargeNeInt).evaluate(user));
-        assertEquals(-1, new BinaryArithExpr(Noone, "^", LargeInt2).evaluate(user));
-        assertEquals(-1, new BinaryArithExpr(Noone, "^", LargeNeInt2).evaluate(user));
+        assertEquals(-1, new BinaryArithExpr(Neone, "^", one).evaluate(user));
+        assertEquals(1, new BinaryArithExpr(Neone, "^", zero).evaluate(user));
+        assertEquals(-1, new BinaryArithExpr(Neone, "^", Neone).evaluate(user));
+        assertEquals(1, new BinaryArithExpr(Neone, "^", LargeInt).evaluate(user));
+        assertEquals(1, new BinaryArithExpr(Neone, "^", LargeNeInt).evaluate(user));
+        assertEquals(-1, new BinaryArithExpr(Neone, "^", LargeInt2).evaluate(user));
+        assertEquals(-1, new BinaryArithExpr(Neone, "^", LargeNeInt2).evaluate(user));
     }
 
     @Test
@@ -124,6 +127,7 @@ class BinaryArithExprTest {
         Player user = doplayer();
         assertThrows(ArithmeticException.class, () -> {
             new BinaryArithExpr(one, "/", zero).evaluate(user);
+            new BinaryArithExpr(Neone, "/", zero).evaluate(user);
         });
     }
 
@@ -135,7 +139,17 @@ class BinaryArithExprTest {
         // Expected result: 5.0
     }
 
-    //clone test
+    @Test
+    public void testConstructionPlan() throws SyntaxErrorException, Parser.SyntaxErrorException {
+        Player player = setUpGame();
+        List<String> p = Command("t");
+        player.setPlan(p);
+        player.evaluatePlan();
+        assertEquals(1,1);
+    }
+
+
+
 
     private List<String> Command(String command){
         List<String> file =  new ArrayList<>();
