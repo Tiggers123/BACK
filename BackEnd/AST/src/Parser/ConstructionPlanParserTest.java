@@ -568,17 +568,17 @@ class ConstructionPlanParserTest {
         assertEquals(0,p1.variable.get("distance"));
     }
 
-//    @Test
-//    public void WhileWithExpTest() throws SyntaxErrorException, Expr.SyntaxErrorException {
-//        Player Player = setUpGame();
-//        int MapRow = Player.territory().getTerritory_row() - 1;
-//        int MapCol = 0;
-//        Territory territory = Player.territory();
-//        Player.blink(territory, 0, 0);
-//        List<String> p = Command("while (budget) { j = j + 1 budget - 100 }");
-//        Player.setPlan(p);
-//        Player.evaluatePlan();
-//        assertEquals(0,Player.getBudget());
-//    }
+    @Test
+    public void WhileWithExpTest() throws SyntaxErrorException, Expr.SyntaxErrorException {
+        Player Player = setUpGame();
+        int MapRow = Player.territory().getTerritory_row() - 1;
+        int MapCol = 0;
+        Territory territory = Player.territory();
+        Player.blink(territory, 0, 0);
+        List<String> p = Command("while (budget) { j = j + 1 invest 100 }");
+        Player.setPlan(p);
+        Player.evaluatePlan();
+        assertEquals(0,Player.getBudget());
+    }
 }
 
