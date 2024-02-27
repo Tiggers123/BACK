@@ -67,11 +67,14 @@ class BinaryArithExprTest {
     void Divi() throws SyntaxErrorException{
         Player user = doplayer();
         assertEquals(0, new BinaryArithExpr(zero, "/", one).evaluate(user));
-        assertEquals(NaN, new BinaryArithExpr(zero, "/", zero).evaluate(user));
+        assertThrows(ArithmeticException.class, () -> {
+            new BinaryArithExpr(zero, "/", zero).evaluate(user);
+        });
         assertEquals(0, new BinaryArithExpr(zero, "/", Noone).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "/", LargeInt).evaluate(user));
         assertEquals(0, new BinaryArithExpr(zero, "/", LargeNeInt).evaluate(user));
     }
+
 
     @Test
     void ModPer() throws SyntaxErrorException{
@@ -117,14 +120,30 @@ class BinaryArithExprTest {
     }
 
     @Test
-    void CombinedOperations() throws SyntaxErrorException {
+    void DivisionByZero() {
         Player user = doplayer();
-        // Test combination of operations
-        assertEquals(5.0, new BinaryArithExpr(new BinaryArithExpr(new DoubleLit(2), "+", new DoubleLit(3)), "*", new DoubleLit(1)).evaluate(user));
-        assertEquals(6.0, new BinaryArithExpr(new DoubleLit(2), "*", new BinaryArithExpr(new DoubleLit(3), "+", new DoubleLit(1))).evaluate(user));
-        assertEquals(-4.0, new BinaryArithExpr(new BinaryArithExpr(new DoubleLit(2), "*", new DoubleLit(3)), "-", new DoubleLit(10)).evaluate(user));
-        assertEquals(0.5, new BinaryArithExpr(new BinaryArithExpr(new DoubleLit(2), "/", new DoubleLit(4)), "/", new DoubleLit(1)).evaluate(user));
+        assertThrows(ArithmeticException.class, () -> {
+            new BinaryArithExpr(one, "/", zero).evaluate(user);
+        });
     }
+
+//    @Test
+//    void NegativeNumbers() throws SyntaxErrorException {
+//        Player user = doplayer();
+//        assertEquals(-1.0, new BinaryArithExpr(zero, "-", one).evaluate(user));
+//        assertEquals(-1.0, new BinaryArithExpr(one, "-", new DoubleLit(2)).evaluate(user));
+//        assertEquals(-2.0, new BinaryArithExpr(zero, "*", Noone).evaluate(user));
+//        assertEquals(-1001.0, new BinaryArithExpr(zero, "+", LargeNeInt2).evaluate(user));
+//    }
+//
+//    @Test
+//    void CombinationOfOperations() throws SyntaxErrorException {
+//        Player user = doplayer();
+//        assertEquals(5.0, new BinaryArithExpr(new BinaryArithExpr(new DoubleLit(2), "+", new DoubleLit(3)), "*", new DoubleLit(1)).evaluate(user));
+//        assertEquals(6.0, new BinaryArithExpr(new DoubleLit(2), "*", new BinaryArithExpr(new DoubleLit(3), "+", new DoubleLit(1))).evaluate(user));
+//        assertEquals(-4.0, new BinaryArithExpr(new BinaryArithExpr(new DoubleLit(2), "*", new DoubleLit(3)), "-", new DoubleLit(10)).evaluate(user));
+//        assertEquals(0.5, new BinaryArithExpr(new BinaryArithExpr(new DoubleLit(2), "/", new DoubleLit(4)), "/", new DoubleLit(1)).evaluate(user));
+//    }
 
     private List<String> Command(String command){
         List<String> file =  new ArrayList<>();

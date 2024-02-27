@@ -18,17 +18,41 @@ public class  BinaryArithExpr implements Expression{
         double lv = left.evaluate(user);
         double rv = right.evaluate(user);
         double result = 0;
-        if (op.equals("+")){result = lv + rv ;}else
-        if (op.equals("-")){result =lv - rv ;}else
-        if (op.equals("*")) {result = lv * rv;}else
-        if (op.equals("/")) {result = lv / rv;}else
-        if (op.equals("%")) {result = lv % rv;}else
-        if (op.equals("^")) {result = Math.pow(lv, rv);}else {throw new SyntaxErrorException("Don't found operater");}
-        if (result == 0){
+
+        switch (op) {
+            case "+":
+                result = lv + rv;
+                break;
+            case "-":
+                result = lv - rv;
+                break;
+            case "*":
+                result = lv * rv;
+                break;
+            case "/":
+                if (rv == 0) {
+                    throw new ArithmeticException("Division by zero");
+                }
+                result = lv / rv;
+                break;
+            case "%":
+                result = lv % rv;
+                break;
+            case "^":
+                result = Math.pow(lv, rv);
+                break;
+            default:
+                throw new SyntaxErrorException("Operator not found: " + op);
+        }
+
+        // Absolute value if result is zero
+        if (result == 0) {
             result = Math.abs(result);
         }
-        return result ;
+
+        return result;
     }
+
 
     @Override
     public StringBuilder prettyPrint(StringBuilder s) {
