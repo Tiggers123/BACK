@@ -562,13 +562,10 @@ class ConstructionPlanParserTest {
             assertEquals(0,p1.variable.get("distance"));
         }
 
-
-
-
-//        p = Command("distance = nearby downright");
-//        p1.setPlan(p);
-//        p1.evaluatePlan();
-//        assertEquals(0,p1.variable.get("distance"));
+        p = Command("distance = nearby downright");
+        p1.setPlan(p);
+        p1.evaluatePlan();
+        assertEquals(0,p1.variable.get("distance"));
     }
 
 //    @Test
