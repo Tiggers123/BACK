@@ -147,6 +147,12 @@ import static org.junit.jupiter.api.Assertions.*;
         player.setPlan(p);
         player.evaluatePlan();
         assertEquals(6,player.variable.get("t"));
+
+        double deposit = player.getCityCrew().getDeposit();
+        p = Command("d = deposit / 4");
+        player.setPlan(p);
+        player.evaluatePlan();
+        assertEquals(deposit / 4, player.variable.get("d"));
     }
 
 
