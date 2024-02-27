@@ -153,6 +153,12 @@ import static org.junit.jupiter.api.Assertions.*;
         player.setPlan(p);
         player.evaluatePlan();
         assertEquals(deposit / 4, player.variable.get("d"));
+
+        double budget = player.getBudget();
+        p = Command("b = budget - 25");
+        player.setPlan(p);
+        player.evaluatePlan();
+        assertEquals(budget - 25, player.variable.get("b"));
     }
 
 
