@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Howto.module.css";
-import "./card.css";
+import Link from "next/link";
 
 const Howto = () => {
   const message = `Welcome to the Game Guide!
@@ -18,38 +18,54 @@ Be cautious: attacking one's own region results in self-destruction, and attacki
 Now that you're equipped with these commands, venture forth and conquer the game!`;
 
   return (
-    <div className={styles.container}>
-      <div className="card">
-        <div className="header">
-          <div className="top">
-            <div className="circle">
-              <span className="red circle2"></span>
-            </div>
-            <div className="circle">
-              <span className="yellow circle2"></span>
-            </div>
-            <div className="circle">
-              <span className="green circle2"></span>
-            </div>
-            <div className="title">
-              <p id="title2">HOW TO PLAY</p>
-            </div>
-          </div>
-        </div>
-        <div className="code-container">
-          <textarea
-            readOnly
-            name="code"
-            id="code"
-            className="area"
+    <div className={styles.bg}>
+      <div className="rpgui-content">
+        <div
+          className="rpgui-container framed"
+          style={{
+            width: "900px",
+            height: "650px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            marginLeft: "300px",
+            marginTop: "40px",
+          }}
+        >
+          <p
             style={{
-              fontFamily: "sun",
+              fontFamily: "Hello",
+              fontSize: "60px",
+              marginBottom: "50px",
+              marginTop: "40px", // Added marginTop for spacing
+            }}
+          >
+            HOW TO PLAY
+            <hr class="golden" style={{ marginTop: "30px" }}></hr>
+          </p>
+          <div
+            className={styles.box}
+            style={{
+              backgroundColor: "#D3D3D3",
+              width: "80%",
+              height: "450px",
+              overflow: "auto",
+              padding: "20px",
+              fontFamily: "loveded",
               fontSize: "20px",
               textAlign: "center",
+              borderRadius: "3px",
+              whiteSpace: "pre-line",
+              marginTop: "-35px",
             }}
-            defaultValue={message}
-          />
+          >
+            {message}
+          </div>
         </div>
+        <Link href="/pages/menu">
+          <div className={styles.imagContainer}></div>
+        </Link>
       </div>
     </div>
   );

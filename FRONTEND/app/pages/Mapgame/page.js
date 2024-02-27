@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./mapgame.module.css";
 import HexGrid from "../components/HexGrid";
-
+import { useNavigate } from "react-router-dom";
 const Mapgame = () => {
   return (
     <div className={styles.bg}>
@@ -9,7 +9,7 @@ const Mapgame = () => {
         <div
           className="rpgui-container framed"
           style={{
-            width: "900px",
+            width: "850px",
             height: "650px",
             display: "flex",
             justifyContent: "center",
@@ -18,69 +18,94 @@ const Mapgame = () => {
             marginLeft: "50px",
           }}
         >
-          <HexGrid row={15} column={15} />
+          <HexGrid row={16} column={20} />
         </div>
         <div
           className="rpgui-container framed-golden-2"
           style={{
-            width: "500px",
+            width: "550px",
             height: "675px",
             display: "flex",
-            justifyContent: "center",
+            flexDirection: "column",
+            justifyContent: "space-between", // Align items with space between
             alignItems: "center",
-            marginTop: "30px",
-            marginLeft: "1000px",
+            marginTop: "25px",
+            marginLeft: "950px",
+            position: "relative",
           }}
         >
           <div
-            className="rpgui-container" // Keep OPPONENT TURN and <hr> outside of the white box
+            className="rpgui-container"
             style={{
-              marginBottom: "500px",
+              marginTop: "35px", // Adjust margin top for spacing
             }}
           >
             <span
               style={{
                 fontFamily: "hello",
-                fontSize: "30px",
+                fontSize: "32px",
                 textAlign: "center",
               }}
             >
-              OPPONENT TURN
+              OPPONENT'TURN
             </span>
             <hr className="golden" style={{ marginTop: "20px" }}></hr>
           </div>
           <div className={styles.box}>
             <div
               class="rpgui-icon sword"
-              style={{ marginRight: "-10px", marginBottom: "-15px" }}
+              style={{
+                marginRight: "-15px",
+                marginBottom: "-15px",
+                marginLeft: "-30px",
+              }}
             ></div>{" "}
-            {/* Add margin-right */}
             DEPOSIT:100000
             <br />
             <br />
             <div
               class="rpgui-icon shield"
-              style={{ marginRight: "-10px", marginBottom: "-15px" }} // Add negative margin-top
+              style={{
+                marginRight: "-15px",
+                marginBottom: "-15px",
+                marginLeft: "-30px",
+              }}
             ></div>{" "}
-            {/* Add margin-right */}
             BUDGET:100000
             <br />
             <br />
             <div
               class="rpgui-icon potion-red"
-              style={{ marginRight: "-10px", marginBottom: "-15px" }} // Add negative margin-top
+              style={{
+                marginRight: "-15px",
+                marginBottom: "-15px",
+                marginLeft: "-30px",
+              }}
             ></div>{" "}
-            {/* Add margin-right */}
             COLUMN:20
             <br />
             <br />
             <div
               class="rpgui-icon potion-blue"
-              style={{ marginRight: "-10px", marginBottom: "-15px" }} // Add negative margin-top
+              style={{
+                marginRight: "-15px",
+                marginBottom: "-15px",
+                marginLeft: "-30px",
+              }}
             ></div>{" "}
-            {/* Add margin-right */}
             ROW:20
           </div>
+          <button
+            class="rpgui-button golden"
+            type="button"
+            style={{
+              marginBottom: "20px", // Adjust margin bottom for spacing
+            }}
+          >
+            <p style={{ fontFamily: "hello", marginTop: "12px" }}>
+              CONSTRUCTION PLAN
+            </p>
+          </button>
         </div>
       </div>
     </div>

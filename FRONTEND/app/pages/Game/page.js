@@ -14,66 +14,83 @@ const App = () => {
 
   return (
     <div className={styles.bg}>
-      <div className={styles.appcontainer}>
-        <div className={styles.plan}>
-          <div className={styles.cstcontainer}>
-            <CountTimer
-              countdownTimestampMs={Date.now() + 7 * 60 * 1000}
-              minutes={7}
-              seconds={0}
-            />
-            <div className={styles.regions}>
-              <HexGrid column={8} row={8} />
-            </div>
-            <div className={styles.line}>
-              <span>BUDGET : 500</span>
-              <span style={{ marginLeft: "20px" }}>DEPOSIT : 400</span>
-            </div>
-            <div className={styles.line}>
-              <span>ROW : 9</span>
-              <span style={{ marginLeft: "20px" }}>COLUMN : 9</span>
-            </div>
-          </div>
-          <div className={styles.wrappercontainer}>
-            {" "}
-            <p
-              style={{
-                fontFamily: "Lover",
-                fontSize: "30px",
-                marginBottom: "10px",
-              }}
+      <div className="rpgui-content">
+        <div className={styles.counttimerwrapper}>
+          <CountTimer
+            countdownTimestampMs={Date.now() + 7 * 60 * 1000}
+            minutes={7}
+            seconds={0}
+          />
+        </div>
+        <div
+          className="rpgui-container framed"
+          style={{
+            width: "850px",
+            height: "650px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "10px",
+            marginLeft: "50px",
+          }}
+        >
+          <HexGrid row={16} column={20} />
+        </div>
+        <div
+          className="rpgui-container framed-golden-2"
+          style={{
+            width: "550px",
+            height: "675px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between", // Align items with space between
+            alignItems: "center",
+            marginTop: "-15px",
+            marginLeft: "950px",
+            position: "relative",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "hello",
+              fontSize: "28px",
+              textAlign: "center",
+              marginTop: "10px",
+              marginBottom: "10px",
+            }}
+          >
+            CONSTRUCTION PLAN
+          </p>
+          <AceEditor
+            className="my-editor"
+            mode="java"
+            theme="dracula"
+            name="plan-editor"
+            editorProps={{ $blockScrolling: true }}
+            fontSize="15px"
+            setOptions={{
+              fontFamily: "Monaco",
+              enableBasicAutocompletion: true,
+              enableLiveAutocompletion: true,
+              enableSnippets: true,
+              enableMultiselect: true,
+            }}
+            onChange={(e) => {
+              setPlanText(e);
+              setErrorMgs("");
+            }}
+          />
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <button
+              className="rpgui-button"
+              type="button"
+              style={{ marginRight: "10px" }}
             >
-              CONSTRUCTION PLAN
-            </p>
-            <AceEditor
-              className="my-editor"
-              mode="java"
-              theme="dracula"
-              name="plan-editor"
-              editorProps={{ $blockScrolling: true }}
-              fontSize="13px"
-              setOptions={{
-                fontFamily: "Monaco",
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true,
-                enableSnippets: true,
-                enableMultiselect: true,
-              }}
-              onChange={(e) => {
-                setPlanText(e);
-                setErrorMgs("");
-              }}
-            />
-            <div className={styles.buttoncontainer}>
-              <button class={styles.button}>
-                <span class={styles.buttontext}>CONFIRM</span>
-                <div class={styles.fillcontainer}></div>
-              </button>
-              <button class={styles.checkbutton} style={{ marginLeft: "20px" }}>
-                <span class={styles.checkbuttontext}>RESET</span>
-                <div class={styles.checkfillcontainer}></div>
-              </button>
-            </div>
+              <p style={{ fontFamily: "hello" }}>CONFIRM</p>
+            </button>
+            <button className="rpgui-button" type="button">
+              <p style={{ fontFamily: "hello" }}>CHECK SYNTAX</p>
+            </button>
           </div>
         </div>
       </div>
@@ -82,3 +99,5 @@ const App = () => {
 };
 
 export default App;
+
+//

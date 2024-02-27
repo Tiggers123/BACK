@@ -41,19 +41,19 @@ const CountTimer = ({ countdownTimestampMs, minutes, seconds }) => {
         style={{
           paddingRight: "10px",
           color: "white",
-          fontSize: "36px",
-          fontFamily: "Lover",
+          fontSize: "25px",
+          fontFamily: "hello",
         }}
       >
-        Time Remaining :
+        TIME REMAINING :
       </span>
-      <span style={{ color: textColor, fontSize: "35px", fontFamily: "Lover" }}>
+      <span style={{ color: textColor, fontSize: "25px", fontFamily: "hello" }}>
         {remainingTime.minutes}
       </span>
-      <span style={{ color: textColor, fontSize: "35px", fontFamily: "Lover" }}>
+      <span style={{ color: textColor, fontSize: "25px", fontFamily: "hello" }}>
         :
       </span>
-      <span style={{ color: textColor, fontSize: "35px", fontFamily: "Lover" }}>
+      <span style={{ color: textColor, fontSize: "25px", fontFamily: "hello" }}>
         {remainingTime.seconds}
       </span>
     </div>

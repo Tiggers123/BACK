@@ -1,15 +1,24 @@
-.container {
+.bg {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  /* background-image: url("a3.gif"); */
-  background-repeat: no-repeat;
-  background-size:cover;
-  background-color: rgb(0, 0, 0);
+  width: 100vw;
+  position: fixed;
+  background-size: cover;
+  background-image: url("a8.gif");
 }
 
+.box {
+  width: "500px";
+  height: "500px";
+  background-color: aliceblue;
+  overflow: auto;
+}
 
-
+.imagContainer {
+  background-image: url("b3.gif");
+  background-size: contain;
+  background-repeat: no-repeat; /* Add this to prevent image repetition */
+  position: absolute;
+  width: 150px;
+  height: 500px;
+  left: 45px; /* Spacing from the left */
+}
