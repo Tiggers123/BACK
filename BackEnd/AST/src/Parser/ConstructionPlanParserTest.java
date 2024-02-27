@@ -28,7 +28,6 @@ class ConstructionPlanParserTest {
         int row = territory.getTerritory_row();
         int col = territory.getTerritory_col();
         int longest = Math.max(row , col);
-//        int shortest = Math.min(row , col);
         double longestpow = Math.pow(longest,2);
         double c = Math.sqrt(longestpow+longestpow);
         c = Math.ceil(c);
@@ -368,7 +367,6 @@ class ConstructionPlanParserTest {
         int row = territory.getTerritory_row();
         int col = territory.getTerritory_col();
         int longest = Math.max(row , col);
-//        int shortest = Math.min(row , col);
         double longestpow = Math.pow(longest,2);
         double c = Math.sqrt(longestpow+longestpow);
         c = Math.ceil(c);
@@ -514,7 +512,6 @@ class ConstructionPlanParserTest {
         int row = territory.getTerritory_row();
         int col = territory.getTerritory_col();
         int longest = Math.max(row , col);
-//        int shortest = Math.min(row , col);
         double longestpow = Math.pow(longest,2);
         double c = Math.sqrt(longestpow+longestpow);
         c = Math.ceil(c);
