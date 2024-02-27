@@ -127,23 +127,13 @@ class BinaryArithExprTest {
         });
     }
 
-//    @Test
-//    void NegativeNumbers() throws SyntaxErrorException {
-//        Player user = doplayer();
-//        assertEquals(-1.0, new BinaryArithExpr(zero, "-", one).evaluate(user));
-//        assertEquals(-1.0, new BinaryArithExpr(one, "-", new DoubleLit(2)).evaluate(user));
-//        assertEquals(-2.0, new BinaryArithExpr(zero, "*", Noone).evaluate(user));
-//        assertEquals(-1001.0, new BinaryArithExpr(zero, "+", LargeNeInt2).evaluate(user));
-//    }
-//
-//    @Test
-//    void CombinationOfOperations() throws SyntaxErrorException {
-//        Player user = doplayer();
-//        assertEquals(5.0, new BinaryArithExpr(new BinaryArithExpr(new DoubleLit(2), "+", new DoubleLit(3)), "*", new DoubleLit(1)).evaluate(user));
-//        assertEquals(6.0, new BinaryArithExpr(new DoubleLit(2), "*", new BinaryArithExpr(new DoubleLit(3), "+", new DoubleLit(1))).evaluate(user));
-//        assertEquals(-4.0, new BinaryArithExpr(new BinaryArithExpr(new DoubleLit(2), "*", new DoubleLit(3)), "-", new DoubleLit(10)).evaluate(user));
-//        assertEquals(0.5, new BinaryArithExpr(new BinaryArithExpr(new DoubleLit(2), "/", new DoubleLit(4)), "/", new DoubleLit(1)).evaluate(user));
-//    }
+    @Test
+    void CombinationOfOperations() throws SyntaxErrorException {
+        Player user = doplayer();
+        // Test combination of operations
+        assertEquals(5.0, new BinaryArithExpr(new BinaryArithExpr(new DoubleLit(2), "+", new DoubleLit(3)), "*", new DoubleLit(1)).evaluate(user));
+        // Expected result: 5.0
+    }
 
     private List<String> Command(String command){
         List<String> file =  new ArrayList<>();
