@@ -38,8 +38,8 @@ public class Player {
     }
     public void setPlan(List<String> text) throws Parser.SyntaxErrorException {
         ConstructionPlanParser plan = new ConstructionPlanParser(text);
-        List<Statement> planList = plan.parse();
-        this.plan = new ConstructionPlan(planList);
+        List<Statement> constructionPlan = plan.parse();
+        this.plan = new ConstructionPlan(constructionPlan);
         this.subBudget(territory.getRev_cost());
     }
     public Territory territory(){
