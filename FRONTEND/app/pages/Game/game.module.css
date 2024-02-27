@@ -2,8 +2,6 @@
   height: 100vh;
   width: 100vh;
   position: fixed;
-  background-size: cover;
-  background-color: rgb(255, 255, 255);
 }
 
 .plan {
@@ -30,6 +28,7 @@
   margin-top: 2%;
   margin-bottom: 2%;
   align-items: center;
+  background-color: #fff;
 }
 
 .wrappercontainer {
@@ -59,7 +58,6 @@
 .buttoncontainer {
   display: flex;
   justify-content: space-between;
-
 }
 .button {
   position: relative;
@@ -207,4 +205,12 @@
   background-color: #fff;
   height: 55px;
   width: 3px;
+}
+
+.bg {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-size: cover;
+  background-color: #1500ff;
 }

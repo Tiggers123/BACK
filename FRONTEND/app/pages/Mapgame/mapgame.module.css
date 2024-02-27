@@ -1,0 +1,19 @@
+.bg {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  background-size: cover;
+  background-image: url("a4.gif");
+ 
+}
+
+/* .box {
+  align-items: center;
+  height: 70%;
+  width: 50%;
+  background-color: white;
+  border: 5px solid rgb(0, 0, 0);
+  overflow: auto;
+  margin: auto;
+  border-radius: 20px;
+} */
