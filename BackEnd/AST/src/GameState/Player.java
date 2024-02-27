@@ -15,7 +15,7 @@ public class Player {
     private Territory territory;
     private ConstructionPlan plan;
     public final Map<String, Double> variable;
-    public final List<Region> regionList;
+    private final List<Region> regionList;
     private Region cityCenter;
     private Region cityCrew;
     
@@ -44,6 +44,19 @@ public class Player {
     public Territory territory(){
         return territory;
     }
+    public void addRegion(Region region){
+        regionList.add(region);
+    }
+    public void removeRegion(Region region){
+        regionList.remove(region);
+    }
+
+    public boolean regionContain(Region region){
+        return regionList.contains(region);
+    }
+
+
+
 
     // look like this method it not good to use but not sure i will comment it first by Ton
 //    public boolean regionListAdjacent(Region regionTocheck){

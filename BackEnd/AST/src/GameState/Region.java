@@ -60,8 +60,8 @@ public class Region extends Territory {
         if(owner.getCityCenter().equals(this)){
             owner.LoseGame();
         } else {
-            if(!owner.regionList.contains(this)) return;
-            owner.regionList.remove(this);
+            if(!player.regionContain(this)) return;
+            owner.removeRegion(this);
             this.owner = null;
         }
     }
