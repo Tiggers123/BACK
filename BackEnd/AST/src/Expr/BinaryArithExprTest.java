@@ -153,6 +153,14 @@ import static org.junit.jupiter.api.Assertions.*;
         player.evaluatePlan();
         assertEquals(11,player.variable.get("t"));
 
+        p = Command("j = j + 1");
+        player.setPlan(p);
+        player.evaluatePlan();
+        for(int i = 1 ; i < 10 ; i++){
+            assertEquals(i,player.variable.get("j"));
+            player.evaluatePlan();
+        }
+
         double deposit = player.getCityCrew().getDeposit();
         p = Command("d = deposit / 4");
         player.setPlan(p);
