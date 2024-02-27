@@ -98,9 +98,7 @@ public class ConstructionPlanParser {
         {
             String command = line.peek();
             line.consume("collect");
-            line.consume("(");
             Expression term = Expression();
-            line.consume(")");
             return new RegionCommand(command, term);
         }
         throw new SyntaxErrorException("Invalid command");
