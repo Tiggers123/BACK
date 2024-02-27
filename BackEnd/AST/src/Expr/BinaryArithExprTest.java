@@ -175,6 +175,11 @@ import static org.junit.jupiter.api.Assertions.*;
         player.evaluatePlan();
         assertEquals(22, player.variable.get("c"));
 
+        p = Command("dir = random");
+        player.setPlan(p);
+        player.evaluatePlan();
+        double dirValue = player.variable.get("dir");
+        assertTrue(dirValue >= 0 && dirValue <= 999);
     }
 
 
