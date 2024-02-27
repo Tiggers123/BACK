@@ -75,10 +75,8 @@ public class Territory {
     private void setUpPlayer(){
         for(int i = 0 ; i < nameOfPlayer.length ; i++){
             Region RandomRegion ;
-//            int row = new Random().nextInt(territory_row);
-//            int col = new Random().nextInt(territory_col); // Commant random to Test more ez
-            int row = 0;
-            int col = 0;
+            int row = new Random().nextInt(territory_row);
+            int col = new Random().nextInt(territory_col); // Commant random to Test more ez
             if(territory[row][col].getOwner() == null){
                 RandomRegion = territory[row][col];
                 Player p  = new Player(nameOfPlayer[i], this, RandomRegion);

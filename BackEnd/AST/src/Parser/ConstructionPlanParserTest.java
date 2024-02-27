@@ -22,6 +22,13 @@ class ConstructionPlanParserTest {
         return p1.getFirst();
     }
 
+    public List<Player> setUpGame2()  {
+        String[] p = {"Ton","Tiger"};
+        Territory map = new Territory(10, 6, 110000, 500, 100, 100, 100, p);
+        List<Player> p1 = map.getPlayer();
+        return p1;
+    }
+
 
     Player Player = setUpGame();
     Territory territory = Player.territory();
@@ -467,7 +474,7 @@ class ConstructionPlanParserTest {
     public void RegionTest() throws SyntaxErrorException, Expr.SyntaxErrorException {
         Player Player = setUpGame();
         Territory territory = Player.territory();
-
+        Player.blink(territory,0,0);
         // invest Test
         List<String> p = Command("move down invest 100 ");
         Player.setPlan(p);
@@ -502,6 +509,7 @@ class ConstructionPlanParserTest {
         int MapRow = Player.territory().getTerritory_row()-1;
         int MapCol = 0;
         Territory territory = Player.territory();
+        Player.blink(territory,0,0);
         List<String> p = Command("while (budget) { move down invest 100 }");
         Player.setPlan(p);
         Player.evaluatePlan();
@@ -518,16 +526,11 @@ class ConstructionPlanParserTest {
     }
 
     @Test
-    void shootTest() throws SyntaxErrorException, Expr.SyntaxErrorException{
-        Player Player = setUpGame();
-        Territory territory = Player.territory();
-        int row = territory.getTerritory_row();
-        int col = territory.getTerritory_col();
-        int LongestSide = Math.max(row , col);
-        double LongestPath = Math.pow(LongestSide,2);
-        LongestPath = Math.ceil(LongestPath);
-        int i;
-        int midRow = (row-1)/2;
-        int midCol = (col-1)/2;
+    void opponentTest() throws SyntaxErrorException, Expr.SyntaxErrorException{
+        List<Player> Player = setUpGame2();
+        Player p1 = Player.get(0);
+        Player p2 = Player.get(1);
     }
+
+
 }
