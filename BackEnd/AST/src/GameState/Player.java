@@ -18,7 +18,6 @@ public class Player {
     private final List<Region> regionList;
     private Region cityCenter;
     private Region cityCrew;
-    
     private double budget = 0;
 
     public Player(String name, Territory territory, Region cityCenter) {
