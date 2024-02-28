@@ -35,14 +35,14 @@ Now that you're equipped with these commands, venture forth and conquer the game
         >
           <p
             style={{
-              fontFamily: "Hello",
-              fontSize: "60px",
+              fontFamily: "mic",
+              fontSize: "120px",
               marginBottom: "50px",
               marginTop: "40px", // Added marginTop for spacing
             }}
           >
             HOW TO PLAY
-            <hr class="golden" style={{ marginTop: "30px" }}></hr>
+            <hr class="golden" style={{ marginTop: "45px" }}></hr>
           </p>
           <div
             className={styles.box}
