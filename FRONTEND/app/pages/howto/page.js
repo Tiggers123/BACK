@@ -53,7 +53,7 @@ Now that you're equipped with these commands, venture forth and conquer the game
               overflow: "auto",
               padding: "20px",
               fontFamily: "loveded",
-              fontSize: "20px",
+              fontSize: "30px",
               textAlign: "center",
               borderRadius: "3px",
               whiteSpace: "pre-line",

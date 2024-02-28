@@ -1,7 +1,7 @@
+import Link from "next/link";
 import React from "react";
 import styles from "./mapgame.module.css";
 import HexGrid from "../components/HexGrid";
-import { useNavigate } from "react-router-dom";
 const Mapgame = () => {
   return (
     <div className={styles.bg}>
@@ -37,7 +37,7 @@ const Mapgame = () => {
           <div
             className="rpgui-container"
             style={{
-              marginTop: "35px", // Adjust margin top for spacing
+              marginTop: "20px", // Adjust margin top for spacing
             }}
           >
             <span
@@ -45,67 +45,67 @@ const Mapgame = () => {
                 fontFamily: "hello",
                 fontSize: "32px",
                 textAlign: "center",
+                marginLeft: "15px",
               }}
             >
               OPPONENT'TURN
             </span>
-            <hr className="golden" style={{ marginTop: "20px" }}></hr>
+            <hr className="golden" style={{ marginTop: "10px" }}></hr>
+            <div className={styles.box}>
+              {" "}
+              <p
+                style={{
+                  fontSize: "22px",
+                  fontFamily: "hello",
+                  textAlign: "center"
+                }}
+              >
+                DEPOSIT:1000000
+                <br />
+                <br />
+                <br />
+                BUDGET:10000
+                <br />
+                <br />
+                <br />
+                COLUMN:20
+                <br />
+                <br />
+                <br />
+                ROW:20
+                
+              </p>
+              <div
+                class="rpgui-icon potion-red"
+                style={{ marginTop: "100px", marginLeft: "18px" }}
+              ></div>
+              <div
+                class="rpgui-icon potion-green"
+                style={{ marginLeft: "15px" }}
+              ></div>
+              <div
+                class="rpgui-icon potion-blue"
+                style={{ marginLeft: "15px" }}
+              ></div>
+              <div
+                class="rpgui-icon potion-red"
+                style={{ marginLeft: "15px" }}
+              ></div>
+            </div>
           </div>
-          <div className={styles.box}>
-            <div
-              class="rpgui-icon sword"
+          <Link href="/pages/Game">
+            <button
+              class="rpgui-button golden"
+              type="button"
               style={{
-                marginRight: "-15px",
-                marginBottom: "-15px",
-                marginLeft: "-30px",
+                marginTop: "550px", // Adjust margin bottom for spacing
               }}
-            ></div>{" "}
-            DEPOSIT:100000
-            <br />
-            <br />
-            <div
-              class="rpgui-icon shield"
-              style={{
-                marginRight: "-15px",
-                marginBottom: "-15px",
-                marginLeft: "-30px",
-              }}
-            ></div>{" "}
-            BUDGET:100000
-            <br />
-            <br />
-            <div
-              class="rpgui-icon potion-red"
-              style={{
-                marginRight: "-15px",
-                marginBottom: "-15px",
-                marginLeft: "-30px",
-              }}
-            ></div>{" "}
-            COLUMN:20
-            <br />
-            <br />
-            <div
-              class="rpgui-icon potion-blue"
-              style={{
-                marginRight: "-15px",
-                marginBottom: "-15px",
-                marginLeft: "-30px",
-              }}
-            ></div>{" "}
-            ROW:20
-          </div>
-          <button
-            class="rpgui-button golden"
-            type="button"
-            style={{
-              marginBottom: "20px", // Adjust margin bottom for spacing
-            }}
-          >
-            <p style={{ fontFamily: "hello", marginTop: "12px" }}>
-              CONSTRUCTION PLAN
-            </p>
-          </button>
+            >
+              <p style={{ fontFamily: "hello", marginTop: "12px" }}>
+                CONSTRUCTION PLAN
+              </p>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

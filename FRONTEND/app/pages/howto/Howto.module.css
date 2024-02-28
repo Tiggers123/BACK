@@ -14,11 +14,12 @@
 }
 
 .imagContainer {
-  background-image: url("b3.gif");
+  background-image: url("a5.gif");
   background-size: contain;
   background-repeat: no-repeat; /* Add this to prevent image repetition */
   position: absolute;
-  width: 150px;
-  height: 500px;
+  width: 90px;
+  height: 90px;
+  top: 20px;
   left: 45px; /* Spacing from the left */
 }

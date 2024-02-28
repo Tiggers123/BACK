@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 import HexGrid from "../components/HexGrid";
 import CountTimer from "../components/CountTimer";
@@ -81,6 +82,7 @@ const App = () => {
             }}
           />
           <div style={{ display: "flex", alignItems: "center" }}>
+          <Link href="/pages/Mapgame">
             <button
               className="rpgui-button"
               type="button"
@@ -88,6 +90,7 @@ const App = () => {
             >
               <p style={{ fontFamily: "hello" }}>CONFIRM</p>
             </button>
+            </Link>
             <button className="rpgui-button" type="button">
               <p style={{ fontFamily: "hello" }}>CHECK SYNTAX</p>
             </button>
