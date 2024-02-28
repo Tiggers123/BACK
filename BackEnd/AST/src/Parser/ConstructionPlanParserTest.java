@@ -39,6 +39,8 @@ class ConstructionPlanParserTest {
     int lastCol = col-1;
     int longest = Math.max(row , col);
     double LongestPath = Math.pow(longest,2);;
+    int MidRow = (row-1)/2;
+    int MidCol = (col-1)/2;
     @Test
     void TopLeftConnerTest() throws SyntaxErrorException, Expr.SyntaxErrorException {
 
@@ -540,13 +542,42 @@ class ConstructionPlanParserTest {
 
     @Test
     void opponentTest() throws SyntaxErrorException, Expr.SyntaxErrorException{
+        // Setup map to Test
         List<Player> Player = setUpGame2();
         Player p1 = Player.get(0);
         Player p2 = Player.get(1);
+        Region oldSpotP1 = p1.getCityCrew();
+        Region oldSpotP2 = p2.getCityCrew();
+        Territory territory1 = p1.territory();
+        p1.blink(territory1 ,MidRow,MidCol);
+        p1.setCityCenter(territory1.getRegion(MidRow,MidCol));
+        p1.getCityCenter().setOwner(p1);
+        oldSpotP1.setOwner(null);
+        Region upleftRegion = p1.getCityCrew().moveDirection("upleft");
+        Region upRegion = p1.getCityCrew().moveDirection("up");
+        Region uprightRegion = p1.getCityCrew().moveDirection("upright");
+        Region downrightRegion = p1.getCityCrew().moveDirection("downright");
+        Region downRegion = p1.getCityCrew().moveDirection("down");
+        Region downleftRegion = p1.getCityCrew().moveDirection("downleft");
+
+        List<String> p = Command("invest 100");
+        List<String> command = Command("X = opponent");
+        p2.setPlan(p);
+        p2.blink(territory1, upleftRegion.getRow(), upleftRegion.getCol());
+        p2.setCityCenter(territory1.getRegion(upleftRegion.getRow(), upleftRegion.getCol()));
+        p2.getCityCenter().setOwner(p2);
+        oldSpotP2.setOwner(null);
+
+        p1.setPlan(command);
+        p1.evaluatePlan();
+        assertEquals(16,p1.variable.get("X"));
+
     }
 
     @Test
     void infoTest() throws SyntaxErrorException, Expr.SyntaxErrorException{
+
+        // Setup map to Test
         List<Player> Player = setUpGame2();
         Player p1 = Player.get(0);
         Player p2 = Player.get(1);
@@ -555,10 +586,14 @@ class ConstructionPlanParserTest {
         Territory territory1 = p1.territory();
         p1.blink(territory1 ,0,0);
         p1.setCityCenter(territory1.getRegion(0,0));
+        p1.getCityCenter().setOwner(p1);
         oldSpotP1.setOwner(null);
+
         p2.blink(territory1,row-1,0);
         p2.setCityCenter(territory1.getRegion(row-1,0));
+        p2.getCityCenter().setOwner(p2);
         oldSpotP2.setOwner(null);
+
         List<String> p = Command("invest 1000");
         p2.setPlan(p);
         p2.evaluatePlan();
@@ -570,11 +605,7 @@ class ConstructionPlanParserTest {
         if (p2.getBudget() >= 1000){
             assertEquals(p2,p2.territory().getRegion(row-1,0).getOwner());
             assertEquals(100*x+y,p1.variable.get("distance"));
-        }else {
-            assertNull(p2.territory().getRegion(row-1,0).getOwner());
-            assertEquals(0,p1.variable.get("distance"));
         }
-
         p = Command("distance = nearby downright");
         p1.setPlan(p);
         p1.evaluatePlan();

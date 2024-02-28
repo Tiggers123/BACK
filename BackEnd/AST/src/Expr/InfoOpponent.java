@@ -15,6 +15,7 @@ public class InfoOpponent implements  Expression{
         for (int i = 0; i < 6; i++) {
             for (int distance = 1; distance <= Maxbound ; distance++) {
                 current = current.moveDirection(Direction[i]);
+                if (current == null) break;
                 if (current.getOwner() != null && current.getOwner() != user){
                     int temp = 10 * distance + i + 1;
                     if(temp < minDistance) {
