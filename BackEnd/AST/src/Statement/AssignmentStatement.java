@@ -19,7 +19,8 @@ public class AssignmentStatement implements Statement{
 //            user.variable.
 //            return true ;
 //        }
-        user.variable.put(v,this.expression.evaluate(user));
+        double value = this.expression.evaluate(user);
+        user.variable.put(v,value);
         return true;
     }
 

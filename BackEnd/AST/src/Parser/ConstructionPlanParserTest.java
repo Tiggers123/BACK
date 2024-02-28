@@ -1,6 +1,7 @@
 package Parser;
 
 import GameState.Player;
+import GameState.Region;
 import GameState.Territory;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ class ConstructionPlanParserTest {
     }
     public Player setUpGame()  {
         String[] p = {"Ton"};
-        Territory map = new Territory(10, 6, 1000, 500, 100, 100, 100, p);
+        Territory map = new Territory(10, 10, 10000, 500, 100, 100, 100, p);
         List<Player> p1 = map.getPlayer();
         return p1.getFirst();
     }
@@ -549,10 +550,15 @@ class ConstructionPlanParserTest {
         List<Player> Player = setUpGame2();
         Player p1 = Player.get(0);
         Player p2 = Player.get(1);
+        Region oldSpotP1 = p1.getCityCrew();
+        Region oldSpotP2 = p2.getCityCrew();
         Territory territory1 = p1.territory();
         p1.blink(territory1 ,0,0);
+        p1.setCityCenter(territory1.getRegion(0,0));
+        oldSpotP1.setOwner(null);
         p2.blink(territory1,row-1,0);
-
+        p2.setCityCenter(territory1.getRegion(row-1,0));
+        oldSpotP2.setOwner(null);
         List<String> p = Command("invest 1000");
         p2.setPlan(p);
         p2.evaluatePlan();

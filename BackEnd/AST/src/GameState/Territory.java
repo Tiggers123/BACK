@@ -73,20 +73,31 @@ public class Territory {
         }
     }
     private void setUpPlayer(){
-        for(int i = 0 ; i < nameOfPlayer.length ; i++){
-            Region RandomRegion ;
-            int row = new Random().nextInt(territory_row);
-            int col = new Random().nextInt(territory_col); // Commant random to Test more ez
-            if(territory[row][col].getOwner() == null){
-                RandomRegion = territory[row][col];
-                Player p  = new Player(nameOfPlayer[i], this, RandomRegion);
-                RandomRegion.addDeposit(init_center_dep);
-                RandomRegion.setOwner(p);
-                p.addBudget(init_budget);
-                this.Player.add(p);
-            }
-
+        for (String s : nameOfPlayer) {
+            Region RandomRegion;
+            int[] location = randomSpawnMap();
+            int row = location[0];
+            int col = location[1];
+            RandomRegion = territory[row][col];
+            Player p = new Player(s, this, RandomRegion);
+            RandomRegion.addDeposit(init_center_dep);
+            RandomRegion.setOwner(p);
+            p.addBudget(init_budget);
+            this.Player.add(p);
         }
+    }
+    private int[] randomSpawnMap(){
+        int [] location = new int[2];
+        int row = new Random().nextInt(territory_row);
+        int col = new Random().nextInt(territory_col);
+        while(territory[row][col].getOwner() != null){
+            row = new Random().nextInt(territory_row);
+            col = new Random().nextInt(territory_col);
+        }
+        location[0] = row ;
+        location[1] = col ;
+        return location ;
+
     }
     public void calculateInterest(Player user){
         user.CalculateInterestRate();
