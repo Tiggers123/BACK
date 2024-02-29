@@ -7,9 +7,21 @@
 }
 
 .box {
-  padding: 30px;
+  padding: 15px;
   margin: 20px;
-  height: 440px;
+  height: 210px;
+  width: 400px;
+  background-color: #ffffff41;
+  border-radius: 1rem;
+  border: 0.3vmin solid #05060f;
+}
+
+.boxs {
+  padding: 15px;
+  margin: 20px;
+  margin-top: 50px;
+  margin-left: -15px;
+  height: 210px;
   width: 400px;
   background-color: #ffffff41;
   border-radius: 1rem;

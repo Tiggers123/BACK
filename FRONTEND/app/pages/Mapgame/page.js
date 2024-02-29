@@ -55,42 +55,63 @@ const Mapgame = () => {
               {" "}
               <p
                 style={{
-                  fontSize: "22px",
+                  fontSize: "20px",
                   fontFamily: "hello",
-                  textAlign: "center"
+                  textAlign: "center",
                 }}
               >
-                DEPOSIT:1000000
+                <p
+                  style={{
+                    textAlign: "center",
+                    marginBottom: "-20px",
+                    fontSize: "24px",
+                    fontFamily: "hello",
+                    marginTop: "12px",
+                  }}
+                >
+                  PLAYER 1
+                </p>
                 <br />
+                <br />
+                DEPOSIT:1000000
                 <br />
                 <br />
                 BUDGET:10000
                 <br />
                 <br />
-                <br />
-                COLUMN:20
-                <br />
-                <br />
-                <br />
-                ROW:20
-                
+                COLUMN:20 ROW:20
               </p>
-              <div
-                class="rpgui-icon potion-red"
-                style={{ marginTop: "100px", marginLeft: "18px" }}
-              ></div>
-              <div
-                class="rpgui-icon potion-green"
-                style={{ marginLeft: "15px" }}
-              ></div>
-              <div
-                class="rpgui-icon potion-blue"
-                style={{ marginLeft: "15px" }}
-              ></div>
-              <div
-                class="rpgui-icon potion-red"
-                style={{ marginLeft: "15px" }}
-              ></div>
+              <div className={styles.boxs}>
+                {" "}
+                <p
+                  style={{
+                    fontSize: "20px",
+                    fontFamily: "hello",
+                    textAlign: "center",
+                  }}
+                >
+                  <p
+                    style={{
+                      textAlign: "center",
+                      marginBottom: "-20px",
+                      fontSize: "24px",
+                      fontFamily: "hello",
+                      marginTop: "12px",                
+                    }}
+                  >
+                    PLAYER 2
+                  </p>
+                  <br />
+                  <br />
+                  DEPOSIT:1000000
+                  <br />
+                  <br />
+                  BUDGET:10000
+                  <br />
+                  <br />
+                  COLUMN:20 ROW:20
+                </p>
+              </div>
             </div>
           </div>
           <Link href="/pages/Game">
@@ -98,7 +119,8 @@ const Mapgame = () => {
               class="rpgui-button golden"
               type="button"
               style={{
-                marginTop: "550px", // Adjust margin bottom for spacing
+                marginTop: "550px",
+                marginInlineStart: "20px",
               }}
             >
               <p style={{ fontFamily: "hello", marginTop: "12px" }}>
