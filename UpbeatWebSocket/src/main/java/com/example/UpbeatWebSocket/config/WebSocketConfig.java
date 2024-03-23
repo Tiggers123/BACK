@@ -1,4 +1,4 @@
-package config;
+package com.example.UpbeatWebSocket.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -9,7 +9,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
-    // กำหนด Path ให้ Cilent สามารถเชื่อมต่อ Server
+    // กำหนด Path ให้ Client สามารถเชื่อมต่อ Server
     // localhost:8080/ws ถ้าจะ connect
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
