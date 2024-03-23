@@ -1,14 +1,17 @@
+package Parser;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-public class ExprTokenizer {
+
+public class Tokenizer {
     //Chat GPT
     List<String> line  ;
 
 
     public int pos;
-    public ExprTokenizer(List<String> text){
+    public Tokenizer(List<String> text){
         pos = 0 ;
         List<String> temp = new ArrayList<>();
         for (String inputString : text) {
@@ -17,8 +20,7 @@ public class ExprTokenizer {
         }
         this.line = temp;
     }
-    public ExprTokenizer(){
-
+    public Tokenizer(){
         pos = 0 ;
     }
     private static final Pattern pattern = Pattern.compile(
@@ -46,6 +48,7 @@ public class ExprTokenizer {
         return tokens;
     }
     public boolean hasNextToken() {
+        if (pos == line.size()) return false;
         return line.get(pos) != null; }
     public String peek() throws SyntaxErrorException {
         checkNextToken();
@@ -57,9 +60,10 @@ public class ExprTokenizer {
     public String consume() throws SyntaxErrorException {
         checkNextToken();
         String result = line.get(pos);
-        if (pos+1 <= line.size()){
-            pos++;
-        }
+//        if (pos+1 <= line.size()){
+//            pos++;
+//        }
+        pos++;
         return result;
     }
     public boolean peek(String s) throws SyntaxErrorException {
