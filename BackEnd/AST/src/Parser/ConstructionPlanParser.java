@@ -23,6 +23,17 @@ public class ConstructionPlanParser {
         }
         return  plan ;
     }
+    // ในส่วนแรก Parser เราจะทำการรับ Construction Plan ที่ Tokiniez แล้ว แล้วจากนั้นจะทำการ Parse แล้ว return ออกเป็น List ของ Statement  หรือก็คือ AST
+    // โดย ATS จะเก็บไว้ใน Player ที่เป็นเจ้าของ Construction Plan นั้นๆ ครับ แล้ว ถ้าจะใช้ก็แค่ Evale
+
+    // และตอนนี้ ผมก็ได้ทำการเขียน Test ไว้นิดหน่อยแล้ว โดยเราจะจำลองการเล่น โดยให้ Run Construction Plan ที่ได้จากหน้าเว็บ ทีผู้เล่นส่งเข้ามา
+    // แล้วลอง Pars และ Eval ดู output ว่ามันทำงานตามนั้นไหม
+    // โดยตอนนี้ก็สามารถ คุมควมเกมส์ผ่าน Construction Plan ที่เข้ามาได้แล้ว สามารถทำงานได้ตามที่ผู้เล่นต้องการได้แล้ว
+    // โดย Test ทีมีตอนนี้อาจะยังไม่ครอยครุมเพราะ ผม assume ว่า Player มีตังมากพอในการ ทำ action นั้นๆ ครับ
+
+    // โดยตรงนี้ผมคิดว่า น่าจะเพิ่มการทำงานแบบ กลุ่มที่แล้ว โดย Log ออกมาดู น่าจะดี
+
+
     public Statement Statement() throws SyntaxErrorException {
         if (line.peek("if")) {
             line.consume("if");
