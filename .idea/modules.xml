@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BackEnd/AST/AST.iml" filepath="$PROJECT_DIR$/BackEnd/AST/AST.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BackEnd/BackEnd.iml" filepath="$PROJECT_DIR$/BackEnd/BackEnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/UPBEAT_Project.iml" filepath="$PROJECT_DIR$/.idea/UPBEAT_Project.iml" />
     </modules>
   </component>

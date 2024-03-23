@@ -2,9 +2,9 @@ import Stomp from "stompjs";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import SockJS from "sockjs-client/dist/sockjs";
-import {useAppDispatch, useAppSelector} from store/hooks.ts;
-import {setIsConnected, appendMessage,setStompClient} from "/store/Slices/webSocketSlice.ts";
-import {selectWebSocket} from "/store/Slices/webSocketSlice.ts";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import {setIsConnected, appendMessage,setStompClient} from "../store/Slices/webSocketSlice";
+import { selectWebSocket } from "../store/Slices/webSocketSlice";
 
 function useWebSocket(){
     const dispatch = useAppDispatch()
