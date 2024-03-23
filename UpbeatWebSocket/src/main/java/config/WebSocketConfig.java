@@ -20,8 +20,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     // กำหนด Sever จะรับผ่านทางไหน แล้วถ้าส่งจะส่งผ่านทางไหน
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.setApplicationDestinationPrefixes("/app").enableSimpleBroker("/topic"); // Path ที่จะรับข้อความจาก Client และแนบ body
+        registry.setApplicationDestinationPrefixes("/app"); // Path ที่จะรับข้อความจาก Client และแนบ body
 
-//        registry.enableSimpleBroker("/topic"); // Path จะส่งข้อมูลผ่านทางไหน
+        registry.enableSimpleBroker("/topic"); // Path จะส่งข้อมูลผ่านทางไหน
     }
 }
