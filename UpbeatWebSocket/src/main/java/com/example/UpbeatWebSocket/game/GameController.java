@@ -13,33 +13,22 @@ public class GameController {
     @SendTo("/topic/public")
     public PlayerMessage addUser(PlayerMessage message, SimpMessageHeaderAccessor headerAccessor) {
         headerAccessor.getSessionAttributes().put("username", message.getSender());
-        return message;
+        PlayerMessage.addPeople();
+        var chatMessage1 = PlayerMessage.builder()
+                .content(message.getContent())
+                .timestamp(message.getTimestamp())
+                .sender(message.getSender())
+                .type(MessageType.JOIN)
+                .cound(PlayerMessage.getPeople())
+                .build();
+        System.out.println(PlayerMessage.getPeople());
+        return chatMessage1;
     }
     //Send Map
     @MessageMapping("/room.sendMap")
     @SendTo("/topic/public")
-    public PlayerMessage addUser(PlayerMessage message) {
+    public PlayerMessage sendMessage(PlayerMessage message) {
         return message;
     }
 
-
-//    // สร้าง Game ใหม่
-//    public void createGame() {
-//        // สร้าง Game ใหม่
-//    }
-//
-//    // สร้าง Game ใหม่
-//    public void joinGame() {
-//        // สร้าง Game ใหม่
-//    }
-//
-//    // สร้าง Game ใหม่
-//    public void startGame() {
-//        // สร้าง Game ใหม่
-//    }
-//
-//    // สร้าง Game ใหม่
-//    public void endGame() {
-//        // สร้าง Game ใหม่
-//    }
 }

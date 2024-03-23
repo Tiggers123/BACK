@@ -627,5 +627,16 @@ public class ConstructionPlanParserTest {
         Player.evaluatePlan();
         assertEquals(0.0,Player.getBudget());
     }
+    @Test
+    public void Test() throws SyntaxErrorException, SyntaxErrorExpr{
+        Player Player = setUpGame();
+        int MapRow = Player.territory().getTerritory_row() - 1;
+        int MapCol = 0;
+        Territory territory = Player.territory();
+        Player.blink(territory, 0, 0);
+        List<String> p = Command("t = t + 1 m = 0 while (deposit) { if (deposit - 100) then collect (deposit / 4) else if (budget - 25) then invest 25 else {} if (budget - 100) then {} else done opponentLoc = opponent if (opponentLoc / 10 - 1) then if (opponentLoc % 10 - 5) then move downleft else if (opponentLoc % 10 - 4) then move down else if (opponentLoc % 10 - 3) then move downright else if (opponentLoc % 10 - 2) then move downright else if (opponentLoc % 10 - 1) then move upright else move up else if (opponentLoc) then if (opponentLoc % 10 - 5) then { cost = 10 ^ (nearby upleft % 100 + 1) if (budget - cost) then shoot upleft cost else {}} else if (opponentLoc % 10 - 4) then {cost = 10 ^ (nearby downleft % 100 + 1)if (budget - cost) then shoot downleft cost else {}} else if (opponentLoc % 10 - 3) then {cost = 10 ^ (nearby down % 100 + 1) if (budget - cost) then shoot down cost else {}}else if (opponentLoc % 10 - 2) then {cost = 10 ^ (nearby downright % 100 + 1)if (budget - cost) then shoot downright cost else {}} else if (opponentLoc % 10 - 1) then {cost = 10 ^ (nearby upright % 100 + 1)if (budget - cost) then shoot upright cost else {}}else {cost = 10 ^ (nearby up % 100 + 1)if (budget - cost) then shoot up cost else {}} else {dir = random % 6 if (dir - 4) then move upleft else if (dir - 3) then move downleft else if (dir - 2) then move down else if (dir - 1) then move downright else if (dir) then move upright else move up m = m + 1}} if (budget - 1) then invest 1 else {}\n");
+        Player.setPlan(p);
+        Player.evaluatePlan();
+    }
 }
 
