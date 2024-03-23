@@ -6,19 +6,26 @@ import Link from "next/link";
 function Configuration() {
   const [rowValue, setRowValue] = useState(9);
   const [columnValue, setColumnValue] = useState(9);
-  const [writeMin, setWriteMin] = useState(59);
+  const [writeMin, setWriteMin] = useState("59");
   const [writeSec, setWriteSec] = useState("00");
   const [changeMin, setChangeMin] = useState("59");
   const [changeSec, setChangeSec] = useState("00");
   const [initialBudget, setInitialBudget] = useState(10000);
   const [depositCenter, setDepositCenter] = useState(100);
   const [changingPlanCost, setChangingPlanCost] = useState(100);
-  const [maxDeposit, setMaxDeposit] = useState(800000);
+  const [maxDeposit, setMaxDeposit] = useState(100000);
   const [interestPercent, setInterestPercent] = useState(5);
+
+  const handleInputChange = (setStateFunc) => (event) => {
+    const newValue = event.target.value;
+    if (!isNaN(newValue)) {
+      setStateFunc(newValue);
+    }
+  };
 
   const handleRowChange = (event) => {
     const newValue = parseInt(event.target.value);
-    if (newValue >= 9 && newValue <= 20) {
+    if (newValue >= 9 && newValue <= 40) {
       setRowValue(newValue);
     }
   };
@@ -50,41 +57,6 @@ function Configuration() {
     }
   };
 
-  const handleInitialBudgetChange = (event) => {
-    const newValue = parseInt(event.target.value);
-    if (newValue >= 5000 && newValue <= 15000) {
-      setInitialBudget(newValue);
-    }
-  };
-
-  const handleDepositCenterChange = (event) => {
-    const newValue = parseInt(event.target.value);
-    if (newValue >= 50 && newValue <= 200) {
-      setDepositCenter(newValue);
-    }
-  };
-
-  const handleChangingPlanCostChange = (event) => {
-    const newValue = parseInt(event.target.value);
-    if (newValue >= 50 && newValue <= 200) {
-      setChangingPlanCost(newValue);
-    }
-  };
-
-  const handleMaxDepositChange = (event) => {
-    const newValue = parseInt(event.target.value);
-    if (newValue >= 400000 && newValue <= 1600000) {
-      setMaxDeposit(newValue);
-    }
-  };
-
-  const handleInterestPercentChange = (event) => {
-    const newValue = parseInt(event.target.value);
-    if (newValue >= 1 && newValue <= 10) {
-      setInterestPercent(newValue);
-    }
-  };
-
   return (
     <div className={styles.configurationPage}>
       <div className="rpgui-content">
@@ -113,7 +85,7 @@ function Configuration() {
               <input
                 type="range"
                 min={9}
-                max={20}
+                max={40}
                 value={rowValue}
                 onChange={handleRowChange}
                 id="row"
@@ -125,7 +97,7 @@ function Configuration() {
               <input
                 type="range"
                 min={9}
-                max={20}
+                max={40}
                 value={columnValue}
                 onChange={handleColumnChange}
                 id="column"
@@ -135,15 +107,13 @@ function Configuration() {
             <div className={styles.setting}>
               <label htmlFor="initialBudget">Initial Budget</label>
               <input
-                type="range"
+                type="text"
                 min={5000}
                 max={15000}
-                step={1000}
                 value={initialBudget}
-                onChange={handleInitialBudgetChange}
+                onChange={handleInputChange(setInitialBudget)}
                 id="initialBudget"
               />
-              <span>{initialBudget}</span>
             </div>
             <div className={styles.setting}>
               <label>time</label>
@@ -173,15 +143,13 @@ function Configuration() {
             <div className={styles.setting}>
               <label htmlFor="depositCenter">Deposit Center</label>
               <input
-                type="range"
+                type="text"
                 min={50}
                 max={200}
-                step={50}
                 value={depositCenter}
-                onChange={handleDepositCenterChange}
+                onChange={handleInputChange(setDepositCenter)}
                 id="depositCenter"
               />
-              <span>{depositCenter}</span>
             </div>
             <div className={styles.setting}>
               <label>Revision time</label>
@@ -211,45 +179,45 @@ function Configuration() {
             <div className={styles.setting}>
               <label htmlFor="changingPlanCost">Changing Cost</label>
               <input
-                type="range"
+                type="text"
                 min={50}
                 max={200}
-                step={50}
                 value={changingPlanCost}
-                onChange={handleChangingPlanCostChange}
+                onChange={handleInputChange(setChangingPlanCost)}
                 id="changingPlanCost"
               />
-              <span>{changingPlanCost}</span>
             </div>
             <div className={styles.setting}>
               <label htmlFor="maxDeposit">Max Deposit</label>
               <input
-                type="range"
+                type="text"
                 min={400000}
                 max={1600000}
                 step={100000}
                 value={maxDeposit}
-                onChange={handleMaxDepositChange}
+                onChange={handleInputChange(setMaxDeposit)}
                 id="maxDeposit"
               />
-              <span>{maxDeposit}</span>
             </div>
             <div className={styles.setting}>
               <label htmlFor="interestPercent">Interest Percent</label>
               <input
-                type="range"
+                type="text"
                 min={1}
                 max={10}
                 value={interestPercent}
-                onChange={handleInterestPercentChange}
+                onChange={handleInputChange(setInterestPercent)}
                 id="interestPercent"
               />
-              <span>{interestPercent}</span>
             </div>
           </div>
         </div>
-        <button class="rpgui-button golden" type="button" style={{marginLeft: "680px" , marginTop:"535px"}}>
-          <p style={{fontFamily: "hello" , marginTop: "15px"}}>CONFIRM</p>
+        <button
+          class="rpgui-button golden"
+          type="button"
+          style={{ marginLeft: "680px", marginTop: "535px" }}
+        >
+          <p style={{ fontFamily: "hello", marginTop: "15px" }}>CONFIRM</p>
         </button>
         <Link href="/pages/menu">
           <div className={styles.imagContainer}></div>

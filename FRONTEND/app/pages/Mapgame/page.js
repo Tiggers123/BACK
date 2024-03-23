@@ -96,7 +96,7 @@ const Mapgame = () => {
                       marginBottom: "-20px",
                       fontSize: "24px",
                       fontFamily: "hello",
-                      marginTop: "12px",                
+                      marginTop: "12px",
                     }}
                   >
                     PLAYER 2
@@ -114,17 +114,31 @@ const Mapgame = () => {
               </div>
             </div>
           </div>
+
           <Link href="/pages/Game">
             <button
               class="rpgui-button golden"
               type="button"
               style={{
                 marginTop: "550px",
-                marginInlineStart: "20px",
+                marginInlineStart: "10px",
+                
               }}
             >
               <p style={{ fontFamily: "hello", marginTop: "12px" }}>
-                CONSTRUCTION PLAN
+                CONSTRUCTION 
+              </p>
+            </button>
+            <button
+              className="rpgui-button golden"
+              type="button"
+              style={{
+                
+                marginInlineStart: "40px",
+              }}
+            >
+              <p style={{ fontFamily: "hello", marginTop: "15px" }}>
+                CONFIRM
               </p>
             </button>
           </Link>

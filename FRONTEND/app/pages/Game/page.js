@@ -18,8 +18,8 @@ const App = () => {
       <div className="rpgui-content">
         <div className={styles.counttimerwrapper}>
           <CountTimer
-            countdownTimestampMs={Date.now() + 7 * 60 * 1000}
-            minutes={7}
+            countdownTimestampMs={Date.now() + 1 * 60 * 1000}
+            minutes={1}
             seconds={0}
           />
         </div>
@@ -82,14 +82,14 @@ const App = () => {
             }}
           />
           <div style={{ display: "flex", alignItems: "center" }}>
-          <Link href="/pages/Mapgame">
-            <button
-              className="rpgui-button"
-              type="button"
-              style={{ marginRight: "10px" }}
-            >
-              <p style={{ fontFamily: "hello" }}>CONFIRM</p>
-            </button>
+            <Link href="/pages/Mapgame">
+              <button
+                className="rpgui-button"
+                type="button"
+                style={{ marginRight: "10px" }}
+              >
+                <p style={{ fontFamily: "hello" }}>CONFIRM</p>
+              </button>
             </Link>
             <button className="rpgui-button" type="button">
               <p style={{ fontFamily: "hello" }}>CHECK SYNTAX</p>

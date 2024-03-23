@@ -21,7 +21,7 @@ const Menu = () => {
               <p style={{ fontFamily: "hello", marginTop: "5px" }}>START</p>
             </button>
           </Link>
-          <Link href="/pages/Howto">
+          <Link href="/pages/howto">
             <button className="rpgui-button" type="button">
               <p style={{ fontFamily: "hello", marginTop: "5px" }}>
                 HOW TO PLAY
