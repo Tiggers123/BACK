@@ -1,0 +1,200 @@
+* commit 5a9bac2196919fa5c47cc07917ba4974018e4b24
+| Author: Suppakorn <suwannapop01@gmail.com>
+| Date:   Mon Feb 12 15:11:56 2024 +0700
+| 
+|     ConstructionPlanParser.java finish but not test yet
+|     Statement in GameState not finish still have only constructor
+|     to complate ConstructionPlanParser.java
+| 
+* commit 52c3a7f39de7eed1714ff04e4c95481f0751103b
+| Author: Suppakorn <suwannapop01@gmail.com>
+| Date:   Mon Feb 12 15:10:23 2024 +0700
+| 
+|     ConstructionPlanParser.java finish but not test yet
+|     Statement in GameState not finish still have only constructor
+|     to complate ConstructionPlanParser.java
+| 
+* commit 1e7d4b49ac6946845eb203ce281b2ba229df5ce9
+| Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| Date:   Mon Feb 12 00:47:20 2024 +0700
+| 
+|     Add InfoOpponent.java and Infonearby.java
+|     and update parser
+| 
+* commit b8d3a5be1b48c71e79d9bb80a928b353f6cdb220
+| Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| Date:   Mon Feb 12 00:46:19 2024 +0700
+| 
+|     Add InfoOpponent.java and Infonearby.java
+|     and update parser
+| 
+* commit 3b720bbe8bf414c2934c7822d7658d27213900be
+| Author: Suppakorn <suwannapop01@gmail.com>
+| Date:   Fri Feb 9 23:58:35 2024 +0700
+| 
+|     Update AST Node And Game State
+| 
+* commit 754cf8141f68621bd074efe4fa0a509bed9d32d7
+| Author: Suppakorn <suwannapop01@gmail.com>
+| Date:   Fri Feb 9 19:16:14 2024 +0700
+| 
+|     Update ExprTokenizer.class
+|   
+*   commit a012cb460c6d31f3e5cc30f5680e319f421de401
+|\  Merge: 584c664 8028520
+| | Author: Suppakorn <suwannapop01@gmail.com>
+| | Date:   Fri Feb 9 19:14:55 2024 +0700
+| | 
+| |     Merge remote-tracking branch 'origin/AST' into AST
+| |     
+| |     # Conflicts:
+| |     #       BackEnd/src/Main.java
+| |     #       BackEnd/src/Tokenizer.java
+| |   
+| *   commit 802852049e7a9b5ce0db61395314e4ea72d8e402
+| |\  Merge: 752c85a 3c567f2
+| | | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | | Date:   Fri Feb 9 19:12:47 2024 +0700
+| | | 
+| | |     Merge pull request #4 from Suwannapop/BackEND
+| | |     
+| | |     Back end
+| | |   
+| | *   commit 3c567f2a3257b26031058617a7f99647492a1281
+| | |\  Merge: 7f0e335 911fc20
+| | | | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | | | Date:   Fri Feb 9 19:10:25 2024 +0700
+| | | | 
+| | | |     Merge pull request #3 from Suwannapop/Parser
+| | | |     
+| | | |     Parser
+| | | | 
+| | | * commit 911fc2041e350a8446fcb9ccc71d287b6718f1b1
+| | | | Author: Suppakorn <suwannapop01@gmail.com>
+| | | | Date:   Fri Feb 9 19:08:26 2024 +0700
+| | | | 
+| | | |     Update ExprTokenizer.class
+| | | | 
+| | | * commit abff396be70f07805141917002e774cf0d251f07
+| | | | Author: Suppakorn <suwannapop01@gmail.com>
+| | | | Date:   Fri Feb 9 19:08:15 2024 +0700
+| | | | 
+| | | |     Update ExprTokenizer.class
+| | | | 
+* | | | commit 584c664ad7b7c53bb1704a15a4a53b9fcbf670d8
+|/ / /  Author: Suppakorn <suwannapop01@gmail.com>
+| | |   Date:   Fri Feb 9 18:52:02 2024 +0700
+| | |   
+| | |       Do Game State and AST Node
+| | | 
+* | | commit 752c85a6bd4af3684eb0ea65d0738f9a95d60cf9
+| | | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | | Date:   Thu Feb 8 22:25:50 2024 +0700
+| | | 
+| | |     Update Expr import from old lap
+| | |     still need to impove more
+| | | 
+* | | commit 1892c908b374df3705ef1ebd8f21ad52c1c31992
+| | | Author: Okinawa <fitthep@gmail.com>
+| | | Date:   Thu Feb 8 22:11:36 2024 +0700
+| | | 
+| | |     Commit Pre GameState
+| | | 
+* | | commit f92e785f49a056a8068a18fce9428ec0d50db921
+| | | Author: Okinawa <fitthep@gmail.com>
+| | | Date:   Thu Feb 8 22:03:55 2024 +0700
+| | | 
+| | |     Commit 2nd draft unfinished AST branch
+| | | 
+* | | commit 91ee4889fa678d4cc7912161d3aef6199eaa13ad
+|/ /  Author: Okinawa <fitthep@gmail.com>
+| |   Date:   Thu Feb 8 21:44:57 2024 +0700
+| |   
+| |       Commit first draft unfinished AST branch
+| | 
+* | commit 7f0e3351b832af43f506c6bf1ab6b4b29e75d730
+|\| Merge: 0e6d9e0 2e021da
+| | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | Date:   Thu Feb 8 18:29:21 2024 +0700
+| | 
+| |     Merge pull request #2 from Suwannapop/Parser
+| |     
+| |     Parser
+| | 
+| * commit 2e021da3a177b9c291ec9baf7874679371460c52
+| | Author: Suppakorn <suwannapop01@gmail.com>
+| | Date:   Tue Feb 6 22:24:23 2024 +0700
+| | 
+| |     Fix some Tokenizer.java ,
+| |     Parser can Parser correct but not ATS not finish yet
+| | 
+| * commit eec900cda6f234432760dadcf1f5f8ab6e3d1c46
+| | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | Date:   Mon Feb 5 02:05:15 2024 +0700
+| | 
+| |     Update ConstructionPlanParser.java
+| |     But the program doesn't look well but it look so
+| | 
+| * commit b580df691477b761dcb88ac9883806b2b09011f7
+| | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | Date:   Mon Feb 5 01:41:40 2024 +0700
+| | 
+| |     Update ConstructionPlanParser.java
+| |     But the program doesn't look well but it look so far so good now
+| |     the program read deposit , budget that is a Special variables
+| |     but it read as Identifier
+| | 
+| * commit fa67d2ea83d2ffec2e0041038e7af83eb6e4c92a
+| | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | Date:   Mon Feb 5 01:41:36 2024 +0700
+| | 
+| |     Update ConstructionPlanParser.java
+| |     But the program doesn't look well but it look so far so good now
+| |     the program read deposit , budget that is a Special variables
+| |     but it read as Identifier
+| | 
+| * commit daa1b91b17ae41587d27759afc80636d8e8e241f
+| | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | Date:   Mon Feb 5 01:41:32 2024 +0700
+| | 
+| |     Update ConstructionPlanParser.java
+| |     But the program doesn't look well but it look so far so good now
+| |     the program read deposit , budget that is a Special variables
+| |     but it read as Identifier
+| | 
+| * commit 99cb28e7a2169091a74b9567f9e670299e9fd833
+| | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | Date:   Sun Feb 4 22:24:01 2024 +0700
+| | 
+| |     Update ExprTokenizer.class now it can read text with comment in it with out problem
+| | 
+| * commit ecfaf3144ba1fdf42378b2417bf5e8a06ba7ecb8
+| | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | Date:   Sun Feb 4 21:57:31 2024 +0700
+| | 
+| |     Update ExprTokenizer.class
+| | 
+| * commit 1e99b32fa6e1e717033b43894d0fddcec068fb14
+| | Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+| | Date:   Sun Feb 4 00:40:14 2024 +0700
+| | 
+| |     Update Parser T-T so hard
+| | 
+| * commit 5fc68896f7129b0f36c4d6ea86901ff36f8ce632
+|/  Author: Suppakorn <suwannapop01@gmail.com>
+|   Date:   Sat Feb 3 17:05:31 2024 +0700
+|   
+|       Add Tokenizer.java , FileManager.java
+|       Parser not finish yet
+| 
+* commit 0e6d9e0fc5b9f7b6905683cfe588f2a0344c24f6
+| Author: Suppakorn <suwannapop01@gmail.com>
+| Date:   Sat Feb 3 13:39:19 2024 +0700
+| 
+|     Git init
+| 
+* commit e3cf26653fa7bb02cb9566f3fe4459bd7da3d1db
+  Author: Suppakorn <110958686+Suwannapop@users.noreply.github.com>
+  Date:   Sat Feb 3 13:37:32 2024 +0700
+  
+      Initial commit
