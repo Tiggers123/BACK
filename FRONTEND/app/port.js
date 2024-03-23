@@ -1,0 +1,1 @@
+export const url = 'ws://localhost8080/project';

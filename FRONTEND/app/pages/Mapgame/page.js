@@ -1,7 +1,9 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import styles from "./mapgame.module.css";
 import HexGrid from "../components/HexGrid";
+import { MapInteractionCSS } from "react-map-interaction";
 const Mapgame = () => {
   return (
     <div className={styles.bg}>
@@ -18,7 +20,21 @@ const Mapgame = () => {
             marginLeft: "50px",
           }}
         >
-          <HexGrid row={16} column={20} />
+          <MapInteractionCSS
+            showControls
+            defaultValue={{
+              scale: 0.5,
+              translation: { x: 20, y: -50 },
+            }}
+            minScale={0.5}
+            maxScale={3}
+            translationBounds={{
+              xMax: 400,
+              yMax: 200,
+            }}
+          >
+            <HexGrid row={30} column={30} />
+          </MapInteractionCSS>
         </div>
         <div
           className="rpgui-container framed-golden-2"
@@ -122,24 +138,20 @@ const Mapgame = () => {
               style={{
                 marginTop: "550px",
                 marginInlineStart: "10px",
-                
               }}
             >
               <p style={{ fontFamily: "hello", marginTop: "12px" }}>
-                CONSTRUCTION 
+                CONSTRUCTION
               </p>
             </button>
             <button
               className="rpgui-button golden"
               type="button"
               style={{
-                
                 marginInlineStart: "40px",
               }}
             >
-              <p style={{ fontFamily: "hello", marginTop: "15px" }}>
-                CONFIRM
-              </p>
+              <p style={{ fontFamily: "hello", marginTop: "15px" }}>CONFIRM</p>
             </button>
           </Link>
         </div>

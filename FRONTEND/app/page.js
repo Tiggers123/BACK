@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "./home.module.css";
 
+
 const Home = () => {
   const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");

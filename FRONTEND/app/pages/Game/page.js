@@ -8,6 +8,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-dracula";
 import "ace-builds/src-noconflict/ext-language_tools";
+import { MapInteractionCSS } from "react-map-interaction";
 
 const App = () => {
   const [planText, setPlanText] = useState("");
@@ -35,7 +36,21 @@ const App = () => {
             marginLeft: "50px",
           }}
         >
-          <HexGrid row={16} column={20} />
+          <MapInteractionCSS
+            showControls
+            defaultValue={{
+              scale: 0.5,
+              translation: { x: 20, y: -50 },
+            }}
+            minScale={0.5}
+            maxScale={3}
+            translationBounds={{
+              xMax: 400,
+              yMax: 200,
+            }}
+          >
+            <HexGrid row={30} column={30} />
+          </MapInteractionCSS>
         </div>
         <div
           className="rpgui-container framed-golden-2"
@@ -102,5 +117,3 @@ const App = () => {
 };
 
 export default App;
-
-//
