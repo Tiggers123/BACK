@@ -17,7 +17,6 @@ public class PlayerRepository implements PlayerService{
     public List<String> createPlayer(String name) {
         if(players.contains(name))
             return players;
-        Player player = new Player(name,null,null);
         players.add(name);
         return players;
     }
