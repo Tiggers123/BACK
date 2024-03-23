@@ -28,7 +28,7 @@ public class Territory {
     protected Region[][] territory; // need to cahnge to private
 
     String[] nameOfPlayer ;
-    Territory(){}
+    public Territory(){}
 
     public Territory(int m, int n, long init_budget, long init_center_dep, long rev_cost, long interest_pct, long max_dep, String[] nameOfPlayer){
         this.territory_row = m;
