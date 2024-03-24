@@ -23,7 +23,7 @@ public class PlayerRepository {
 
     @Getter
     @Setter
-    private Territory territory;
+    private Territory territory = new Territory();
 
     public boolean createPlayer(PlayerAPI player) {
         if (players.contains(player)){
