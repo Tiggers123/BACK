@@ -39,6 +39,7 @@ public class UpbeatController {
         long interest_pct = playerService.getConfigFile().getFirst().getInterest_pct();
         Territory territory = new Territory(row, col, init_budget, init_center_dep, rev_cost, interest_pct, max_dep, nameOfPlayer);
         playerService.addTerritory(territory);
+        playerService.setTerritory(territory);
         return territory.getPlayer().getFirst().name;
     }
 
@@ -51,7 +52,7 @@ public class UpbeatController {
 
     @PostMapping("/sendContruction")
     public String setContruction(@RequestBody String body) throws SyntaxErrorException, SyntaxErrorExpr {
-        Territory territory = playerService.getPlayers().getFirst().getTerritory();
+        Territory territory = playerService.getTerritory();
         Player p1 = territory.getPlayer().getFirst();
         p1.Command(body);
         p1.evaluatePlan();
@@ -64,7 +65,7 @@ public class UpbeatController {
         return map;
     }
     private int[][] updateMap(){
-        Territory territory = playerService.getPlayers().getFirst().getTerritory();
+        Territory territory = playerService.getTerritory();
         int[][] map = new int[territory.getTerritory_row()][territory.getTerritory_col()];
         for (int i = 0; i < territory.getTerritory_row(); i++){
             for (int j = 0; j < territory.getTerritory_col(); j++){
