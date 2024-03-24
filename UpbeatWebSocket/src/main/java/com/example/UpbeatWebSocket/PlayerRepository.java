@@ -4,6 +4,7 @@ import com.example.UpbeatWebSocket.GameState.Player;
 import com.example.UpbeatWebSocket.GameState.Region;
 import com.example.UpbeatWebSocket.GameState.Territory;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -13,9 +14,12 @@ import java.util.Map;
 
 @Repository
 @Getter
-public class PlayerRepository implements PlayerService{
+public class PlayerRepository {
+    @Getter
     private List<PlayerAPI> players = new ArrayList<>() ;
-    @Override
+
+    @Getter
+    private List<ConfigFile> configFile = new ArrayList<>();
     public boolean createPlayer(PlayerAPI player) {
         if (players.contains(player)){
             return false;
@@ -25,18 +29,17 @@ public class PlayerRepository implements PlayerService{
     }
 
 
-    @Override
-    public PlayerAPI getPlayer(String name) {
-        for (PlayerAPI player : players){
-            if (player.getName().equals(name)){
-                return player;
-            }
-        }
-        return null;
+    public void setConfigFile(ConfigFile config){
+        configFile.clear();
+        configFile.add(config);
     }
-    @Override
-    public List<PlayerAPI> getPlayers() {
-        return players;
+    public List<ConfigFile> getConfigFile(){
+        return configFile;
+    }
+    public void addTerritory(Territory territory){
+        for (PlayerAPI player : players){
+            player.setTerritory(territory);
+        }
     }
 
 

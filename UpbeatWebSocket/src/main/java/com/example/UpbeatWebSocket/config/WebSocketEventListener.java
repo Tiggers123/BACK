@@ -24,6 +24,7 @@ public class WebSocketEventListener {
                 .type(MessageType.LEAVE)
                 .build();
         messagingTemplate.convertAndSend("/topic/public", chatMessage);
+        System.out.println("Leave");
 
     }
 }
