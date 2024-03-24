@@ -19,8 +19,8 @@ public class UpbeatController {
 
 
 
-    @GetMapping("/player/{name}")
+    @GetMapping("/players")
     public String getPlayerInformation(@PathVariable("name") String name) {
-        return playerService.getPlayer(name);
+        return playerService.getPlayers().toString();
     }
 }

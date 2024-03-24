@@ -7,4 +7,6 @@ import java.util.List;
 public interface PlayerService {
     List<String> createPlayer(String name);
     String getPlayer(String name);
+
+    public List<String> getPlayers();
 }

@@ -28,4 +28,9 @@ public class PlayerRepository implements PlayerService{
         return "Not Found";
     }
 
+    @Override
+    public List<String> getPlayers() {
+        return  players ;
+    }
+
 }
