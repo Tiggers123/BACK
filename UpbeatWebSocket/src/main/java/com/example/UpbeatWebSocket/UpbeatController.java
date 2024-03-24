@@ -55,7 +55,11 @@ public class UpbeatController {
         Territory territory = playerService.getTerritory();
         Player p1 = territory.getPlayer().getFirst();
         p1.Command(body);
-        p1.evaluatePlan();
+        try {
+            p1.evaluatePlan();
+        }catch (SyntaxErrorExpr e){
+            return "SyntaxErrorException";
+        }
         updateMap();
         return body;
     }
