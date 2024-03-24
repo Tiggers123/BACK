@@ -7,22 +7,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/Play")
+//@RequestMapping("/Play")
 @RestController
 public class UpbeatController {
     @Autowired
     private PlayerService playerService;
 
     @PostMapping("/player")
-    public String createNewPlayer(@RequestBody String body){
-        if (this.playerService.getPlayers().contains(body)){
-            return "Player already exists";
-        }
-        this.playerService.createPlayer(body);
-        return "Player created";
+    public String createNewPlayer(@RequestBody PlayerAPI body){
+        if (playerService.createPlayer(body)) return "Player created";
+        return "Player already exists";
     }
     @GetMapping("/players")
-    public List<String> getPlayerInformation() {
+    public List<PlayerAPI> getPlayerInformation() {
         return playerService.getPlayers();
     }
     @GetMapping("/configfile")

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",
+    "@stomp/stompjs": "^7.0.0",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
     "next": "14.1.0",
