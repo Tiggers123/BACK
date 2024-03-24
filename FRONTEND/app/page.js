@@ -6,8 +6,6 @@ import axios from "axios";
 
 const Home = () => {
   const [name, setName] = useState("");
-  const [nameP1, setNameP1] = useState(null);
-  const [nameP2, setNameP2] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -36,7 +34,6 @@ const Home = () => {
   const handleInputChange = (event) => {
     setName(event.target.value);
   };
-  
 
   const handleJoinGame = () => {
     if (name.trim() === "") {
