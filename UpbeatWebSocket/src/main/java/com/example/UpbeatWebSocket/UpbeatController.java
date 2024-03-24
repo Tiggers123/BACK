@@ -23,8 +23,8 @@ public class UpbeatController {
         return "Player already exists";
     }
     @PostMapping("/startGame")
-    public int gameStart(@RequestBody boolean body){
-        if (playerService.getConfigFile().isEmpty()) return 0;
+    public String gameStart(@RequestBody boolean body){
+        if (playerService.getConfigFile().isEmpty()) return "Noplayer";
         String[] nameOfPlayer = new String[playerService.getPlayers().size()];
         for (int i = 0; i < playerService.getPlayers().size(); i++) {
             nameOfPlayer[i] = playerService.getPlayers().get(i).getName();
@@ -39,7 +39,7 @@ public class UpbeatController {
         long interest_pct = playerService.getConfigFile().getFirst().getInterest_pct();
         Territory territory = new Territory(row, col, init_budget, init_center_dep, rev_cost, interest_pct, max_dep, nameOfPlayer);
         playerService.addTerritory(territory);
-        return territory.getTerritory_col();
+        return territory.getPlayer().getFirst().name;
     }
 
 
@@ -52,11 +52,11 @@ public class UpbeatController {
     @PostMapping("/sendContruction")
     public String setContruction(@RequestBody String body) throws SyntaxErrorException, SyntaxErrorExpr {
         Territory territory = playerService.getPlayers().getFirst().getTerritory();
-        Player p1 = territory.getPlayer().get;
+        Player p1 = territory.getPlayer().getFirst();
         p1.Command(body);
         p1.evaluatePlan();
         updateMap();
-        return body ;
+        return body;
     }
     @GetMapping("/Getmap")
     public int[][] getMap(){

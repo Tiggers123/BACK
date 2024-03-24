@@ -20,6 +20,7 @@ public class PlayerRepository {
 
     @Getter
     private List<ConfigFile> configFile = new ArrayList<>();
+
     public boolean createPlayer(PlayerAPI player) {
         if (players.contains(player)){
             return false;
