@@ -14,7 +14,29 @@ import axios from "axios";
 const App = () => {
   const [planText, setPlanText] = useState("");
   const [errorMgs, setErrorMgs] = useState(null);
+  const [row ,setRow]= useState(0);
+  const [col ,setCol]= useState(0);
 
+
+  const getRowandCol = () => {
+    axios
+      .get("http://localhost:8083/config")
+      .then((response) => {
+        // console.log(response);
+        // console.log(response);
+        const data = response.data[0]; // Assuming response.data is an array with a single object
+        const rowValue = data.row; // Accessing the 'row' property
+        const colValue = data.col;
+        setRow(rowValue);
+        setCol(colValue);
+        // console.log("Row value:", rowValue);
+        // console.log("Col value:", colValue);
+      })
+      .catch((error) => {
+        console.error("Error retrieving player names:", error);
+      });
+  };
+  
   const handleModeSelect = async () => {
     try {
       const response = await axios.post(
@@ -63,6 +85,7 @@ const App = () => {
             marginLeft: "50px",
           }}
         >
+          {getRowandCol()};
           <MapInteractionCSS
             showControls
             defaultValue={{
@@ -76,8 +99,9 @@ const App = () => {
               yMax: 200,
             }}
           >
-            <HexGrid row={30} column={30} />
+            <HexGrid row={row} column={col} />
           </MapInteractionCSS>
+
         </div>
         <div
           className="rpgui-container framed-golden-2"

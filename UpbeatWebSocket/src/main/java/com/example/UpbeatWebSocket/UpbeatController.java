@@ -49,13 +49,7 @@ public class UpbeatController {
     public List<PlayerAPI> getPlayerInformation() {
         return playerService.getPlayers();
     }
-    @GetMapping("/rowAndcol")
-    public List<Integer> RowAndCol() {
-        List<Integer> rowAndCol = new ArrayList<>();
-        rowAndCol.add(playerService.getTerritory().getTerritory_row());
-        rowAndCol.add(playerService.getTerritory().getTerritory_col());
-        return rowAndCol;
-    }
+
 
     @PostMapping("/sendContruction")
     public String setContruction(@RequestBody String body) throws SyntaxErrorException, SyntaxErrorExpr {

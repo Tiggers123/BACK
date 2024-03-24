@@ -1,10 +1,66 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./mapgame.module.css";
 import HexGrid from "../components/HexGrid";
 import { MapInteractionCSS } from "react-map-interaction";
+import axios from "axios";
+
 const Mapgame = () => {
+  const [row, setRow] = useState(0);
+  const [col, setCol] = useState(0);
+  const [dep, setDep] = useState(0);
+  const [bud, setBud] = useState(0);
+
+  const getRowandCol = () => {
+    axios
+      .get("http://localhost:8083/config")
+      .then((response) => {
+        // console.log(response);
+        // console.log(response);
+        const data = response.data[0]; // Assuming response.data is an array with a single object
+        const rowValue = data.row; // Accessing the 'row' property
+        const colValue = data.col;
+        setRow(rowValue);
+        setCol(colValue);
+        const Deposit = data.max_dep;
+        const Budget = data.init_budget;
+        setDep(Deposit);
+        setBud(Budget);
+        // console.log("Row value:", rowValue);
+        // console.log("Col value:", colValue);
+      })
+      .catch((error) => {
+        console.error("Error retrieving player names:", error);
+      });
+  };
+
+  const handleModeSelect = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8083/sendContruction",
+        {
+          cstplan: planText,
+        }
+      );
+      console.log(response);
+
+      console.log(response.data);
+    } catch (error) {
+      if (error.response) {
+        console.error("Server responded with error:", error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error setting up the request:", error.message);
+      }
+    }
+  };
+
+  const handlePlanChange = (event) => {
+    handleModeSelect();
+  };
+
   return (
     <div className={styles.bg}>
       <div className="rpgui-content">
@@ -20,6 +76,7 @@ const Mapgame = () => {
             marginLeft: "50px",
           }}
         >
+          {getRowandCol()};
           <MapInteractionCSS
             showControls
             defaultValue={{
@@ -33,7 +90,7 @@ const Mapgame = () => {
               yMax: 200,
             }}
           >
-            <HexGrid row={30} column={30} />
+            <HexGrid row={row} column={col} />
           </MapInteractionCSS>
         </div>
         <div
@@ -89,13 +146,13 @@ const Mapgame = () => {
                 </p>
                 <br />
                 <br />
-                DEPOSIT:1000000
+                DEPOSIT:{dep}
                 <br />
                 <br />
-                BUDGET:10000
+                BUDGET:{bud}
                 <br />
                 <br />
-                COLUMN:20 ROW:20
+                COLUMN:{col} ROW:{row}
               </p>
               <div className={styles.boxs}>
                 {" "}
@@ -119,10 +176,10 @@ const Mapgame = () => {
                   </p>
                   <br />
                   <br />
-                  DEPOSIT:1000000
+                  DEPOSIT:-
                   <br />
                   <br />
-                  BUDGET:10000
+                  BUDGET:-
                   <br />
                   <br />
                   COLUMN:20 ROW:20
