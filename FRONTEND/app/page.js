@@ -36,13 +36,14 @@ const Home = () => {
   const handleInputChange = (event) => {
     setName(event.target.value);
   };
+  
 
   const handleJoinGame = () => {
     if (name.trim() === "") {
       setErrorMessage("Please input your name.");
     } else {
       handleModeSelect(name);
-      // window.location.href = "/pages/menu";
+      window.location.href = "/pages/menu";
     }
   };
 
