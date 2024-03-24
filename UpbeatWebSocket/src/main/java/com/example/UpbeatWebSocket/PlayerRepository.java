@@ -21,6 +21,10 @@ public class PlayerRepository {
     @Getter
     private List<ConfigFile> configFile = new ArrayList<>();
 
+    @Getter
+    @Setter
+    private Territory territory;
+
     public boolean createPlayer(PlayerAPI player) {
         if (players.contains(player)){
             return false;
