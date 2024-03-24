@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import styles from "./Configuration.module.css";
 import Link from "next/link";
+import axios from "axios";
+
 
 function Configuration() {
   const [rowValue, setRowValue] = useState(9);
@@ -21,6 +23,35 @@ function Configuration() {
     if (!isNaN(newValue)) {
       setStateFunc(newValue);
     }
+  };
+
+  const handleModeSelect = async () => {
+    try {
+      const response = await axios.post("http://localhost:8083/configfile", {
+        row : rowValue,
+        col : columnValue,
+        init_budget : initialBudget,
+        init_center_dep : depositCenter,
+        rev_cost : changingPlanCost,
+        max_dep : maxDeposit,
+        interest_pct : interestPercent,
+      });
+      console.log(response);
+      console.log(response.data);
+    } catch (error) {
+      if (error.response) {
+        console.error("Server responded with error:", error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error setting up the request:", error.message);
+      }
+    }
+  };
+
+  const handleStartGame = () => {
+    handleModeSelect();
+    window.location.href = "/pages/menu";
   };
 
   const handleRowChange = (event) => {
@@ -216,6 +247,7 @@ function Configuration() {
           class="rpgui-button golden"
           type="button"
           style={{ marginLeft: "680px", marginTop: "535px" }}
+          onClick={handleStartGame}
         >
           <p style={{ fontFamily: "hello", marginTop: "15px" }}>CONFIRM</p>
         </button>
