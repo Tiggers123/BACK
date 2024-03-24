@@ -57,7 +57,12 @@ public class UpbeatController {
         p1.evaluatePlan();
         updateMap();
     }
-    private void updateMap(){
+    @GetMapping("/Getmap")
+    public int[][] getMap(){
+        int[][] map = updateMap();
+        return map;
+    }
+    private int[][] updateMap(){
         Territory territory = playerService.getPlayers().getFirst().getTerritory();
         int[][] map = new int[territory.getTerritory_row()][territory.getTerritory_col()];
         for (int i = 0; i < territory.getTerritory_row(); i++){
@@ -69,6 +74,7 @@ public class UpbeatController {
                 }
             }
         }
+        return map;
     }
     @PostMapping("/configfile")
     public String setconfig(@RequestBody ConfigFile body) {

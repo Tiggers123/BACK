@@ -93,6 +93,7 @@ const App = () => {
             }}
             onChange={(e) => {
               setPlanText(e);
+              console.log(e);
               setErrorMgs("");
             }}
           />
