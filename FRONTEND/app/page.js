@@ -17,8 +17,12 @@ const Home = () => {
   const handleModeSelect = async () => {
     try {
       const response = await axios.post("http://localhost:8083/player", {
-        name,
+        name : name,
+        plan : "",
+        money: 0,
       });
+      console.log(response);
+
       console.log(response.data);
     } catch (error) {
       if (error.response) {
@@ -39,7 +43,8 @@ const Home = () => {
     if (name.trim() === "") {
       setErrorMessage("Please input your name.");
     } else {
-      handleModeSelect(name);
+      handleModeSelect();
+      console.log(name);
       window.location.href = "/pages/menu";
     }
   };

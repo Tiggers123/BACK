@@ -3,6 +3,8 @@ package com.example.UpbeatWebSocket;
 import com.example.UpbeatWebSocket.GameState.Player;
 import com.example.UpbeatWebSocket.GameState.Region;
 import com.example.UpbeatWebSocket.GameState.Territory;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,26 +13,35 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class PlayerRepository implements PlayerService{
-    private List<String> players = new ArrayList<>();
-    @Override
-    public List<String> createPlayer(String name) {
-        if(players.contains(name))
-            return players;
-        players.add(name);
-        return players;
-    }
-    @Override
-    public String getPlayer(String name) {
-        if (players.contains(name)){
-            return name;
+@Getter
+public class PlayerRepository {
+    @Getter
+    private List<PlayerAPI> players = new ArrayList<>() ;
+
+    @Getter
+    private List<ConfigFile> configFile = new ArrayList<>();
+    public boolean createPlayer(PlayerAPI player) {
+        if (players.contains(player)){
+            return false;
         }
-        return "Not Found";
+        players.add(player);
+        return true;
     }
 
-    @Override
-    public List<String> getPlayers() {
-        return  players ;
+
+    public void setConfigFile(ConfigFile config){
+        configFile.clear();
+        configFile.add(config);
     }
+    public List<ConfigFile> getConfigFile(){
+        return configFile;
+    }
+    public void addTerritory(Territory territory){
+        for (PlayerAPI player : players){
+            player.setTerritory(territory);
+        }
+    }
+
+
 
 }

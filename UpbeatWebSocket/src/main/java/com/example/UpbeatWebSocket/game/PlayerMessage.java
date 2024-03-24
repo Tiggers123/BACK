@@ -16,6 +16,8 @@ public class PlayerMessage {
 
     public static void addPeople() {
         people++ ;
+        System.out.println(people);
+
     }
     public static void minusPeople() {
         people-- ;
