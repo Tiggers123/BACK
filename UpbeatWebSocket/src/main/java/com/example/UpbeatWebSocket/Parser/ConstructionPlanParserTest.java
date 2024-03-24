@@ -638,5 +638,15 @@ public class ConstructionPlanParserTest {
         Player.setPlan(p);
         Player.evaluatePlan();
     }
+    @Test
+    public void TestReadConfig() throws SyntaxErrorException, SyntaxErrorExpr{
+        Player Player = setUpGame();
+        int MapRow = Player.territory().getTerritory_row() - 1;
+        int MapCol = 0;
+        Territory territory = Player.territory();
+        Player.blink(territory, 0, 0);
+        List<String> p = Command("m=20 n=15 init_plan_min=5 init_plan_sec=0 init_budget=10000 init_center_dep=100 plan_rev_min=30 plan_rev_sec=0 rev_cost=100 max_dep=1000000 interest_pct=5 ");
+        TokenizerConfig x = new TokenizerConfig(p);
+    }
 }
 

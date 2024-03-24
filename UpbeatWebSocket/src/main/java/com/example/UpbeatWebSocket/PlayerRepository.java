@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Repository
 public class PlayerRepository implements PlayerService{
-    private List<String> players = new ArrayList<>();
+    private List<String> players = new ArrayList<>() ;
     @Override
     public List<String> createPlayer(String name) {
         if(players.contains(name))
