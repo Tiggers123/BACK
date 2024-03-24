@@ -2,10 +2,7 @@ import Link from "next/link";
 import styles from "./menu.module.css";
 import axios from "axios";
 
-
-
 const Menu = () => {
-
   const handleModeSelect = async () => {
     try {
       const response = await axios.post("http://localhost:8083/startGame", {
@@ -23,7 +20,7 @@ const Menu = () => {
       }
     }
   };
-  
+
   const handleStartGame = () => {
     handleModeSelect();
     // console.log(name);
@@ -63,13 +60,6 @@ const Menu = () => {
             <button className="rpgui-button" type="button">
               <p style={{ fontFamily: "hello", marginTop: "5px" }}>
                 SETTING CONFIG
-              </p>
-            </button>
-          </Link>
-          <Link href="/">
-            <button className="rpgui-button" type="button">
-              <p style={{ fontFamily: "hello", marginTop: "5px" }}>
-                BACK TO GAME
               </p>
             </button>
           </Link>

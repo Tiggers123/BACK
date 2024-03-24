@@ -9,10 +9,37 @@ import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-dracula";
 import "ace-builds/src-noconflict/ext-language_tools";
 import { MapInteractionCSS } from "react-map-interaction";
+import axios from "axios";
 
 const App = () => {
   const [planText, setPlanText] = useState("");
   const [errorMgs, setErrorMgs] = useState(null);
+
+  const handleModeSelect = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8083/sendContruction",
+        {
+          cstplan: planText,
+        }
+      );
+      console.log(response);
+
+      console.log(response.data);
+    } catch (error) {
+      if (error.response) {
+        console.error("Server responded with error:", error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error setting up the request:", error.message);
+      }
+    }
+  };
+
+  const handlePlanChange = (event) => {
+    handleModeSelect();
+  };
 
   return (
     <div className={styles.bg}>
@@ -102,13 +129,11 @@ const App = () => {
                 className="rpgui-button"
                 type="button"
                 style={{ marginRight: "10px" }}
+                onClick={handlePlanChange()}
               >
                 <p style={{ fontFamily: "hello" }}>CONFIRM</p>
               </button>
             </Link>
-            <button className="rpgui-button" type="button">
-              <p style={{ fontFamily: "hello" }}>CHECK SYNTAX</p>
-            </button>
           </div>
         </div>
       </div>
