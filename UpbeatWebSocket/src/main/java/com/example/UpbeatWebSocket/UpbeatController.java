@@ -1,7 +1,9 @@
 package com.example.UpbeatWebSocket;
 
+import com.example.UpbeatWebSocket.Expr.SyntaxErrorExpr;
 import com.example.UpbeatWebSocket.GameState.Player;
 import com.example.UpbeatWebSocket.GameState.Territory;
+import com.example.UpbeatWebSocket.Parser.SyntaxErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +47,34 @@ public class UpbeatController {
     @GetMapping("/players")
     public List<PlayerAPI> getPlayerInformation() {
         return playerService.getPlayers();
+    }
+
+    @PostMapping("/sendContruction")
+    public void setContruction(@RequestBody String body) throws SyntaxErrorException, SyntaxErrorExpr {
+        Territory territory = playerService.getPlayers().getFirst().getTerritory();
+        Player p1 = territory.getPlayer().get(0);
+        p1.Command(body);
+        p1.evaluatePlan();
+        updateMap();
+    }
+    @GetMapping("/Getmap")
+    public int[][] getMap(){
+        int[][] map = updateMap();
+        return map;
+    }
+    private int[][] updateMap(){
+        Territory territory = playerService.getPlayers().getFirst().getTerritory();
+        int[][] map = new int[territory.getTerritory_row()][territory.getTerritory_col()];
+        for (int i = 0; i < territory.getTerritory_row(); i++){
+            for (int j = 0; j < territory.getTerritory_col(); j++){
+                if (territory.getRegion(i,j) == null) {
+                    map[i][j] = -1;
+                } else {
+                    map[i][j] = 100 ;
+                }
+            }
+        }
+        return map;
     }
     @PostMapping("/configfile")
     public String setconfig(@RequestBody ConfigFile body) {
