@@ -50,12 +50,13 @@ public class UpbeatController {
     }
 
     @PostMapping("/sendContruction")
-    public void setContruction(@RequestBody String body) throws SyntaxErrorException, SyntaxErrorExpr {
+    public String setContruction(@RequestBody String body) throws SyntaxErrorException, SyntaxErrorExpr {
         Territory territory = playerService.getPlayers().getFirst().getTerritory();
-        Player p1 = territory.getPlayer().get(0);
+        Player p1 = territory.getPlayer().get;
         p1.Command(body);
         p1.evaluatePlan();
         updateMap();
+        return body ;
     }
     @GetMapping("/Getmap")
     public int[][] getMap(){
