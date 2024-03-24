@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/Play")
 @RestController
 public class UpbeatController {
     @Autowired
@@ -26,6 +27,6 @@ public class UpbeatController {
     }
     @GetMapping("/configfile")
     public List<String> setconfig(@RequestBody String body) {
-        return
+        return null;
     }
 }

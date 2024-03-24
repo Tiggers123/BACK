@@ -1,11 +1,37 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./home.module.css";
-
+import createWebsocket from "./api/createWebsocket";
+import axios from "axios";
 
 const Home = () => {
   const [name, setName] = useState("");
+  const [nameP1, setNameP1] = useState(null);
+  const [nameP2, setNameP2] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    createWebsocket.initializeWebSocket();
+    const client = createWebsocket.getClient();
+    console.log("WebSocket Client:", client);
+  }, []);
+
+  const handleModeSelect = async () => {
+    try {
+      const response = await axios.post("http://localhost:8083/player", {
+        name,
+      });
+      console.log(response.data);
+    } catch (error) {
+      if (error.response) {
+        console.error("Server responded with error:", error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error setting up the request:", error.message);
+      }
+    }
+  };
 
   const handleInputChange = (event) => {
     setName(event.target.value);
@@ -15,7 +41,8 @@ const Home = () => {
     if (name.trim() === "") {
       setErrorMessage("Please input your name.");
     } else {
-      window.location.href = "/pages/menu";
+      handleModeSelect(name);
+      // window.location.href = "/pages/menu";
     }
   };
 
