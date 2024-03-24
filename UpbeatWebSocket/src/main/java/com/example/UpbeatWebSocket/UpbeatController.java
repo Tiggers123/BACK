@@ -20,11 +20,12 @@ public class UpbeatController {
         this.playerService.createPlayer(body);
         return "Player created";
     }
-
-
-
     @GetMapping("/players")
     public List<String> getPlayerInformation() {
         return playerService.getPlayers();
+    }
+    @GetMapping("/configfile")
+    public List<String> setconfig(@RequestBody String body) {
+        return
     }
 }
