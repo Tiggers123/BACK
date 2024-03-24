@@ -113,6 +113,11 @@ public class Player {
             region.InterestRate();
         }
     }
+    public void Command(String command) throws SyntaxErrorException {
+        List<String> file =  new ArrayList<>();
+        file.add(command);
+        setPlan(file);
+    }
     // For Testing
 
     public ConstructionPlan getPlan() {

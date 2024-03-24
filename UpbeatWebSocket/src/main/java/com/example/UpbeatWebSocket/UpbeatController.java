@@ -2,6 +2,7 @@ package com.example.UpbeatWebSocket;
 
 import com.example.UpbeatWebSocket.GameState.Player;
 import com.example.UpbeatWebSocket.GameState.Territory;
+import com.example.UpbeatWebSocket.Parser.SyntaxErrorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +46,14 @@ public class UpbeatController {
     @GetMapping("/players")
     public List<PlayerAPI> getPlayerInformation() {
         return playerService.getPlayers();
+    }
+
+    @PostMapping("/sendContruction")
+    public void setContruction(@RequestBody String body) throws SyntaxErrorException {
+        Territory territory = playerService.getPlayers().getFirst().getTerritory();
+        Player p1 = territory.getPlayer().get(0);
+        p1.Command(body);
+
     }
     @PostMapping("/configfile")
     public String setconfig(@RequestBody ConfigFile body) {
