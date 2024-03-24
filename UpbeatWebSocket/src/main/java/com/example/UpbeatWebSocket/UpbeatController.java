@@ -13,14 +13,18 @@ public class UpbeatController {
     private PlayerService playerService;
 
     @PostMapping("/player")
-    public List<String> createNewPlayer(@RequestBody String body){
-        return this.playerService.createPlayer(body);
+    public String createNewPlayer(@RequestBody String body){
+        if (this.playerService.getPlayers().contains(body)){
+            return "Player already exists";
+        }
+        this.playerService.createPlayer(body);
+        return "Player created";
     }
 
 
 
     @GetMapping("/players")
-    public String getPlayerInformation(@PathVariable("name") String name) {
-        return playerService.getPlayers().toString();
+    public List<String> getPlayerInformation() {
+        return playerService.getPlayers();
     }
 }
